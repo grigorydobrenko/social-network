@@ -1,26 +1,15 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import Profile from "./components/Profile";
 
 function App() {
     return (
         <div className="App-wrapper">
-            <header className='header'>
-                <div className='header__img'>
-                    <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="logo"/>
-                </div>
-            </header>
-            <nav className='nav'>
-
-                    <div>Profile</div>
-                    <div>Messages</div>
-                    <div>News</div>
-                    <div>Music</div>
-                    <div>Settings</div>
-
-            </nav>
-            <body className='content'>
-                main content
-            </body>
+            <Header/>
+            <NavBar/>
+            <Profile/>
         </div>
     );
 }
