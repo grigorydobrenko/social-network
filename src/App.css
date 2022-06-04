@@ -53,27 +53,8 @@
   padding: 20px;
 }
 
-.header {
-  grid-area: h;
-  background-color: green;
-}
-
-.header__img img {
-  width: 50px;
-  padding: 20px;
-}
-
-.nav {
-  grid-area: n;
-  background-color: blue;
-}
-
-.body {
-  grid-area: b;
-  background-color: red;
-}
 
 
-.content__img {
-  width: 100%
-}
+
+
+
