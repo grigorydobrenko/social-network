@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './Profile.module.css'
-import MyPosts from "./Profile/MyPosts/MyPosts";
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
         <>
-            <body className={s.content}>
+            <body>
             <div>main content</div>
             <div>
                 <img src="https://cdn.pixabay.com/photo/2017/09/29/22/55/panorama-2800783_960_720.jpg" alt="photo"

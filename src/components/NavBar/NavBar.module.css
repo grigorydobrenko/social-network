@@ -3,10 +3,17 @@
     background-color: blue;
 }
 
-.item {
-    color:white;
+.nav li {
+    list-style-type: none;
 }
 
-.active {
-    text-transform: uppercase;
+
+
+.item {
+    color:white;
+    text-decoration: none;
+}
+
+.activeLink {
+    color: gold;
 }
