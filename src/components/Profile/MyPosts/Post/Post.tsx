@@ -7,7 +7,7 @@ type MyPostPropsType = {
 }
 
 
-const Post = (props:MyPostPropsType) => {
+const Post: React.FC<MyPostPropsType> = (props) => {
     return (
         <>
             <div className={s.item}>
