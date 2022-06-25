@@ -1,5 +1,5 @@
 export type PostType = {
-    id: number,
+    id?: number,
     message: string,
     likes: number,
 }
