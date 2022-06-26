@@ -22,7 +22,7 @@ const App: React.FC<AppPropsType> = (props) => {
         <BrowserRouter>
             <div className="App-wrapper">
                 <Header/>
-                <NavBar/>
+                <NavBar state={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>}/>
                     {/*In general, render works best with functional components,
