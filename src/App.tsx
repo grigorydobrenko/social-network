@@ -14,6 +14,7 @@ import {RootStateType} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType
+    addPost: (postText:string) => void
 }
 
 
@@ -24,7 +25,7 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header/>
                 <NavBar state={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile state={props.state.profilePage}/>}/>
+                    <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                     {/*In general, render works best with functional components,
                      as they do not have lifecycle methods by default,
                      and component works best with class components.*/}

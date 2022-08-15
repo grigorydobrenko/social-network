@@ -113,6 +113,18 @@ export let state: RootStateType = {
 }
 
 
+export const addPost = (postText: string) => {
+
+    const newPost:PostType = {
+        id: 3,
+        message: postText,
+        likes: 0
+    }
+
+    state.profilePage.posts.push(newPost)
+    console.log(state.profilePage.posts)
+}
+
 /*
 const DialogItemsData: Array<DialogItemPropsType> = [
     {
