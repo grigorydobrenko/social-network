@@ -11,12 +11,12 @@ import {RootStateType} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType
-    addPost:() => void
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
-    const {state,addPost,updateNewPostText} = props
+    const {state, addPost, updateNewPostText} = props
 
     return (
         <BrowserRouter>

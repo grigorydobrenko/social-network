@@ -1,4 +1,8 @@
-import {renderTree} from "./render";
+let renderTree: () => void
+
+export const subscriber = (observer: () => void) => {
+    renderTree = observer
+}
 
 export type PostType = {
     id?: number,
@@ -128,13 +132,13 @@ export const addPost = () => {
 
     state.profilePage.posts.push(newPost)
 
-    renderTree(state)
+    renderTree()
     state.profilePage.newPostText = ''
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    renderTree(state)
+
+    renderTree()
 
 }
-

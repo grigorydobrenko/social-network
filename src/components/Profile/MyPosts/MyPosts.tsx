@@ -20,7 +20,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         addPost()
     }
 
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         updateNewPostText(e.currentTarget.value)
     }
 
