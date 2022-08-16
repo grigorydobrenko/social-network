@@ -125,6 +125,6 @@ export const addPost = (postText: string) => {
 
     state.profilePage.posts.push(newPost)
     console.log(state.profilePage.posts)
-    renderTree(state, addPost)
+    renderTree(state)
 }
 

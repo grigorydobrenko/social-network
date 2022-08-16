@@ -6,16 +6,16 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music, News, Settings} from "./components/Draft/Pages";
-import {RootStateType} from "./redux/state";
+import {addPost, RootStateType} from "./redux/state";
 
 
 type AppPropsType = {
     state: RootStateType
-    addPost: (postText: string) => void
+
 }
 
 const App: React.FC<AppPropsType> = (props) => {
-    const {state, addPost} = props
+    const {state} = props
 
     return (
         <BrowserRouter>
