@@ -1,3 +1,5 @@
+import {renderTree} from "./render";
+
 export type PostType = {
     id?: number,
     message: string,
@@ -115,7 +117,7 @@ export let state: RootStateType = {
 
 export const addPost = (postText: string) => {
 
-    const newPost:PostType = {
+    const newPost: PostType = {
         id: 3,
         message: postText,
         likes: 0
@@ -123,53 +125,6 @@ export const addPost = (postText: string) => {
 
     state.profilePage.posts.push(newPost)
     console.log(state.profilePage.posts)
+    renderTree(state, addPost)
 }
 
-/*
-const DialogItemsData: Array<DialogItemPropsType> = [
-    {
-        name: 'Leha',
-        id: 1,
-    },
-    {
-        name: 'Dima',
-        id: 2,
-    }, {
-        name: 'Max',
-        id: 3,
-    }, {
-        name: 'Kate',
-        id: 4,
-    }, {
-        name: 'Den',
-        id: 5,
-    },
-]
-
-
-const MessagesData: Array<MessagePropsType> = [
-    {
-        id: 1,
-        message: 'Hi'
-    },
-    {
-        id: 2,
-        message: 'Its me'
-    }, {
-        id: 3,
-        message: 'Hello'
-    },
-]
-
-const PostsData: Array<MyPostPropsType> = [
-    {
-        id: 1,
-        message: 'Hi, its me',
-        likes: 4,
-    },
-    {
-        id: 2,
-        message: 'Hello',
-        likes: 15,
-    },
-]*/

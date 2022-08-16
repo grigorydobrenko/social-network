@@ -7,23 +7,11 @@ import {sidebarType} from "../../redux/state";
 type NavBarPropsType = {
     state: sidebarType
 }
-/* state =
-    friends: [
-        {
-            id: 1,
-            name: 'Andrew'
-        },
-        {
-            id: 2,
-            name: 'Sasha'
-        }, {
-            id: 3,
-            name: 'Sveta'
-        },
-    ]
-}*/
+
 
 const NavBar: React.FC<NavBarPropsType> = (props) => {
+    const {state} = props
+
     return (
         <div>
             <nav className={s.nav}>
@@ -35,7 +23,7 @@ const NavBar: React.FC<NavBarPropsType> = (props) => {
                     <li><NavLink to="/settings" className={s.item} activeClassName={s.activeLink}>Settings</NavLink></li>
                 </ul>
             </nav>
-            <Friends state={props.state.friends}/>
+            <Friends state={state.friends}/>
         </div>
     );
 };

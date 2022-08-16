@@ -5,18 +5,18 @@ import {PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     PostsData: Array<PostType>
-    addPost:(postText:string) => void
+    addPost: (postText: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+    const {PostsData, addPost} = props
 
-    let postElements = props.PostsData.map(post => <Post message={post.message} likes={post.likes}/>)
-
+    let postElements = PostsData.map(post => <Post message={post.message} likes={post.likes}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    const addPost = () => {
+    const onClickHandler = () => {
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
+            addPost(newPostElement.current.value)
         }
     }
 
@@ -30,7 +30,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                         <textarea ref={newPostElement}></textarea>
                     </div>
                     <div>
-                        <button onClick={addPost}>add post</button>
+                        <button onClick={onClickHandler}>add post</button>
                     </div>
                 </div>
                 <div className={s.posts}>

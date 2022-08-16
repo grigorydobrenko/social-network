@@ -11,9 +11,11 @@ type DialogsPropsType = {
 
 
 const Dialogs:React.FC<DialogsPropsType> = (props) => {
+    const {state} = props
 
-    let DialogItems = props.state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
-    let Messages = props.state.messages.map(message => <Message message={message.message}/>)
+
+    let DialogItems = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
+    let Messages = state.messages.map(message => <Message message={message.message}/>)
 
     let newMessageEl = React.createRef<HTMLTextAreaElement>()
     let AlertMessage = () => {

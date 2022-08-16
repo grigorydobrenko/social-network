@@ -8,16 +8,16 @@ type FriendsPropsType = {
 }
 
 
-const Friends:React.FC<FriendsPropsType> = (props) => {
+const Friends: React.FC<FriendsPropsType> = (props) => {
+    const {state} = props
 
-    let friends = props.state.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
+    let friends = state.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
 
     return (
         <div className={s.friends}>
-         <h2 className={s.title}>Friends</h2>
+            <h2 className={s.title}>Friends</h2>
             <div className={s.friendsContainer}>
                 {friends}
-                {/*<Friend name={props.state[0].name} avatar={props.state[0].avatar}/>*/}
             </div>
         </div>
     );

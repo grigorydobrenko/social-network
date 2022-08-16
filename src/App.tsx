@@ -9,28 +9,23 @@ import {Music, News, Settings} from "./components/Draft/Pages";
 import {RootStateType} from "./redux/state";
 
 
-
-// type RootStateType = DialogsPropsType & ProfilePropsType
-
 type AppPropsType = {
     state: RootStateType
-    addPost: (postText:string) => void
+    addPost: (postText: string) => void
 }
 
-
 const App: React.FC<AppPropsType> = (props) => {
+    const {state, addPost} = props
+
     return (
         <BrowserRouter>
             <div className="App-wrapper">
                 <Header/>
                 <NavBar state={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
-                    {/*In general, render works best with functional components,
-                     as they do not have lifecycle methods by default,
-                     and component works best with class components.*/}
-                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogPage}
-                                                                  />}/>
+                    <Route path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={state.dialogPage}
+                    />}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
