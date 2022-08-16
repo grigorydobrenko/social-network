@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music, News, Settings} from "./components/Draft/Pages";
-import {addPost, RootStateType} from "./redux/state";
+import {addPost, RootStateType, updateNewPostText} from "./redux/state";
 
 
 type AppPropsType = {
@@ -23,7 +23,10 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header/>
                 <NavBar state={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
+                                                                  addPost={addPost}
+                                                                  updateNewPostText={updateNewPostText}
+                    />}/>
                     <Route path='/dialogs' render={() => <Dialogs state={state.dialogPage}
                     />}/>
                     <Route path='/news' component={News}/>
