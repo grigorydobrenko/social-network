@@ -45,19 +45,27 @@ export type storeType = {
     _renderTree: () => void
     subscriber: (observer: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: CommonActionType) => void
+    dispatch: (action: ACTypes) => void
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
+
+type addPostACType = ReturnType<typeof addPostAC>
+type changeTextACType = ReturnType<typeof changeTextAC>
+
+export type ACTypes = addPostACType | changeTextACType
+
+export const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
+    } as const
 }
 
-export type ChangeTextActionType = {
-    type: 'CHANGE-TEXT'
-    text: string
+export const changeTextAC = (text:string) => {
+    return {
+        type: 'CHANGE-TEXT',
+        text
+    }
 }
-
-export type CommonActionType = AddPostActionType | ChangeTextActionType
 
 
 export const store: storeType = {

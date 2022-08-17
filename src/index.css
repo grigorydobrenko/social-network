@@ -12,6 +12,6 @@ code {
     monospace;
 }
 
-textarea, a, button {
+a, button {
   cursor: pointer;
 }
