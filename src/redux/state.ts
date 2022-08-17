@@ -64,7 +64,7 @@ export const changeTextAC = (text:string) => {
     return {
         type: 'CHANGE-TEXT',
         text
-    }
+    } as const
 }
 
 
