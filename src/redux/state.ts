@@ -24,7 +24,6 @@ export type sidebarType = {
     friends: Array<FriendType>
 }
 
-
 export type profilePageType = {
     posts: Array<PostType>
     newPostText: string
@@ -35,7 +34,6 @@ export type dialogPageType = {
     messages: Array<MessageType>
 }
 
-
 export type RootStateType = {
     profilePage: profilePageType,
     dialogPage: dialogPageType
@@ -45,14 +43,24 @@ export type RootStateType = {
 export type storeType = {
     _state: RootStateType
     _renderTree: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     subscriber: (observer: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: CommonActionType) => void
 }
 
+export type AddPostActionType = {
+    type: 'ADD-POST'
+}
 
-export const store:storeType = {
+export type ChangeTextActionType = {
+    type: 'CHANGE-TEXT'
+    text: string
+}
+
+export type CommonActionType = AddPostActionType | ChangeTextActionType
+
+
+export const store: storeType = {
     _state: {
         profilePage: {
             posts: [
@@ -124,31 +132,51 @@ export const store:storeType = {
             ]
         }
     },
+
     _renderTree() {
         console.log('state changed')
-    },
-    addPost() {
-        const newPost:PostType = {
-            id: new Date().getTime(),
-            message: this._state.profilePage.newPostText,
-            likes: 0
-        }
-
-        this._state.profilePage.posts.push(newPost)
-        this._renderTree()
-        this._state.profilePage.newPostText = ''
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._renderTree()
-
     },
     subscriber(observer: () => void) {
         this._renderTree = observer
     },
     getState() {
         return this._state
-    }
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: new Date().getTime(),
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            }
+
+            this._state.profilePage.posts.push(newPost)
+            this._renderTree()
+            this._state.profilePage.newPostText = ''
+        } else if (action.type === 'CHANGE-TEXT') {
+            this._state.profilePage.newPostText = action.text
+            this._renderTree()
+        }
+    },
+
+    // addPost() {
+    //     const newPost:PostType = {
+    //         id: new Date().getTime(),
+    //         message: this._state.profilePage.newPostText,
+    //         likes: 0
+    //     }
+    //
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._renderTree()
+    //     this._state.profilePage.newPostText = ''
+    // },
+    // updateNewPostText(newText: string) {
+    //     this._state.profilePage.newPostText = newText
+    //     this._renderTree()
+    //
+    // }
+
 }
 
 
