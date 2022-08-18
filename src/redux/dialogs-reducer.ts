@@ -1,7 +1,43 @@
-import {ACTypes, dialogPageType} from "./state";
+import {ACTypes, dialogPageType} from "./store";
 
 
-export const dialogsReducer = (state: dialogPageType, action: ACTypes) => {
+const dialogs:dialogPageType = {
+    dialogs: [
+        {
+            name: 'Leha',
+            id: 1,
+        },
+        {
+            name: 'Dima',
+            id: 2,
+        }, {
+            name: 'Max',
+            id: 3,
+        }, {
+            name: 'Kate',
+            id: 4,
+        }, {
+            name: 'Den',
+            id: 5,
+        },
+    ],
+    messages: [
+        {
+            id: 1,
+            message: 'Hi'
+        },
+        {
+            id: 2,
+            message: 'Its me'
+        }, {
+            id: 3,
+            message: 'Hello'
+        },
+    ],
+    newMessageText: ''
+}
+
+export const dialogsReducer = (state: dialogPageType = dialogs, action: ACTypes) => {
     switch (action.type) {
         case 'CHANGE-MESSAGE': {
             state.newMessageText = action.messageText

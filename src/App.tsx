@@ -6,11 +6,12 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music, News, Settings} from "./components/Draft/Pages";
-import {storeType} from "./redux/state";
+import {ACTypes, dialogPageType, profilePageType, sidebarType} from "./redux/store";
+import {CombinedState, Store} from "redux";
 
 
 type AppPropsType = {
-    store: storeType
+    store: Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, ACTypes>
 }
 
 const App: React.FC<AppPropsType> = (props) => {
