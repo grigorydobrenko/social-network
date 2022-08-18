@@ -32,6 +32,7 @@ export type profilePageType = {
 export type dialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 
 export type RootStateType = {
@@ -51,8 +52,10 @@ export type storeType = {
 
 type addPostACType = ReturnType<typeof addPostAC>
 type changeTextACType = ReturnType<typeof changeTextAC>
+type changeMessageTextACType = ReturnType<typeof changeMessageTextAC>
+type addMessageACType = ReturnType<typeof addMessageAC>
 
-export type ACTypes = addPostACType | changeTextACType
+export type ACTypes = addPostACType | changeTextACType | changeMessageTextACType | addMessageACType
 
 export const addPostAC = () => {
     return {
@@ -60,10 +63,23 @@ export const addPostAC = () => {
     } as const
 }
 
-export const changeTextAC = (text:string) => {
+export const changeTextAC = (text: string) => {
     return {
         type: 'CHANGE-TEXT',
         text
+    } as const
+}
+
+export const changeMessageTextAC = (messageText: string) => {
+    return {
+        type: 'CHANGE-MESSAGE',
+        messageText
+    } as const
+}
+
+export const addMessageAC = () => {
+    return {
+        type: 'ADD-MESSAGE'
     } as const
 }
 
@@ -117,8 +133,8 @@ export const store: storeType = {
                     id: 3,
                     message: 'Hello'
                 },
-            ]
-
+            ],
+            newMessageText: ''
 
         },
         sidebar: {
@@ -165,25 +181,17 @@ export const store: storeType = {
         } else if (action.type === 'CHANGE-TEXT') {
             this._state.profilePage.newPostText = action.text
             this._renderTree()
+        } else if (action.type === 'CHANGE-MESSAGE') {
+            this._state.dialogPage.newMessageText = action.messageText
+            this._renderTree()
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage = {id: 4, message: this._state.dialogPage.newMessageText}
+            this._state.dialogPage.messages.push(newMessage)
+            this._renderTree()
+            this._state.dialogPage.newMessageText = ''
         }
     },
 
-    // addPost() {
-    //     const newPost:PostType = {
-    //         id: new Date().getTime(),
-    //         message: this._state.profilePage.newPostText,
-    //         likes: 0
-    //     }
-    //
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._renderTree()
-    //     this._state.profilePage.newPostText = ''
-    // },
-    // updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._renderTree()
-    //
-    // }
 
 }
 
