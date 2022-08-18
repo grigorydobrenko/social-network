@@ -1,3 +1,7 @@
+import {DialogReducerType, dialogsReducer} from "./dialogs-reducer";
+import {profileReducer, profileReducerType} from "./profile-reducer";
+import {SidebarReducer} from "./sidebar-reducer";
+
 export type PostType = {
     id?: number,
     message: string,
@@ -50,38 +54,7 @@ export type storeType = {
 }
 
 
-type addPostACType = ReturnType<typeof addPostAC>
-type changeTextACType = ReturnType<typeof changeTextAC>
-type changeMessageTextACType = ReturnType<typeof changeMessageTextAC>
-type addMessageACType = ReturnType<typeof addMessageAC>
-
-export type ACTypes = addPostACType | changeTextACType | changeMessageTextACType | addMessageACType
-
-export const addPostAC = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
-
-export const changeTextAC = (text: string) => {
-    return {
-        type: 'CHANGE-TEXT',
-        text
-    } as const
-}
-
-export const changeMessageTextAC = (messageText: string) => {
-    return {
-        type: 'CHANGE-MESSAGE',
-        messageText
-    } as const
-}
-
-export const addMessageAC = () => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
+export type ACTypes = profileReducerType | DialogReducerType
 
 
 export const store: storeType = {
@@ -168,32 +141,15 @@ export const store: storeType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: this._state.profilePage.newPostText,
-                likes: 0
-            }
 
-            this._state.profilePage.posts.push(newPost)
-            this._renderTree()
-            this._state.profilePage.newPostText = ''
-        } else if (action.type === 'CHANGE-TEXT') {
-            this._state.profilePage.newPostText = action.text
-            this._renderTree()
-        } else if (action.type === 'CHANGE-MESSAGE') {
-            this._state.dialogPage.newMessageText = action.messageText
-            this._renderTree()
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {id: 4, message: this._state.dialogPage.newMessageText}
-            this._state.dialogPage.messages.push(newMessage)
-            this._renderTree()
-            this._state.dialogPage.newMessageText = ''
-        }
-    },
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.sidebar = SidebarReducer(this._state.sidebar, action)
+        this._renderTree()
 
-
+    }
 }
+
 
 
 
