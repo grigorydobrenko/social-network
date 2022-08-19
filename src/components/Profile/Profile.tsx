@@ -1,25 +1,21 @@
 import React from 'react';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-
-import {ACTypes, profilePageType} from "../../redux/store";
+import {ACTypes, dialogPageType, profilePageType, sidebarType} from "../../redux/store";
+import {CombinedState, Store} from "redux";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsType = {
-    profilePage: profilePageType
-    dispatch: (action: ACTypes) => void
+    store: Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, ACTypes>
 }
 
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
-    const {profilePage, dispatch} = props
+    const {store} = props
 
     return (
         <>
             <ProfileInfo/>
-            <MyPosts PostsData={profilePage.posts}
-                     newPostText={profilePage.newPostText}
-                     dispatch={dispatch}
-            />
+            <MyPostsContainer store={store}/>
         </>
     );
 };
