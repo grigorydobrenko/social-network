@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
-import {Friends} from "./Friends/Friends";
+import {FriendsContainer} from "./Friends/Friends";
 
-type NavBarPropsType = {
-}
+
+type NavBarPropsType = {}
 
 
 const NavBar: React.FC<NavBarPropsType> = (props) => {
@@ -17,10 +17,11 @@ const NavBar: React.FC<NavBarPropsType> = (props) => {
                     <li><NavLink to="/dialogs" className={s.item} activeClassName={s.activeLink}>Messages</NavLink></li>
                     <li><NavLink to="/news" className={s.item} activeClassName={s.activeLink}>News</NavLink></li>
                     <li><NavLink to="/music" className={s.item} activeClassName={s.activeLink}>Music</NavLink></li>
-                    <li><NavLink to="/settings" className={s.item} activeClassName={s.activeLink}>Settings</NavLink></li>
+                    <li><NavLink to="/settings" className={s.item} activeClassName={s.activeLink}>Settings</NavLink>
+                    </li>
                 </ul>
             </nav>
-            <Friends/>
+            <FriendsContainer/>
         </div>
     );
 };

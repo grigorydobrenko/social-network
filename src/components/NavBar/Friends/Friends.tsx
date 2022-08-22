@@ -1,28 +1,33 @@
 import React from 'react';
 import s from './Friends.module.css'
 import Friend from "./Friend/Friend";
-import {StoreContext} from "../../../StoreContext";
+import {connect} from "react-redux";
+import {sidebarType} from "../../../redux/sidebar-reducer";
+import {AppStateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
 
-type FriendsPropsType = {}
 
+export const Friends = (props: sidebarType) => {
+    let friendsArr = props.friends.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
+    return <div className={s.friends}>
+        <h2 className={s.title}>Friends</h2>
+        <div className={s.friendsContainer}>
+            {friendsArr}
+        </div>
+    </div>
+}
 
-export const Friends: React.FC<FriendsPropsType> = (props) => {
+const f1 = (state: AppStateType): sidebarType => {
+    const friends = state.sidebar.friends
 
-    return <StoreContext.Consumer>
-        {store => {
-            const sidebar = store.getState().sidebar
-            let friends = sidebar.friends.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
+    return {
+        friends: friends
+    }
+}
 
-            return (
-                <div className={s.friends}>
-                    <h2 className={s.title}>Friends</h2>
-                    <div className={s.friendsContainer}>
-                        {friends}
-                    </div>
-                </div>
-            )
-        }
-        }
-    </StoreContext.Consumer>
-};
+const f2 = (dispatch: Dispatch) => {
+    return {}
+}
+
+export const FriendsContainer = connect(f1, f2)(Friends)
 

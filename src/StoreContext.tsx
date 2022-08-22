@@ -1,13 +1,15 @@
 import React from 'react'
 import {CombinedState, Store} from "redux";
-import {ACTypes, dialogPageType, profilePageType, sidebarType} from "./redux/store";
-import {store} from "./redux/redux-store";
+import {AllActionsTypes, store} from "./redux/redux-store";
+import {dialogPageType} from "./redux/dialogs-reducer";
+import {sidebarType} from "./redux/sidebar-reducer";
+import {profilePageType} from "./redux/profile-reducer";
 
 
-export const StoreContext = React.createContext({} as Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, ACTypes>)
+export const StoreContext = React.createContext({} as Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, AllActionsTypes>)
 
 export type ProviderType = {
-    store: Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, ACTypes>,
+    store: Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, AllActionsTypes>,
     children: React.ReactNode
 }
 

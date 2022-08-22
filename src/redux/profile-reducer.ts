@@ -1,4 +1,16 @@
-import {ACTypes, PostType, profilePageType} from "./store";
+import {AllActionsTypes} from "./redux-store";
+
+
+export type profilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+export type PostType = {
+    id?: number,
+    message: string,
+    likes: number,
+}
 
 const profilePage: profilePageType = {
     posts: [
@@ -17,7 +29,7 @@ const profilePage: profilePageType = {
 }
 
 
-export const profileReducer = (state: profilePageType = profilePage, action: ACTypes) => {
+export const profileReducer = (state: profilePageType = profilePage, action: AllActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostType = {

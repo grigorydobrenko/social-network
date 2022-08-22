@@ -1,5 +1,21 @@
-import {ACTypes, dialogPageType} from "./store";
+import {AllActionsTypes} from "./redux-store";
 
+export type DialogType = {
+    name: string,
+    id: number,
+}
+
+export type MessageType = {
+    id?: number,
+    message: string
+}
+
+
+export type dialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageText: string
+}
 
 const dialogs:dialogPageType = {
     dialogs: [
@@ -37,7 +53,7 @@ const dialogs:dialogPageType = {
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: dialogPageType = dialogs, action: ACTypes) => {
+export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes) => {
     switch (action.type) {
         case 'CHANGE-MESSAGE': {
             state.newMessageText = action.messageText
