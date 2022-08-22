@@ -1,34 +1,37 @@
-import React  from 'react';
-import {ACTypes, dialogPageType, profilePageType, sidebarType} from "../../../redux/store";
+import React from 'react';
 import {addPostAC, changeTextAC} from "../../../redux/profile-reducer";
-import {CombinedState, Store} from "redux";
 import MyPosts from "./MyPosts";
+import {StoreContext} from "../../../StoreContext";
 
-type MyPostsPropsType = {
-    store: Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, ACTypes>
-}
+type MyPostsPropsType = {}
 
 export const MyPostsContainer: React.FC<MyPostsPropsType> = (props) => {
-    const {store} = props
 
-    const profilePage = store.getState().profilePage
+    return <StoreContext.Consumer>
+        {store => {
 
-    const postText = profilePage.newPostText
+            const profilePage = store.getState().profilePage
 
-    const addPost = () => {
-        store.dispatch(addPostAC())
-    }
+            const postText = profilePage.newPostText
 
-    const changePostMessage = (postText: string) => {
-        store.dispatch(changeTextAC(postText))
-    }
+            const addPost = () => {
+                store.dispatch(addPostAC())
+            }
 
-    return (
-        <MyPosts profilePage={profilePage}
-                 addPost={addPost}
-                 changePostMessage={changePostMessage}
-                 postText={postText}
-        />
-    );
+            const changePostMessage = (postText: string) => {
+                store.dispatch(changeTextAC(postText))
+            }
+
+            return (
+                <MyPosts profilePage={profilePage}
+                         addPost={addPost}
+                         changePostMessage={changePostMessage}
+                         postText={postText}
+                />
+            )
+        }
+        }
+    </StoreContext.Consumer>
+        ;
 };
 

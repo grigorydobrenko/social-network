@@ -1,26 +1,28 @@
 import React from 'react';
 import s from './Friends.module.css'
 import Friend from "./Friend/Friend";
-import {FriendType} from "../../../redux/store";
+import {StoreContext} from "../../../StoreContext";
 
-type FriendsPropsType = {
-    state: Array<FriendType>
-}
+type FriendsPropsType = {}
 
 
-const Friends: React.FC<FriendsPropsType> = (props) => {
-    const {state} = props
+export const Friends: React.FC<FriendsPropsType> = (props) => {
 
-    let friends = state.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
+    return <StoreContext.Consumer>
+        {store => {
+            const sidebar = store.getState().sidebar
+            let friends = sidebar.friends.map(friend => <Friend name={friend.name} avatar={friend.avatar}/>)
 
-    return (
-        <div className={s.friends}>
-            <h2 className={s.title}>Friends</h2>
-            <div className={s.friendsContainer}>
-                {friends}
-            </div>
-        </div>
-    );
+            return (
+                <div className={s.friends}>
+                    <h2 className={s.title}>Friends</h2>
+                    <div className={s.friendsContainer}>
+                        {friends}
+                    </div>
+                </div>
+            )
+        }
+        }
+    </StoreContext.Consumer>
 };
 
-export default Friends;
