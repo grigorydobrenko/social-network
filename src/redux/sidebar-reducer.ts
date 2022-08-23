@@ -11,7 +11,7 @@ export type sidebarType = {
 }
 
 
-const sidebar:sidebarType = {
+const sidebar: sidebarType = {
     friends: [
         {
             id: 1,
@@ -30,6 +30,6 @@ const sidebar:sidebarType = {
     ]
 }
 
-export const SidebarReducer = (state:sidebarType = sidebar, action: AllActionsTypes) => {
+export const SidebarReducer = (state: sidebarType = sidebar, action: AllActionsTypes) => {
     return state
 }

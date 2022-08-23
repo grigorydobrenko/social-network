@@ -13,7 +13,7 @@ type MyPostsPropsType = {
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     const {profilePage, addPost, changePostMessage, postText} = props
 
-    let postElements = profilePage.posts.map(post => <Post message={post.message} likes={post.likes}/>)
+    let postElements = profilePage.posts.map(post => <Post key={post.id} message={post.message} likes={post.likes}/>)
 
 
     const onClickHandler = () => {

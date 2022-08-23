@@ -17,7 +17,7 @@ export type dialogPageType = {
     newMessageText: string
 }
 
-const dialogs:dialogPageType = {
+const dialogs: dialogPageType = {
     dialogs: [
         {
             name: 'Leha',
@@ -56,18 +56,14 @@ const dialogs:dialogPageType = {
 export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes) => {
     switch (action.type) {
         case 'CHANGE-MESSAGE': {
-            state.newMessageText = action.messageText
-            return state
+            return {...state, newMessageText: action.messageText}
         }
         case 'ADD-MESSAGE': {
-            let newMessage = {id: 4, message: state.newMessageText}
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
+            const newMessage = {id: new Date().getTime(), message: state.newMessageText}
+            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
         }
         default:
             return state
-
     }
 
 }
