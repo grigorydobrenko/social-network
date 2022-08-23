@@ -53,7 +53,7 @@ const dialogs: dialogPageType = {
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes) => {
+export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes): dialogPageType => {
     switch (action.type) {
         case 'CHANGE-MESSAGE': {
             return {...state, newMessageText: action.messageText}

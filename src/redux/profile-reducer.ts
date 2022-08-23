@@ -23,13 +23,13 @@ const profilePage: profilePageType = {
             id: 2,
             message: 'Hello',
             likes: 15,
-        },
+        }
     ],
     newPostText: ''
 }
 
 
-export const profileReducer = (state: profilePageType = profilePage, action: AllActionsTypes) => {
+export const profileReducer = (state: profilePageType = profilePage, action: AllActionsTypes): profilePageType => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostType = {
