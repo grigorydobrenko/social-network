@@ -1,18 +1,29 @@
 import {AllActionsTypes} from "./redux-store";
 
 
-export type UserLocationType = {
-    city: string,
-    country: string
-}
+// export type UserLocationType = {
+//     city: string,
+//     country: string
+// }
 
-export type UserType = {
-    id: number,
-    photoUrl: string,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: UserLocationType
+// export type UserType = {
+//     id: number,
+//     photoUrl?: string,
+//     followed: boolean,
+//     name: string,
+//     status: string,
+//     location?: UserLocationType
+// }
+
+export type UserPropsType = {
+    id: number
+    name: string
+    status: string
+    photos: {
+        small: string
+        large: string
+    }
+    followed: boolean
 }
 
 const usersPage: InitialStateType = {
@@ -20,7 +31,7 @@ const usersPage: InitialStateType = {
 }
 
 export type InitialStateType = {
-    users: Array<UserType>
+    users: Array<UserPropsType>
 }
 
 
@@ -68,7 +79,7 @@ export const unfollowAC = (userID: number) => {
     } as const
 }
 
-export const setUsersAC = (users: Array<UserType>) => {
+export const setUsersAC = (users: Array<UserPropsType>) => {
     return {
         type: 'SET_USERS',
         users
