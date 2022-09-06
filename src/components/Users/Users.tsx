@@ -5,7 +5,6 @@ import axios from "axios";
 import userPhoto from './../../assets/images/user.png'
 
 
-
 export const Users = (props: UsersPropsType) => {
     const addUsers = () => {
         if (props.usersPage.users.length === 0) {
@@ -22,7 +21,8 @@ export const Users = (props: UsersPropsType) => {
                 props.usersPage.users.map(u => <div key={u.id} style={{display: 'flex'}}>
                     <div>
                         <div>
-                            <img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}/>
+                            <img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto}
+                                 className={s.userPhoto}/>
                         </div>
                         <div>
                             {u.followed
