@@ -27,11 +27,17 @@ export type UserPropsType = {
 }
 
 const usersPage: InitialStateType = {
-    users: []
+    users: [],
+    pageSize: 10,
+    totalUsersCounter: 50,
+    currentPage: 1
 }
 
 export type InitialStateType = {
-    users: Array<UserPropsType>
+    users: Array<UserPropsType>,
+    pageSize: number,
+    totalUsersCounter: number
+    currentPage: number
 }
 
 
@@ -50,8 +56,17 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
             }
         }
         case "SET_USERS" : {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
         }
+
+        case "SET_CURRENT_PAGE" : {
+            return {...state, currentPage: action.currentPage}
+        }
+
+        case "SET_TOTAL_USERS" : {
+            return {...state, totalUsersCounter: action.totalUsers}
+        }
+
 
         default:
             return state
@@ -60,10 +75,12 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
 
 
 }
-export type usersReducerType = followACType | unfollowACType | setUsersACType
+export type usersReducerType = followACType | unfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersAC
 type followACType = ReturnType<typeof followAC>
 type unfollowACType = ReturnType<typeof unfollowAC>
 type setUsersACType = ReturnType<typeof setUsersAC>
+type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+type setTotalUsersAC = ReturnType<typeof setTotalUsersAC>
 
 export const followAC = (userID: number) => {
     return {
@@ -83,5 +100,19 @@ export const setUsersAC = (users: Array<UserPropsType>) => {
     return {
         type: 'SET_USERS',
         users
+    } as const
+}
+
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: 'SET_CURRENT_PAGE',
+        currentPage
+    } as const
+}
+
+export const setTotalUsersAC = (totalUsers: number) => {
+    return {
+        type: 'SET_TOTAL_USERS',
+        totalUsers
     } as const
 }
