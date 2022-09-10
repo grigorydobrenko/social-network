@@ -30,7 +30,7 @@ const usersPage: InitialStateType = {
     users: [],
     pageSize: 10,
     totalUsersCounter: 50,
-    currentPage: 1
+    currentPage: 2
 }
 
 export type InitialStateType = {
