@@ -7,9 +7,10 @@ import Preloader from "../Common/Preloader/Preloader";
 export class UsersApiComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toggleISFetching(true)
+        this.props.toggleIsFetching(true)
+
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.toggleISFetching(false)
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             // this.props.setTotalUsers(response.data.totalCount)
         })
@@ -17,9 +18,9 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
 
     onPageChanged = (p: number) => {
         this.props.setCurrentPage(p)
-        this.props.toggleISFetching(true)
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`).then(response => {
-            this.props.toggleISFetching(false)
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         })
     }
@@ -28,7 +29,10 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
 
 
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+            {this.props.isFetching ? <Preloader/> : <div style={{
+                backgroundColor: 'white',
+                height: '67px'
+            }}></div>}
             <Users users={this.props.users}
                    pageSize={this.props.pageSize}
                    totalUsersCounter={this.props.totalUsersCounter}
