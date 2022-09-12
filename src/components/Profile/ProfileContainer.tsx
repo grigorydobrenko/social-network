@@ -43,7 +43,7 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
 }
 
 
-const mapStateToProps = (state: AppStateType) => ({
+const mapStateToProps = (state: AppStateType):mapStateToPropsType => ({
     profile: state.profilePage.profile
 })
 
