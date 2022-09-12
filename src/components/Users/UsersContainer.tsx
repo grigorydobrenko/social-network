@@ -7,7 +7,7 @@ import {
     setTotalUsers, setUsers,
     toggleIsFetching, unfollow, UserPropsType
 } from "../../redux/users-reducer";
-import {UsersApiComponent} from "./UsersApiComponent";
+import {UsersAPIComponent} from "./UsersApiComponent";
 
 
 type mapStateToPropsType = InitialStateType
@@ -42,6 +42,6 @@ export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsers,
     toggleIsFetching
-})(UsersApiComponent)
+})(UsersAPIComponent)
 
 

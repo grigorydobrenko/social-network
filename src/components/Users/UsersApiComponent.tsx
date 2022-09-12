@@ -4,7 +4,7 @@ import axios from "axios";
 import {Users} from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 
-export class UsersApiComponent extends React.Component<UsersPropsType> {
+export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)

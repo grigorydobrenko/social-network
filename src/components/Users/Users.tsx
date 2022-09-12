@@ -2,6 +2,7 @@ import {InitialStateType} from "../../redux/users-reducer";
 import React from "react";
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
+import {NavLink} from "react-router-dom";
 
 type UsersType = InitialStateType & {
     follow: (userId: number) => void
@@ -28,8 +29,9 @@ export const Users: React.FC<UsersType> = (props) => {
                 props.users.map(u => <div key={u.id} style={{display: 'flex'}}>
                     <div>
                         <div>
-                            <img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto}
-                                 className={s.userPhoto}/>
+                            <NavLink to={'profile' + u.id}><img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto}
+                                          className={s.userPhoto}/>
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed
