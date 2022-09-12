@@ -1,9 +1,10 @@
 import React from 'react'
 import {CombinedState, Store} from "redux";
-import {AllActionsTypes, store} from "./redux/redux-store";
+import {AllActionsTypes} from "./redux/redux-store";
 import {dialogPageType} from "./redux/dialogs-reducer";
 import {sidebarType} from "./redux/sidebar-reducer";
 import {profilePageType} from "./redux/profile-reducer";
+import store from "./redux/redux-store";
 
 
 export const StoreContext = React.createContext({} as Store<CombinedState<{ profilePage: profilePageType; dialogPage: dialogPageType; sidebar: sidebarType; }>, AllActionsTypes>)

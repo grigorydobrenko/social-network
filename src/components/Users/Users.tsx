@@ -29,7 +29,7 @@ export const Users: React.FC<UsersType> = (props) => {
                 props.users.map(u => <div key={u.id} style={{display: 'flex'}}>
                     <div>
                         <div>
-                            <NavLink to={'profile' + u.id}><img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto}
+                            <NavLink to={'profile/' + u.id}><img alt='photo' src={u.photos.small != null ? u.photos.small : userPhoto}
                                           className={s.userPhoto}/>
                             </NavLink>
                         </div>

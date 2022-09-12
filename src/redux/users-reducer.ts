@@ -28,8 +28,8 @@ export type UserPropsType = {
 
 const usersPage: InitialStateType = {
     users: [],
-    pageSize: 10,
-    totalUsersCounter: 50,
+    pageSize: 15,
+    totalUsersCounter: 200,
     currentPage: 2,
     isFetching: true
 }
