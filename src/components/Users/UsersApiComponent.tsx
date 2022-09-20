@@ -27,7 +27,6 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     render() {
 
-
         return <>
             {this.props.isFetching ? <Preloader/> : <div style={{
                 backgroundColor: 'white',

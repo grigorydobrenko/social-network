@@ -4,7 +4,7 @@ import {AllActionsTypes} from "./redux-store";
 export type profilePageType = {
     posts: Array<PostType>
     newPostText: string
-    profile: any
+    profile: ProfileType | null
 }
 
 export type PostType = {

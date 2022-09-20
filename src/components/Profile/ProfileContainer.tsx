@@ -17,7 +17,7 @@ type mapDispatchToPropsType = {
 }
 
 type mapStateToPropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
 }
 
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -43,7 +43,7 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
 }
 
 
-const mapStateToProps = (state: AppStateType):mapStateToPropsType => ({
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.profilePage.profile
 })
 

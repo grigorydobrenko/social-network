@@ -1,16 +1,24 @@
 import React from 'react';
 import s from './Header.module.css'
+import {NavLink} from "react-router-dom";
+import {propsType} from "./HeaderContainer";
 
-const Header = () => {
+
+type HeaderPropsType = {
+    props: propsType
+}
+
+export const Header = (props: HeaderPropsType) => {
     return (
-        <>
-            <header className={s.header}>
-                <div className={s.header__img}>
-                    <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="logo"/>
-                </div>
-            </header>
-        </>
+        <header className={s.header}>
+            <div className={s.header__img}>
+                <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="logo"/>
+            </div>
+            <div style={{background: 'red'}}>
+                {props.props.isAuth ? props.props.login
+                    : <NavLink to={'/login'}>Login</NavLink>}
+            </div>
+        </header>
     );
 };
 
-export default Header;
