@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import {setAuth} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
-import {usersAPI} from "../../api/Api";
+import {ResultCodesEnum, usersAPI} from "../../api/Api";
 
 
 class HeaderContainer extends React.Component<propsType> {
 
     componentDidMount() {
         usersAPI.getAuth().then(response => {
-            if (response.data.resultCode === 0) {
+            if (response.data.resultCode === ResultCodesEnum.Succes) {
                 let {id, email, login} = response.data.data
                 this.props.setAuth(id, email, login)
             }

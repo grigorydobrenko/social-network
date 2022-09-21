@@ -22,7 +22,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
             <div className={s.description}>
                 <img src={props.profile.photos.large} alt={'photo'}/>
-                <div>{props.profile.aboutMe}</div>
+                {/*<div>{props.profile.aboutMe}</div>*/}
                 <div>Looking for a job: {props.profile.lookingForAJob + ''}</div>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.lookingForAJobDescription}</div>

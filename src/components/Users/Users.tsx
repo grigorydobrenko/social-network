@@ -3,7 +3,7 @@ import React from "react";
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/Api";
+import {ResultCodesEnum, usersAPI} from "../../api/Api";
 
 type UsersType = InitialStateType & {
     follow: (userId: number) => void
@@ -39,7 +39,7 @@ export const Users: React.FC<UsersType> = (props) => {
                             {u.followed
                                 ? <button onClick={() => {
                                     usersAPI.unFollow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
+                                        if (data.resultCode === ResultCodesEnum.Succes) {
                                             props.unfollow(u.id)
                                         }
 
@@ -50,7 +50,7 @@ export const Users: React.FC<UsersType> = (props) => {
 
                                 : <button onClick={() => {
                                     usersAPI.follow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
+                                        if (data.resultCode === ResultCodesEnum.Succes) {
                                             props.follow(u.id)
                                         }
 
