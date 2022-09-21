@@ -40,6 +40,8 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                    unfollow={this.props.unfollow}
                    onPageChanged={this.onPageChanged}
                    isFetching={this.props.isFetching}
+                   followingInProgress={this.props.followingInProgress}
+                   toggleFollowingInProgress={this.props.toggleFollowingInProgress}
             />
         </>
 

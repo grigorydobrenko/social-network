@@ -31,7 +31,8 @@ const usersPage: InitialStateType = {
     pageSize: 15,
     totalUsersCounter: 200,
     currentPage: 2,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: []
 }
 
 export type InitialStateType = {
@@ -40,11 +41,11 @@ export type InitialStateType = {
     totalUsersCounter: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 
 export const usersReducer = (state: InitialStateType = usersPage, action: AllActionsTypes) => {
-    debugger
     switch (action.type) {
 
         case "FOLLOW" : {
@@ -75,6 +76,12 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
         case "TOGGLE_IS_FETCHING" : {
             return {...state, isFetching: action.isFetching}
         }
+        case "FOLLOWING_IN_PROGRESS" : {
+            return {
+                ...state,
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.userId] : state.followingInProgress.filter(id => id !== action.userId)
+            }
+        }
 
 
         default:
@@ -91,12 +98,14 @@ export type usersReducerType =
     | setCurrentPageType
     | setTotalUsers
     | toggleIsFetching
+    | toggleFollowingInProgress
 type followType = ReturnType<typeof follow>
 type unfollowType = ReturnType<typeof unfollow>
 type setUsersType = ReturnType<typeof setUsers>
 type setCurrentPageType = ReturnType<typeof setCurrentPage>
 type setTotalUsers = ReturnType<typeof setTotalUsers>
 type toggleIsFetching = ReturnType<typeof toggleIsFetching>
+type toggleFollowingInProgress = ReturnType<typeof toggleFollowingInProgress>
 
 export const follow = (userID: number) => {
     return {
@@ -136,6 +145,14 @@ export const setTotalUsers = (totalUsers: number) => {
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE_IS_FETCHING',
+        isFetching
+    } as const
+}
+
+export const toggleFollowingInProgress = (userId: number, isFetching: boolean) => {
+    return {
+        type: 'FOLLOWING_IN_PROGRESS',
+        userId,
         isFetching
     } as const
 }

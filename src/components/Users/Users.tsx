@@ -9,6 +9,7 @@ type UsersType = InitialStateType & {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onPageChanged: (p: number) => void
+    toggleFollowingInProgress: (userId: number, isFetching: boolean) => void
 }
 
 export const Users: React.FC<UsersType> = (props) => {
@@ -37,23 +38,25 @@ export const Users: React.FC<UsersType> = (props) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingInProgress(u.id, true)
                                     usersAPI.unFollow(u.id).then(data => {
                                         if (data.resultCode === ResultCodesEnum.Succes) {
                                             props.unfollow(u.id)
                                         }
-
+                                        props.toggleFollowingInProgress(u.id, false)
                                     })
 
                                 }}>Unfollow</button>
 
 
-                                : <button onClick={() => {
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingInProgress(u.id, true)
                                     usersAPI.follow(u.id).then(data => {
                                         if (data.resultCode === ResultCodesEnum.Succes) {
                                             props.follow(u.id)
                                         }
-
+                                        props.toggleFollowingInProgress(u.id, false)
                                     })
 
                                 }}>Follow</button>}
