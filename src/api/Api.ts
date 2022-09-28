@@ -62,9 +62,7 @@ type followUnFollowResponseData = {
 }
 
 export const usersAPI = {
-    getAuth() {
-        return instance.get<getAuthResponseType>(`auth/me`)
-    },
+
     getUserProfile(userId: string) {
         return instance.get<getProfileResponseType>(`profile/` + userId).then(response => response.data)
     },
@@ -78,5 +76,12 @@ export const usersAPI = {
         return instance.delete<followUnFollowResponseData>(`follow/${id}`).then(response => response.data)
     }
 
+
+}
+
+export const authAPI = {
+    me() {
+        return instance.get<getAuthResponseType>(`auth/me`)
+    }
 
 }

@@ -1,4 +1,6 @@
 import {AllActionsTypes} from "./redux-store";
+import {authAPI, ResultCodesEnum} from "../api/Api";
+import {Dispatch} from "redux";
 
 
 type initialStateType = {
@@ -41,4 +43,15 @@ export const setAuth = (id: number, email: string, login: string) => {
             id, email, login
         }
     } as const
+}
+
+export const auth = () => {
+    return (dispatch: Dispatch<authReducerType>) => {
+        authAPI.me().then(response => {
+            if (response.data.resultCode === ResultCodesEnum.Succes) {
+                let {id, email, login} = response.data.data
+                dispatch(setAuth(id, email, login))
+            }
+        })
+    }
 }

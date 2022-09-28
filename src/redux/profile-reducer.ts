@@ -1,5 +1,6 @@
 import {AllActionsTypes} from "./redux-store";
-import {getProfileResponseType} from "../api/Api";
+import {getProfileResponseType, usersAPI} from "../api/Api";
+import {Dispatch} from "redux";
 
 
 export type profilePageType = {
@@ -81,4 +82,13 @@ export const setProfile = (profile: any) => {
         type: 'SET-PROFILE',
         profile
     } as const
+}
+
+
+export const getProfile = (userId: string) => {
+    return (dispatch: Dispatch<profileReducerType>) => {
+        usersAPI.getUserProfile(userId).then(data => {
+            dispatch(setProfile(data))
+        })
+    }
 }

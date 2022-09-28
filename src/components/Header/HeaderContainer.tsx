@@ -1,20 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {setAuth} from "../../redux/auth-reducer";
+import {auth} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
-import {ResultCodesEnum, usersAPI} from "../../api/Api";
 
 
 class HeaderContainer extends React.Component<propsType> {
 
     componentDidMount() {
-        usersAPI.getAuth().then(response => {
-            if (response.data.resultCode === ResultCodesEnum.Succes) {
-                let {id, email, login} = response.data.data
-                this.props.setAuth(id, email, login)
-            }
-        })
+        this.props.auth()
     }
 
     render() {
@@ -29,7 +23,7 @@ export type mapStateToProps = {
 }
 
 type mapDispatchToProps = {
-    setAuth: (id: number, email: string, login: string) => void
+    auth: () => void
 }
 
 export type propsType = mapStateToProps & mapDispatchToProps
@@ -41,4 +35,4 @@ const mapStateToProps = (state: AppStateType): mapStateToProps => {
     }
 }
 
-export default connect(mapStateToProps, {setAuth})(HeaderContainer);
+export default connect(mapStateToProps, {auth})(HeaderContainer);

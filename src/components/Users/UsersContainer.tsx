@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow,
+    follow, getUsers,
     InitialStateType, setCurrentPage,
-    setTotalUsers, setUsers, toggleFollowingInProgress,
-    toggleIsFetching, unfollow, UserPropsType
+    toggleFollowingInProgress, unFollow,
+
 } from "../../redux/users-reducer";
 import {UsersAPIComponent} from "./UsersApiComponent";
 
@@ -25,12 +25,10 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<UserPropsType>) => void
+    unFollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
-    setTotalUsers: (totalUsers: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 
 
@@ -39,12 +37,10 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 export const UsersContainer = connect(mapStateToProps, {
     follow,
-    unfollow,
-    setUsers,
+    unFollow,
     setCurrentPage,
-    setTotalUsers,
-    toggleIsFetching,
-    toggleFollowingInProgress
+    toggleFollowingInProgress,
+    getUsers
 })(UsersAPIComponent)
 
 
