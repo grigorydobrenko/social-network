@@ -70,17 +70,17 @@ export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActio
 
 export type DialogReducerType = changeMessageTextACType | addMessageACType
 
-export type changeMessageTextACType = ReturnType<typeof changeMessageTextAC>
-export type addMessageACType = ReturnType<typeof addMessageAC>
+export type changeMessageTextACType = ReturnType<typeof changeMessageText>
+export type addMessageACType = ReturnType<typeof addMessage>
 
-export const changeMessageTextAC = (messageText: string) => {
+export const changeMessageText = (messageText: string) => {
     return {
         type: 'CHANGE-MESSAGE',
         messageText
     } as const
 }
 
-export const addMessageAC = () => {
+export const addMessage = () => {
     return {
         type: 'ADD-MESSAGE'
     } as const

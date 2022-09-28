@@ -2,17 +2,11 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {dialogPageType} from "../../redux/dialogs-reducer";
+import {CommonDialogsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 
-type DialogsPropsType = {
-    dialogPage: dialogPageType
-    addMessage: () => void
-    changeMessageText: (text: string) => void
-}
-
-
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC<CommonDialogsType> = (props) => {
     const {dialogPage, addMessage, changeMessageText} = props
 
 
@@ -26,6 +20,10 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         changeMessageText(e.currentTarget.value)
+    }
+
+    if (!props.isAuth) {
+        return <Redirect to={'/login'}/>
     }
 
     return (
