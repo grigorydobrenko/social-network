@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {auth} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Header} from "./Header";
+import {compose} from "redux";
 
 
 class HeaderContainer extends React.Component<propsType> {
@@ -35,4 +36,4 @@ const mapStateToProps = (state: AppStateType): mapStateToProps => {
     }
 }
 
-export default connect(mapStateToProps, {auth})(HeaderContainer);
+export default compose(connect(mapStateToProps, {auth}))(HeaderContainer)

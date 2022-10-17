@@ -8,6 +8,7 @@ import {
 
 } from "../../redux/users-reducer";
 import {UsersAPIComponent} from "./UsersApiComponent";
+import {compose} from "redux";
 
 
 type mapStateToPropsType = InitialStateType
@@ -35,12 +36,12 @@ type mapDispatchToPropsType = {
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 
-export const UsersContainer = connect(mapStateToProps, {
+export const UsersContainer = compose(connect(mapStateToProps, {
     follow,
     unFollow,
     setCurrentPage,
     toggleFollowingInProgress,
     getUsers
-})(UsersAPIComponent)
+}))(UsersAPIComponent)
 
 
