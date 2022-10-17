@@ -9,7 +9,6 @@ type ProfilePropsType = {
 
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
-
     return (
         <div>
             <ProfileInfo profile={props.profile}/>
