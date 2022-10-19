@@ -56,16 +56,13 @@ type followUnFollowResponseData = {
     data: any
 }
 
- export enum ResultCodesEnum {
+export enum ResultCodesEnum {
     Succes = 0,
     Error = 1
 }
 
 export const usersAPI = {
 
-    getUserProfile(userId: string) {
-        return instance.get<getProfileResponseType>(`profile/` + userId).then(response => response.data)
-    },
     getUsers(currentPage: number, pageSize: number) {
         return instance.get<getUserProfileResponseType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
     },
@@ -78,6 +75,22 @@ export const usersAPI = {
 
 
 }
+
+export const profileAPI = {
+    getUserProfile(userId: string) {
+        return instance.get<getProfileResponseType>(`profile/` + userId).then(response => response.data)
+    },
+    getStatus(userId: string) {
+        return instance.get(`profile/status/` + userId).then(response => {
+            return response.data
+        })
+    },
+    updateStatus(status: string) {
+        return instance.put(`profile/status/`, {status: status})
+    }
+
+}
+
 
 export const authAPI = {
     me() {

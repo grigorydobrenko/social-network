@@ -7,6 +7,9 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
+
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
@@ -16,18 +19,13 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     return (
         <>
 
-            {/*<div>*/}
-            {/*    <img src="https://cdn.pixabay.com/photo/2017/09/29/22/55/panorama-2800783_960_720.jpg" alt="photo"*/}
-            {/*         className={s.content__img}/>*/}
-            {/*</div>*/}
-
             <div className={s.description}>
                 <img src={props.profile.photos.large} alt={'photo'}/>
                 <div>Looking for a job: {props.profile.lookingForAJob + ''}</div>
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.lookingForAJobDescription}</div>
             </div>
-            <ProfileStatus status={'status'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </>
     );
 };
