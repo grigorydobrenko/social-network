@@ -7,9 +7,7 @@ type ProfilePropsType = {
     profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
-
 }
-
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (

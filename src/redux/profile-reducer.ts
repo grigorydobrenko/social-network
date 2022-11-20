@@ -1,11 +1,11 @@
 import {AllActionsTypes} from "./redux-store";
 import {getProfileResponseType, profileAPI, ResultCodesEnum} from "../api/Api";
 import {Dispatch} from "redux";
+import {IPostFormInput} from "../components/Profile/MyPosts/Post/AddPostForm";
 
 
 export type profilePageType = {
     posts: Array<PostType>
-    newPostText: string
     profile: ProfileType | null
     status: string
 }
@@ -16,8 +16,7 @@ export type PostType = {
     likes: number,
 }
 
-export type ProfileType  = getProfileResponseType
-
+export type ProfileType = getProfileResponseType
 
 const profilePage: profilePageType = {
     posts: [
@@ -32,7 +31,6 @@ const profilePage: profilePageType = {
             likes: 15,
         }
     ],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -43,14 +41,12 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
         case 'ADD-POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: state.newPostText,
+                message: action.post.post,
                 likes: 0
             }
-            return {...state, posts: [...state.posts, newPost], newPostText: ''}
+            return {...state, posts: [...state.posts, newPost]}
         }
-        case 'CHANGE-TEXT': {
-            return {...state, newPostText: action.text}
-        }
+
         case 'SET-PROFILE': {
             return {...state, profile: action.profile}
         }
@@ -64,24 +60,18 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
 
 
 }
-export type profileReducerType = addPostACType | changeTextACType | setProfileType | setStatusType
-type addPostACType = ReturnType<typeof addPostAC>
-type changeTextACType = ReturnType<typeof changeTextAC>
+export type profileReducerType = addPostACType | setProfileType | setStatusType
+type addPostACType = ReturnType<typeof addPost>
 type setProfileType = ReturnType<typeof setProfile>
 type setStatusType = ReturnType<typeof setStatus>
 
-export const addPostAC = () => {
+export const addPost = (post: IPostFormInput) => {
     return {
-        type: 'ADD-POST'
+        type: 'ADD-POST',
+        post
     } as const
 }
 
-export const changeTextAC = (text: string) => {
-    return {
-        type: 'CHANGE-TEXT',
-        text
-    } as const
-}
 
 export const setProfile = (profile: any) => {
     return {

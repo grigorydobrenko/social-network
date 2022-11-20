@@ -1,4 +1,5 @@
 import {AllActionsTypes} from "./redux-store";
+import {IMessageFormInput} from "../components/Dialogs/Message/AddMessageForm";
 
 export type DialogType = {
     name: string,
@@ -14,7 +15,6 @@ export type MessageType = {
 export type dialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessageText: string
 }
 
 const dialogs: dialogPageType = {
@@ -49,18 +49,14 @@ const dialogs: dialogPageType = {
             id: 3,
             message: 'Hello'
         },
-    ],
-    newMessageText: ''
+    ]
 }
 
 export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes): dialogPageType => {
     switch (action.type) {
-        case 'CHANGE-MESSAGE': {
-            return {...state, newMessageText: action.messageText}
-        }
         case 'ADD-MESSAGE': {
-            const newMessage = {id: new Date().getTime(), message: state.newMessageText}
-            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
+            const newMessage = {id: new Date().getTime(), message: action.message.message}
+            return {...state, messages: [...state.messages, newMessage]}
         }
         default:
             return state
@@ -68,22 +64,9 @@ export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActio
 
 }
 
-export type DialogReducerType = changeMessageTextACType | addMessageACType
-
-export type changeMessageTextACType = ReturnType<typeof changeMessageText>
+export type DialogReducerType = addMessageACType
 export type addMessageACType = ReturnType<typeof addMessage>
 
-export const changeMessageText = (messageText: string) => {
-    return {
-        type: 'CHANGE-MESSAGE',
-        messageText
-    } as const
-}
-
-export const addMessage = () => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
+export const addMessage = (message: IMessageFormInput) => ({type: 'ADD-MESSAGE', message} as const)
 
 
