@@ -1,0 +1,11 @@
+.outlineNone{
+    outline: none;
+}
+
+.errorBorder {
+    border: 2px solid red;
+}
+
+.errorMessageColor {
+    color: red;
+}
