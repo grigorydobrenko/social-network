@@ -36,6 +36,7 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
         if (!userId) {
             userId = this.props.profileId + ''
         }
+
         this.props.getProfile(userId)
         this.props.getStatus(userId)
 
