@@ -3,21 +3,6 @@ import {getProfileResponseType, profileAPI, ResultCodesEnum} from "../api/Api";
 import {Dispatch} from "redux";
 import {IPostFormInput} from "../components/Profile/MyPosts/Post/AddPostForm";
 
-
-export type profilePageType = {
-    posts: Array<PostType>
-    profile: ProfileType | null
-    status: string
-}
-
-export type PostType = {
-    id?: number,
-    message: string,
-    likes: number,
-}
-
-export type ProfileType = getProfileResponseType
-
 const profilePage: profilePageType = {
     posts: [
         {
@@ -57,13 +42,7 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
             return state
 
     }
-
-
 }
-export type profileReducerType = addPostACType | setProfileType | setStatusType
-type addPostACType = ReturnType<typeof addPost>
-type setProfileType = ReturnType<typeof setProfile>
-type setStatusType = ReturnType<typeof setStatus>
 
 export const addPost = (post: IPostFormInput) => {
     return {
@@ -113,3 +92,22 @@ export const updateStatus = (status: string) => {
         })
     }
 }
+
+export type profilePageType = {
+    posts: Array<PostType>
+    profile: ProfileType | null
+    status: string
+}
+
+export type PostType = {
+    id?: number,
+    message: string,
+    likes: number,
+}
+
+export type ProfileType = getProfileResponseType
+
+export type profileReducerType = addPostACType | setProfileType | setStatusType
+type addPostACType = ReturnType<typeof addPost>
+type setProfileType = ReturnType<typeof setProfile>
+type setStatusType = ReturnType<typeof setStatus>

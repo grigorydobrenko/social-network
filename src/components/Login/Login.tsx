@@ -4,6 +4,7 @@ import {required} from "../../utils/validators/validators";
 import errorsStyles from "../Common/FormsControls/FormControls.module.css";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
+import {AppStateType} from "../../redux/redux-store";
 
 
 type FormData = {
@@ -12,7 +13,7 @@ type FormData = {
     rememberMe: boolean
 }
 
-const LoginForm = (props: any) => {
+const LoginForm = (props: commonType) => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>()
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -36,7 +37,7 @@ const LoginForm = (props: any) => {
                         className={`${errorsStyles.outlineNone} ${loginClassName}`}/>
                 {errors?.login && <div className={errorsStyles.errorMessageColor}>{errors.login.message}</div>}
             </div>
-            <div><input type="text" {...register('password', validateObj)}
+            <div><input type="password" {...register('password', validateObj)}
                         className={`${errorsStyles.outlineNone} ${passwordClassName}`}/>
                 {errors?.password && <div className={errorsStyles.errorMessageColor}>{errors.password.message}</div>}
             </div>
@@ -44,6 +45,7 @@ const LoginForm = (props: any) => {
             <div>
                 <button>Login</button>
             </div>
+            {props.isSubmit && <div className={errorsStyles.errorMessageColor}>{props.errorMessage}</div>}
         </form>
     );
 }
@@ -51,23 +53,33 @@ const LoginForm = (props: any) => {
 
 const Login = (props: commonType) => {
 
+
+
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm login={props.login}/>
+            <LoginForm login={props.login} isSubmit={props.isSubmit} errorMessage={props.errorMessage}/>
         </div>
 
     );
 };
 
-const mapStateToProps = () => {
-    return {}
+const mapStateToProps = (state: AppStateType): mapStateToProps => {
+    return {
+        isSubmit: state.auth.isSubmit,
+        errorMessage: state.auth.errorMessage
+    }
 }
 
-type commonType = mapDispatch & ReturnType<typeof mapStateToProps>
+type commonType = mapDispatchToProps & mapStateToProps
 
-type mapDispatch = {
+type mapDispatchToProps =  {
     login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+type mapStateToProps = {
+    isSubmit: boolean
+    errorMessage: string
 }
 
 

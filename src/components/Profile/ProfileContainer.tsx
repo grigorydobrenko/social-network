@@ -21,6 +21,7 @@ type mapDispatchToPropsType = {
 type mapStateToPropsType = {
     profile: ProfileType | null
     status: string
+    profileId: number | null
 }
 
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -33,7 +34,7 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '24873'
+            userId = this.props.profileId + ''
         }
         this.props.getProfile(userId)
         this.props.getStatus(userId)
@@ -41,14 +42,16 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
     }
 
     render() {
-        return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+        return <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                        updateStatus={this.props.updateStatus}/>
     }
 }
 
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    profileId: state.auth.id
 })
 
 
