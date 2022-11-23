@@ -5,13 +5,7 @@ import errorsStyles from "../Common/FormsControls/FormControls.module.css";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-
-
-type FormData = {
-    login: string;
-    password: string;
-    rememberMe: boolean
-}
+import {Redirect} from "react-router-dom";
 
 const LoginForm = (props: commonType) => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>()
@@ -50,37 +44,43 @@ const LoginForm = (props: commonType) => {
     );
 }
 
-
 const Login = (props: commonType) => {
-
-
-
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
     return (
         <div>
             <h1>Login</h1>
             <LoginForm login={props.login} isSubmit={props.isSubmit} errorMessage={props.errorMessage}/>
         </div>
-
     );
 };
 
 const mapStateToProps = (state: AppStateType): mapStateToProps => {
     return {
         isSubmit: state.auth.isSubmit,
-        errorMessage: state.auth.errorMessage
+        errorMessage: state.auth.errorMessage,
+        isAuth: state.auth.isAuth
     }
 }
 
+export default connect(mapStateToProps, {login})(Login);
+
 type commonType = mapDispatchToProps & mapStateToProps
 
-type mapDispatchToProps =  {
+type mapDispatchToProps = {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
 
 type mapStateToProps = {
     isSubmit: boolean
     errorMessage: string
+    isAuth?: boolean
 }
 
+type FormData = {
+    login: string;
+    password: string;
+    rememberMe: boolean
+}
 
-export default connect(mapStateToProps, {login})(Login);
