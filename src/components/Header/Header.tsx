@@ -15,7 +15,7 @@ export const Header = (props: HeaderPropsType) => {
                 <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="logo"/>
             </div>
             <div style={{background: 'red'}}>
-                {props.props.isAuth ? props.props.login
+                {props.props.isAuth ? <div>{props.props.login} - <button onClick={props.props.logout}>log out</button></div>
                     : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
