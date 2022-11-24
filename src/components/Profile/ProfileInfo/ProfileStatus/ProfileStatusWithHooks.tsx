@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 
 export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, updateStatus}) => {
@@ -20,6 +20,10 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, upd
     const update = () => {
         updateStatus(ProfileStatus)
     }
+
+    useEffect(() => {
+        setStatus(status)
+    }, [status])
 
     return (
         <div>
