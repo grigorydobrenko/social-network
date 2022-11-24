@@ -1,12 +1,5 @@
 import React, {ChangeEvent} from 'react';
 
-
-type ProfileStatusType = {
-    status: string
-    updateStatus: (status: string) => void
-
-}
-
 class ProfileStatus extends React.Component<ProfileStatusType> {
 
     state = {
@@ -45,12 +38,10 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
 
     }
 
-
     render() {
         return (
             <div>
                 {!this.state.isEdit ?
-
                     <div onDoubleClick={this.toggleMode}><span>{this.props.status || 'no status'}</span></div> :
                     <input onBlur={this.toggleMode} onChange={this.onStatusChange} autoFocus
                            value={this.state.status}/>}
@@ -60,3 +51,9 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
 }
 
 export default ProfileStatus;
+
+type ProfileStatusType = {
+    status: string
+    updateStatus: (status: string) => void
+}
+
