@@ -23,7 +23,6 @@ class App extends React.Component<commonPropsType> {
 
     render() {
         if (!this.props.isInitialized) {
-            console.log('preloader')
             return <Preloader/>
         }
         return (
