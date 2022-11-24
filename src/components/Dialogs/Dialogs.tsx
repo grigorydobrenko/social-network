@@ -10,6 +10,7 @@ const Dialogs: React.FC<CommonDialogsType> = (props) => {
     let DialogItems = dialogPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     let Messages = dialogPage.messages.map(message => <Message key={message.id} message={message.message}/>)
 
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

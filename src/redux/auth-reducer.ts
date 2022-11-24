@@ -38,11 +38,19 @@ export const setStopSubmit = (isSubmit: boolean, errorMessage: string) => ({
 } as const)
 
 export const getAuthUserData = (): AppThunk => async (dispatch) => {
-    const response = await authAPI.me()
-    if (response.data.resultCode === ResultCodesEnum.Succes) {
-        let {id, email, login} = response.data.data
-        dispatch(setAuthUserData(id, email, login, true))
-    }
+    // const response = await authAPI.me()
+    // if (response.data.resultCode === ResultCodesEnum.Succes) {
+    //     let {id, email, login} = response.data.data
+    //     return dispatch(setAuthUserData(id, email, login, true))
+    // }
+    return authAPI.me()
+        .then(res => {
+                if (res.data.resultCode === ResultCodesEnum.Succes) {
+                    let {id, email, login} = res.data.data
+                    dispatch(setAuthUserData(id, email, login, true))
+                }
+            }
+        )
 }
 
 export const login = (email: string, password: string, rememberMe: boolean = false): AppThunk => async (dispatch) => {
