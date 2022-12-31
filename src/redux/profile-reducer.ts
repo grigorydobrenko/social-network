@@ -43,13 +43,10 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
         case 'ADD-POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: state.newPostText,
+                message: action.message,
                 likes: 0
             }
             return {...state, posts: [...state.posts, newPost], newPostText: ''}
-        }
-        case 'CHANGE-TEXT': {
-            return {...state, newPostText: action.text}
         }
         case 'SET-PROFILE': {
             return {...state, profile: action.profile}
@@ -64,24 +61,19 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
 
 
 }
-export type profileReducerType = addPostACType | changeTextACType | setProfileType | setStatusType
+export type profileReducerType = addPostACType  | setProfileType | setStatusType
 type addPostACType = ReturnType<typeof addPostAC>
-type changeTextACType = ReturnType<typeof changeTextAC>
 type setProfileType = ReturnType<typeof setProfile>
 type setStatusType = ReturnType<typeof setStatus>
 
-export const addPostAC = () => {
+export const addPostAC = (message: string) => {
     return {
-        type: 'ADD-POST'
+        type: 'ADD-POST',
+        message
     } as const
 }
 
-export const changeTextAC = (text: string) => {
-    return {
-        type: 'CHANGE-TEXT',
-        text
-    } as const
-}
+
 
 export const setProfile = (profile: any) => {
     return {

@@ -7,6 +7,7 @@ import {authReducer, authReducerType} from "./auth-reducer";
 import thunk, {ThunkAction} from "redux-thunk";
 
 
+
 export type AppStateType = ReturnType<typeof rootReducer>
 export type AllActionsTypes = profileReducerType | DialogReducerType | usersReducerType | authReducerType
 

@@ -55,11 +55,9 @@ const dialogs: dialogPageType = {
 
 export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActionsTypes): dialogPageType => {
     switch (action.type) {
-        case 'CHANGE-MESSAGE': {
-            return {...state, newMessageText: action.messageText}
-        }
+
         case 'ADD-MESSAGE': {
-            const newMessage = {id: new Date().getTime(), message: state.newMessageText}
+            const newMessage = {id: new Date().getTime(), message: action.message}
             return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
         }
         default:
@@ -68,21 +66,16 @@ export const dialogsReducer = (state: dialogPageType = dialogs, action: AllActio
 
 }
 
-export type DialogReducerType = changeMessageTextACType | addMessageACType
+export type DialogReducerType = addMessageACType
 
-export type changeMessageTextACType = ReturnType<typeof changeMessageText>
+
 export type addMessageACType = ReturnType<typeof addMessage>
 
-export const changeMessageText = (messageText: string) => {
-    return {
-        type: 'CHANGE-MESSAGE',
-        messageText
-    } as const
-}
 
-export const addMessage = () => {
+export const addMessage = (message: string) => {
     return {
-        type: 'ADD-MESSAGE'
+        type: 'ADD-MESSAGE',
+        message
     } as const
 }
 
