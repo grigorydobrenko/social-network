@@ -1,38 +1,26 @@
 import React from 'react';
-import {addPostAC, profilePageType} from "../../../redux/profile-reducer";
+import {addPost, profilePageType} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {Dispatch} from "redux";
+import {IPostFormInput} from "./Post/AddPostForm";
 
 
 type mapStateToPropsType = {
     profilePage: profilePageType
-    postText: string
 }
 
 type mapDispatchToProps = {
-    addPost: (message: string) => void
+    addPost: (post: IPostFormInput) => void
 }
 
-export type CommonType = mapStateToPropsType & mapDispatchToProps
-
+export  type MyPostsCommonType = mapDispatchToProps & mapStateToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        profilePage: state.profilePage,
-        postText: state.profilePage.newPostText
+        profilePage: state.profilePage
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
-    return {
-        addPost: (message: string) => {
-            dispatch(addPostAC(message))
-        }
-    }
-}
-
-
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, {addPost})(MyPosts)
 

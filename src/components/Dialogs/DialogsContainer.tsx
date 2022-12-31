@@ -8,18 +8,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-
-
-export type mapStateToPropsType = {
-    dialogPage: dialogPageType
-}
-
-export type mapDispatchToPropsType = {
-    addMessage: () => void
-    changeMessageText: (text: string) => void
-}
-
-export type CommonDialogsType = mapStateToPropsType & mapDispatchToPropsType
+import {IMessageFormInput} from "./Message/AddMessageForm";
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
@@ -27,7 +16,14 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-
-
 export const DialogsContainer = compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {addMessage}))(Dialogs)
 
+export type mapStateToPropsType = {
+    dialogPage: dialogPageType
+}
+
+export type mapDispatchToPropsType = {
+    addMessage: (message: IMessageFormInput) => void
+}
+
+export type CommonDialogsType = mapStateToPropsType & mapDispatchToPropsType

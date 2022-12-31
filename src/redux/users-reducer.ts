@@ -3,20 +3,6 @@ import {ResultCodesEnum, usersAPI} from "../api/Api";
 import {Dispatch} from "redux";
 
 
-// export type UserLocationType = {
-//     city: string,
-//     country: string
-// }
-
-// export type UserType = {
-//     id: number,
-//     photoUrl?: string,
-//     followed: boolean,
-//     name: string,
-//     status: string,
-//     location?: UserLocationType
-// }
-
 export type UserPropsType = {
     id: number
     name: string
@@ -51,14 +37,12 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
     switch (action.type) {
 
         case "FOLLOW" : {
-
             return {
                 ...state,
                 users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
             }
         }
         case "UNFOLLOW" : {
-
             return {
                 ...state,
                 users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
@@ -84,8 +68,6 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
                 followingInProgress: action.isFetching ? [...state.followingInProgress, action.userId] : state.followingInProgress.filter(id => id !== action.userId)
             }
         }
-
-
         default:
             return state
 

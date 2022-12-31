@@ -1,23 +1,7 @@
 import {AllActionsTypes} from "./redux-store";
 import {getProfileResponseType, profileAPI, ResultCodesEnum} from "../api/Api";
 import {Dispatch} from "redux";
-
-
-export type profilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-    profile: ProfileType | null
-    status: string
-}
-
-export type PostType = {
-    id?: number,
-    message: string,
-    likes: number,
-}
-
-export type ProfileType  = getProfileResponseType
-
+import {IPostFormInput} from "../components/Profile/MyPosts/Post/AddPostForm";
 
 const profilePage: profilePageType = {
     posts: [
@@ -32,7 +16,6 @@ const profilePage: profilePageType = {
             likes: 15,
         }
     ],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -43,11 +26,12 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
         case 'ADD-POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: action.message,
+                message: action.post.post,
                 likes: 0
             }
-            return {...state, posts: [...state.posts, newPost], newPostText: ''}
+            return {...state, posts: [...state.posts, newPost]}
         }
+
         case 'SET-PROFILE': {
             return {...state, profile: action.profile}
         }
@@ -58,21 +42,14 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
             return state
 
     }
-
-
 }
-export type profileReducerType = addPostACType  | setProfileType | setStatusType
-type addPostACType = ReturnType<typeof addPostAC>
-type setProfileType = ReturnType<typeof setProfile>
-type setStatusType = ReturnType<typeof setStatus>
 
-export const addPostAC = (message: string) => {
+export const addPost = (post: IPostFormInput) => {
     return {
         type: 'ADD-POST',
-        message
+        post
     } as const
 }
-
 
 
 export const setProfile = (profile: any) => {
@@ -115,3 +92,22 @@ export const updateStatus = (status: string) => {
         })
     }
 }
+
+export type profilePageType = {
+    posts: Array<PostType>
+    profile: ProfileType | null
+    status: string
+}
+
+export type PostType = {
+    id?: number,
+    message: string,
+    likes: number,
+}
+
+export type ProfileType = getProfileResponseType
+
+export type profileReducerType = addPostACType | setProfileType | setStatusType
+type addPostACType = ReturnType<typeof addPost>
+type setProfileType = ReturnType<typeof setProfile>
+type setStatusType = ReturnType<typeof setStatus>

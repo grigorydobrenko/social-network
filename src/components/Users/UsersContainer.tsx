@@ -2,27 +2,44 @@ import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow, getUsers,
-    InitialStateType, setCurrentPage,
-    toggleFollowingInProgress, unFollow,
-
+    follow,
+    getUsers,
+    InitialStateType,
+    setCurrentPage,
+    toggleFollowingInProgress,
+    unFollow,
 } from "../../redux/users-reducer";
 import {UsersAPIComponent} from "./UsersApiComponent";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsers,
+    getUsersSelector
+} from "../../redux/users-selectors";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-
-type mapStateToPropsType = InitialStateType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCounter: state.usersPage.totalUsersCounter,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsersSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCounter: getTotalUsers(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
+
+export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setCurrentPage,
+    toggleFollowingInProgress,
+    getUsers
+}), withAuthRedirect)(UsersAPIComponent)
 
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -34,14 +51,6 @@ type mapDispatchToPropsType = {
 
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
-
-
-export const UsersContainer = compose(connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setCurrentPage,
-    toggleFollowingInProgress,
-    getUsers
-}))(UsersAPIComponent)
+type mapStateToPropsType = InitialStateType
 
 
