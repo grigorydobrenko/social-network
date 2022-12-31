@@ -4,21 +4,29 @@ import Post from "./Post/Post";
 import {MyPostsCommonType} from "./MyPostsContainer";
 import {AddPostForm} from "./Post/AddPostForm";
 
-const MyPosts: React.FC<MyPostsCommonType> = (props) => {
-    const {profilePage, addPost} = props
-    const postElements = profilePage.posts.map(post => <Post key={post.id} message={post.message} likes={post.likes}/>)
+class MyPosts extends React.Component<MyPostsCommonType> {
 
-    return (
-        <>
-            <div className={s.postsBlock}>
-                <AddPostForm addPost={addPost}/>
-                <div className={s.posts}>
-                    {postElements}
+    shouldComponentUpdate(nextProps: Readonly<MyPostsCommonType>, nextState: Readonly<{}>): boolean {
+        return nextProps !== this.props || nextState !== this.state
+    }
+
+    render() {
+        const {profilePage, addPost} = this.props
+        const postElements = profilePage.posts.map(post => <Post key={post.id} message={post.message}
+                                                                 likes={post.likes}/>)
+
+        return (
+            <>
+                <div className={s.postsBlock}>
+                    <AddPostForm addPost={addPost}/>
+                    <div className={s.posts}>
+                        {postElements}
+                    </div>
                 </div>
-            </div>
-        </>
-    );
-};
+            </>
+        );
+    }
+}
 
 export default MyPosts;
 
