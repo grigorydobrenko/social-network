@@ -32,12 +32,18 @@ export const profileReducer = (state: profilePageType = profilePage, action: All
             return {...state, posts: [...state.posts, newPost]}
         }
 
+        case 'DELETE-POST': {
+            return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
+        }
+
         case 'SET-PROFILE': {
             return {...state, profile: action.profile}
         }
+
         case 'SET-STATUS': {
             return {...state, status: action.status}
         }
+
         default:
             return state
 
@@ -50,6 +56,8 @@ export const addPost = (post: IPostFormInput) => {
         post
     } as const
 }
+
+export const deletePost = (postId: number) => ({type: 'DELETE-POST', postId} as const)
 
 
 export const setProfile = (profile: any) => {
@@ -107,7 +115,8 @@ export type PostType = {
 
 export type ProfileType = getProfileResponseType
 
-export type profileReducerType = addPostACType | setProfileType | setStatusType
+export type profileReducerType = addPostACType | setProfileType | setStatusType | deletePostACType
 type addPostACType = ReturnType<typeof addPost>
+type deletePostACType = ReturnType<typeof deletePost>
 type setProfileType = ReturnType<typeof setProfile>
 type setStatusType = ReturnType<typeof setStatus>
