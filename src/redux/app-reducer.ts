@@ -7,22 +7,20 @@ const initialState: initialStateType = {
 
 export const appReducer = (state: initialStateType = initialState, action: AllActionsTypes): initialStateType => {
     switch (action.type) {
-        case 'SET-INIT-SUCCEEDED': {
+        case 'app/SET-INIT-SUCCEEDED':
             return {...state, isInitialized: true}
-        }
+
         default:
             return state
     }
 }
 
-export const setInitializeSucceeded = () => ({type: 'SET-INIT-SUCCEEDED'} as const)
-
+export const setInitializeSucceeded = () => ({type: 'app/SET-INIT-SUCCEEDED'} as const)
 
 export const initializeApp = (): AppThunk => async (dispatch) => {
     const promise = await dispatch(getAuthUserData())
     await Promise.all([promise])
     dispatch(setInitializeSucceeded())
-
 }
 
 type initialStateType = {
