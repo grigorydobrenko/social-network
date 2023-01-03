@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     addMessage,
-    DialogPageType
+    DialogStateType
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
@@ -19,7 +19,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 export const DialogsContainer = compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {addMessage}))(Dialogs)
 
 export type mapStateToPropsType = {
-    dialogPage: DialogPageType
+    dialogPage: DialogStateType
 }
 
 export type mapDispatchToPropsType = {

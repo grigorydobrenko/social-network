@@ -14,7 +14,7 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return instance.get<getUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+        return instance.get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
     },
     follow(id: number) {
         return instance.post<CommonResponseType>(`follow/${id}`).then(response => response.data)
@@ -26,7 +26,7 @@ export const usersAPI = {
 
 export const profileAPI = {
     getUserProfile(userId: string) {
-        return instance.get<getProfileResponseType>(`profile/` + userId).then(response => response.data)
+        return instance.get<GetProfileResponseType>(`profile/` + userId).then(response => response.data)
     },
     getStatus(userId: string) {
         return instance.get(`profile/status/` + userId).then(response => {
@@ -38,10 +38,9 @@ export const profileAPI = {
     }
 }
 
-
 export const authAPI = {
     me() {
-        return instance.get<getAuthResponseType>(`auth/me`)
+        return instance.get<GetAuthResponseType>(`auth/me`)
     },
     login(email: string, password: string, rememberMe: boolean = false) {
         return instance.post<CommonResponseType>('auth/login', {email, password, rememberMe})
@@ -49,11 +48,10 @@ export const authAPI = {
     logout() {
         return instance.delete<CommonResponseType>('auth/login')
     }
-
 }
 
 //types
-type getAuthResponseType = CommonResponseType<{
+type GetAuthResponseType = CommonResponseType<{
     id: number
     email: string
     login: string
@@ -65,13 +63,13 @@ type CommonResponseType<T = {}> = {
     data: T
 }
 
-type getUsersResponseType = {
+type GetUsersResponseType = {
     items: UserType[]
     totalCount: number
     error: string
 }
 
-export type getProfileResponseType = {
+export type GetProfileResponseType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string

@@ -48,6 +48,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({isInitia
 
 export default compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App)
 
+
 type commonPropsType = mapDispatchToPropsType & mapStateToPropsType
 type mapDispatchToPropsType = {
     initializeApp: () => void

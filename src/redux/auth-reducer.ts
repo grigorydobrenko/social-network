@@ -1,7 +1,7 @@
-import {AllActionsTypes, AppThunk} from "./redux-store";
+import {AppThunk} from "./redux-store";
 import {authAPI, ResultCodesEnum} from "../api/api";
 
-const initialState: initialStateType = {
+const initialState: AuthStateType = {
     id: null,
     email: null,
     login: null,
@@ -10,7 +10,7 @@ const initialState: initialStateType = {
     errorMessage: ''
 }
 
-export const authReducer = (state: initialStateType = initialState, action: AllActionsTypes): initialStateType => {
+export const authReducer = (state: AuthStateType = initialState, action: AuthActionsType): AuthStateType => {
     switch (action.type) {
         case 'auth/SET-AUTH':
             return {...state, ...action.payload}
@@ -23,6 +23,7 @@ export const authReducer = (state: initialStateType = initialState, action: AllA
     }
 }
 
+//actions
 export const setAuthUserData = (id: number, email: string, login: string, isAuth: boolean) => ({
     type: 'auth/SET-AUTH',
     payload: {
@@ -37,6 +38,7 @@ export const setStopSubmit = (isSubmit: boolean, errorMessage: string) => ({
     }
 } as const)
 
+//thunks
 export const getAuthUserData = (): AppThunk => async (dispatch) => {
     try {
         const response = await authAPI.me()
@@ -78,7 +80,8 @@ export const logout = (): AppThunk => async (dispatch) => {
 
 }
 
-type initialStateType = {
+//types
+export type AuthStateType = {
     id: null | number
     email: null | string
     login: null | string
@@ -87,7 +90,7 @@ type initialStateType = {
     errorMessage: string
 }
 
-export type authReducerType = setAuthUserDataType | setStopSubmitType
+export type AuthActionsType = SetAuthUserDataType | SetStopSubmitType
 
-type setAuthUserDataType = ReturnType<typeof setAuthUserData>
-type setStopSubmitType = ReturnType<typeof setStopSubmit>
+type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
+type SetStopSubmitType = ReturnType<typeof setStopSubmit>

@@ -1,5 +1,5 @@
-// import {DialogReducerType, dialogsReducer} from "./dialogs-reducer";
-// import {profileReducer, profileReducerType} from "./profile-reducer";
+// import {DialogActionsType, dialogsReducer} from "./dialogs-reducer";
+// import {profileReducer, ProfileActionsType} from "./profile-reducer";
 // import {SidebarReducer} from "./sidebar-reducer";
 
 
@@ -18,16 +18,16 @@
 
 
 
-// export type dialogPageType = {
+// export type DialogStateType = {
 //     dialogs: Array<DialogType>
 //     messages: Array<MessageType>
 //     newMessageText: string
 // }
 
 // export type RootStateType = {
-//     profilePage: profilePageType,
-//     dialogPage: dialogPageType
-//     sidebar: sidebarType
+//     profilePage: ProfileStateType,
+//     dialogPage: DialogStateType
+//     sidebar: SidebarStateType
 // }
 //
 // export type storeType = {

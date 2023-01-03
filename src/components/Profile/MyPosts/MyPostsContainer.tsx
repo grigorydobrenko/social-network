@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost, profilePageType} from "../../../redux/profile-reducer";
+import {addPost, ProfileStateType} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
@@ -7,7 +7,7 @@ import {IPostFormInput} from "./Post/AddPostForm";
 
 
 type mapStateToPropsType = {
-    profilePage: profilePageType
+    profilePage: ProfileStateType
 }
 
 type mapDispatchToProps = {

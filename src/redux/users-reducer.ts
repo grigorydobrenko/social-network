@@ -1,4 +1,4 @@
-import {AllActionsTypes, AppThunk} from "./redux-store";
+import {AppThunk} from "./redux-store";
 import {ResultCodesEnum, usersAPI} from "../api/api";
 
 const usersPage: InitialStateType = {
@@ -10,7 +10,7 @@ const usersPage: InitialStateType = {
     followingInProgress: []
 }
 
-export const usersReducer = (state: InitialStateType = usersPage, action: AllActionsTypes) => {
+export const usersReducer = (state: InitialStateType = usersPage, action: UsersActionsType) => {
     switch (action.type) {
         case "users/FOLLOW" :
             return {
@@ -48,6 +48,7 @@ export const usersReducer = (state: InitialStateType = usersPage, action: AllAct
     }
 }
 
+//actions
 export const followSucces = (userID: number) => ({type: 'users/FOLLOW', userID} as const)
 
 export const unfollowSucces = (userID: number) => ({type: 'users/UNFOLLOW', userID} as const)
@@ -66,6 +67,7 @@ export const toggleFollowingInProgress = (userId: number, isFetching: boolean) =
     isFetching
 } as const)
 
+//thunks
 export const getUsers = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
     try {
         dispatch(toggleIsFetching(true))
@@ -107,6 +109,7 @@ export const unFollow = (id: number): AppThunk => async (dispatch) => {
     }
 }
 
+//types
 export type InitialStateType = {
     users: Array<UserType>
     pageSize: number
@@ -127,7 +130,7 @@ export type UserType = {
     followed: boolean
 }
 
-export type usersReducerType =
+export type UsersActionsType =
     followType
     | unfollowType
     | setUsersType

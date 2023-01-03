@@ -1,45 +1,50 @@
 import {AllActionsTypes} from "./redux-store";
 import {IMessageFormInput} from "../components/Dialogs/Message/AddMessageForm";
+import {v1} from "uuid";
 
-const dialogs: DialogPageType = {
+const dialogs: DialogStateType = {
     dialogs: [
         {
-            name: 'Leha',
-            id: 1,
+            name: 'Lesha',
+            id: v1(),
         },
         {
             name: 'Dima',
-            id: 2,
-        }, {
+            id: v1(),
+        },
+        {
             name: 'Max',
-            id: 3,
-        }, {
+            id: v1(),
+        },
+        {
             name: 'Kate',
-            id: 4,
-        }, {
+            id: v1(),
+        },
+        {
             name: 'Den',
-            id: 5,
+            id: v1(),
         },
     ],
     messages: [
         {
-            id: 1,
+            id: v1(),
             message: 'Hi'
         },
         {
-            id: 2,
+            id: v1(),
             message: 'Its me'
-        }, {
-            id: 3,
+        },
+        {
+            id: v1(),
             message: 'Hello'
         },
     ]
 }
 
-export const dialogsReducer = (state: DialogPageType = dialogs, action: AllActionsTypes): DialogPageType => {
+export const dialogsReducer = (state: DialogStateType = dialogs, action: DialogActionsType): DialogStateType => {
     switch (action.type) {
         case 'dialogs/ADD-MESSAGE': {
-            const newMessage = {id: new Date().getTime(), message: action.message.message}
+            const newMessage = {id: v1(), message: action.message.message}
             return {...state, messages: [...state.messages, newMessage]}
         }
         default:
@@ -48,24 +53,26 @@ export const dialogsReducer = (state: DialogPageType = dialogs, action: AllActio
 
 }
 
+//actions
 export const addMessage = (message: IMessageFormInput) => ({type: 'dialogs/ADD-MESSAGE', message} as const)
 
-export type DialogReducerType = AddMessageACType
+//types
+export type DialogActionsType = AddMessageACType
 export type AddMessageACType = ReturnType<typeof addMessage>
 
 export type DialogType = {
     name: string,
-    id: number,
+    id: string,
 }
 
 export type MessageType = {
-    id?: number,
+    id?: string,
     message: string
 }
 
-export type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
+export type DialogStateType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
 }
 
 

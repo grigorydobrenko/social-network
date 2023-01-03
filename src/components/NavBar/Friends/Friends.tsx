@@ -2,12 +2,12 @@ import React from 'react';
 import s from './Friends.module.css'
 import Friend from "./Friend/Friend";
 import {connect} from "react-redux";
-import {sidebarType} from "../../../redux/sidebar-reducer";
+import {SidebarStateType} from "../../../redux/sidebar-reducer";
 import {AppStateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux";
 
 
-export const Friends = (props: sidebarType) => {
+export const Friends = (props: SidebarStateType) => {
     let friendsArr = props.friends.map(friend => <Friend name={friend.name} key={friend.id} avatar={friend.avatar}/>)
     return <div className={s.friends}>
         <h2 className={s.title}>Friends</h2>
@@ -17,7 +17,7 @@ export const Friends = (props: sidebarType) => {
     </div>
 }
 
-const f1 = (state: AppStateType): sidebarType => {
+const f1 = (state: AppStateType): SidebarStateType => {
     const friends = state.sidebar.friends
 
     return {
