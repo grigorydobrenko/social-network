@@ -1,5 +1,5 @@
 import {AllActionsTypes, AppThunk} from "./redux-store";
-import {getProfileResponseType, profileAPI, ResultCodesEnum} from "../api/Api";
+import {getProfileResponseType, profileAPI, ResultCodesEnum} from "../api/api";
 import {Dispatch} from "redux";
 import {IPostFormInput} from "../components/Profile/MyPosts/Post/AddPostForm";
 

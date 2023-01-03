@@ -1,5 +1,5 @@
 import {AllActionsTypes, AppThunk} from "./redux-store";
-import {ResultCodesEnum, usersAPI} from "../api/Api";
+import {ResultCodesEnum, usersAPI} from "../api/api";
 
 const usersPage: InitialStateType = {
     users: [],
@@ -52,7 +52,7 @@ export const followSucces = (userID: number) => ({type: 'users/FOLLOW', userID} 
 
 export const unfollowSucces = (userID: number) => ({type: 'users/UNFOLLOW', userID} as const)
 
-export const setUsers = (users: Array<UserPropsType>) => ({type: 'users/SET_USERS', users} as const)
+export const setUsers = (users: Array<UserType>) => ({type: 'users/SET_USERS', users} as const)
 
 export const setCurrentPage = (currentPage: number) => ({type: 'users/SET_CURRENT_PAGE', currentPage} as const)
 
@@ -108,7 +108,7 @@ export const unFollow = (id: number): AppThunk => async (dispatch) => {
 }
 
 export type InitialStateType = {
-    users: Array<UserPropsType>
+    users: Array<UserType>
     pageSize: number
     totalUsersCounter: number
     currentPage: number
@@ -116,7 +116,7 @@ export type InitialStateType = {
     followingInProgress: Array<number>
 }
 
-export type UserPropsType = {
+export type UserType = {
     id: number
     name: string
     status: string

@@ -1,5 +1,5 @@
 import {AllActionsTypes, AppThunk} from "./redux-store";
-import {authAPI, ResultCodesEnum} from "../api/Api";
+import {authAPI, ResultCodesEnum} from "../api/api";
 
 const initialState: initialStateType = {
     id: null,

@@ -1,4 +1,4 @@
-import {UserPropsType} from "../../redux/users-reducer";
+import {UserType} from "../../redux/users-reducer";
 import React from "react";
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
@@ -46,5 +46,5 @@ export type Props = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    user: UserPropsType
+    user: UserType
 }
