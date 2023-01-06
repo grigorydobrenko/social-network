@@ -41,6 +41,7 @@ export const ProfileContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {getProfile, getStatus, updateStatus}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
+
 type PathParamsType = {
     userId: string
 }

@@ -46,8 +46,7 @@ class App extends React.Component<commonPropsType> {
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({isInitialized: state.app.isInitialized})
 
-export default compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App)
-
+export const AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App)
 
 type commonPropsType = mapDispatchToPropsType & mapStateToPropsType
 type mapDispatchToPropsType = {
