@@ -1,5 +1,5 @@
 import {AppThunk} from "./redux-store";
-import {GetProfileResponseType, profileAPI, ResultCodesEnum} from "../api/api";
+import {profileAPI, ProfileType, ResultCodesEnum} from "../api/api";
 import {IPostFormInput} from "../components/Profile/MyPosts/Post/AddPostForm";
 import {v1} from "uuid";
 
@@ -50,7 +50,7 @@ export const addPost = (post: IPostFormInput) => ({type: 'profile/ADD-POST', pos
 
 export const deletePost = (postId: string) => ({type: 'profile/DELETE-POST', postId} as const)
 
-export const setProfile = (profile: any) => ({type: 'profile/SET-PROFILE', profile} as const)
+export const setProfile = (profile: ProfileType) => ({type: 'profile/SET-PROFILE', profile} as const)
 
 export const setStatus = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
 
@@ -98,8 +98,6 @@ export type PostType = {
     message: string,
     likes: number,
 }
-
-export type ProfileType = GetProfileResponseType
 
 export type ProfileActionsType = AddPostACType | SetProfileType | SetStatusType | DeletePostACType
 type AddPostACType = ReturnType<typeof addPost>

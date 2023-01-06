@@ -1,7 +1,6 @@
 import {addMessage, dialogsReducer, DialogStateType} from "./dialogs-reducer";
 import {v1} from "uuid";
 
-
 let state: DialogStateType
 
 beforeEach(() => {
@@ -46,8 +45,8 @@ beforeEach(() => {
 })
 
 test('should change messages length', () => {
-    const dialogReducerTest = dialogsReducer(state, addMessage({message: 'New message'}))
-    expect(dialogReducerTest.messages.length).toBe(4
+    const newState = dialogsReducer(state, addMessage({message: 'New message'}))
+    expect(newState.messages.length).toBe(4
     )
 })
 

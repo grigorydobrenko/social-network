@@ -1,7 +1,7 @@
 import {AppThunk} from "./redux-store";
 import {ResultCodesEnum, usersAPI} from "../api/api";
 
-const usersPage: InitialStateType = {
+const usersPage: UsersStateType = {
     users: [],
     pageSize: 15,
     totalUsersCounter: 200,
@@ -10,7 +10,7 @@ const usersPage: InitialStateType = {
     followingInProgress: []
 }
 
-export const usersReducer = (state: InitialStateType = usersPage, action: UsersActionsType) => {
+export const usersReducer = (state: UsersStateType = usersPage, action: UsersActionsType) => {
     switch (action.type) {
         case "users/FOLLOW" :
             return {
@@ -110,13 +110,13 @@ export const unFollow = (id: number): AppThunk => async (dispatch) => {
 }
 
 //types
-export type InitialStateType = {
-    users: Array<UserType>
+export type UsersStateType = {
+    users: UserType[]
     pageSize: number
     totalUsersCounter: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: Array<number>
+    followingInProgress: number[]
 }
 
 export type UserType = {

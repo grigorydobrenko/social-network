@@ -14,8 +14,8 @@ beforeEach(() => {
 })
 
 test('set user data', () => {
-    const authReducerTest = authReducer(state, setAuthUserData(1, 'my@gmail.com', 'Grigory', true))
-    expect(authReducerTest.isAuth).toBe(true)
-    expect(authReducerTest.id).toBe(1)
-    expect(authReducerTest.email).toBe('my@gmail.com')
+    const newState = authReducer(state, setAuthUserData(1, 'my@gmail.com', 'Grigory', true))
+    expect(newState.isAuth).toBe(true)
+    expect(newState.id).toBe(1)
+    expect(newState.email).toBe('my@gmail.com')
 })

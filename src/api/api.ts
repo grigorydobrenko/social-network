@@ -26,7 +26,7 @@ export const usersAPI = {
 
 export const profileAPI = {
     getUserProfile(userId: string) {
-        return instance.get<GetProfileResponseType>(`profile/` + userId).then(response => response.data)
+        return instance.get<ProfileType>(`profile/` + userId).then(response => response.data)
     },
     getStatus(userId: string) {
         return instance.get(`profile/status/` + userId).then(response => {
@@ -69,7 +69,7 @@ type GetUsersResponseType = {
     error: string
 }
 
-export type GetProfileResponseType = {
+export type ProfileType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string

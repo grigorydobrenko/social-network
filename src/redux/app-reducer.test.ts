@@ -9,6 +9,6 @@ beforeEach(() => {
 })
 
 test('should change status isInitialized', () => {
-    const appReducerTest = appReducer(state, setInitializeSucceeded())
-    expect(appReducerTest.isInitialized).toBe(true)
+    const newState = appReducer(state, setInitializeSucceeded())
+    expect(newState.isInitialized).toBe(true)
 })

@@ -4,10 +4,9 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     follow,
     getUsers,
-    InitialStateType,
     setCurrentPage,
     toggleFollowingInProgress,
-    unFollow,
+    unFollow, UsersStateType,
 } from "../../redux/users-reducer";
 import {UsersAPIComponent} from "./UsersApiComponent";
 import {compose} from "redux";
@@ -51,6 +50,6 @@ type mapDispatchToPropsType = {
 
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
-type mapStateToPropsType = InitialStateType
+type mapStateToPropsType = UsersStateType
 
 

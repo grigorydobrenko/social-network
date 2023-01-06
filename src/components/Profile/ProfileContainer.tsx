@@ -1,11 +1,12 @@
 import React from 'react';
-import Profile from "./Profile";
+import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, ProfileType, updateStatus} from "../../redux/profile-reducer";
+import {getProfile, getStatus, updateStatus} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {ProfileType} from "../../api/api";
 
 export class ProfileAPIComponent extends React.Component<PropsType> {
 
