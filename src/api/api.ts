@@ -35,6 +35,15 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put<CommonResponseType>(`profile/status/`, {status: status})
+    },
+    updatePhoto(file: File) {
+        const formData = new FormData()
+        formData.append('image', file)
+        return instance.put<CommonResponseType<{small:string, large: string}>>(`profile/photo`, formData,{
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 
@@ -69,7 +78,7 @@ type GetUsersResponseType = {
     error: string
 }
 
-export type ProfileType = {
+export type _ProfileType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -89,6 +98,8 @@ export type ProfileType = {
         large: string
     }
 }
+
+export type ProfileType = Partial<_ProfileType>
 
 export enum ResultCodesEnum {
     Succes = 0,

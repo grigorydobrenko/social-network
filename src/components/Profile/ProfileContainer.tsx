@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, updateStatus} from "../../redux/profile-reducer";
+import {getProfile, getStatus, savePhoto, updateStatus} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -10,7 +10,7 @@ import {ProfileType} from "../../api/api";
 
 export class ProfileAPIComponent extends React.Component<PropsType> {
 
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId
         if (!userId) {
             // @ts-ignore
@@ -25,8 +25,22 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
 
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.match.params.userId != prevProps.match.params.userId){
+            this.refreshProfile()
+        }
+    }
+
     render() {
-        return <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+        return <Profile isOwner={!this.props.match.params.userId}
+                        {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        savePhoto={this.props.savePhoto}
                         updateStatus={this.props.updateStatus}/>
     }
 }
@@ -38,7 +52,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
 })
 
 export const ProfileContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfile, getStatus, updateStatus}),
+    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
 
@@ -50,6 +64,7 @@ type mapDispatchToPropsType = {
     getProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
+    savePhoto: (file: File) => void
 }
 
 type mapStateToPropsType = {

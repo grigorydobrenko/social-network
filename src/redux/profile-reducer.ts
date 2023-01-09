@@ -40,6 +40,9 @@ export const profileReducer = (state: ProfileStateType = profilePage, action: Pr
         case 'profile/SET-STATUS':
             return {...state, status: action.status}
 
+        case 'profile/SET-PHOTO':
+            return {...state, profile: {...state.profile, photos: action.photos}}
+
         default:
             return state
     }
@@ -53,6 +56,8 @@ export const deletePost = (postId: string) => ({type: 'profile/DELETE-POST', pos
 export const setProfile = (profile: ProfileType) => ({type: 'profile/SET-PROFILE', profile} as const)
 
 export const setStatus = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
+
+export const setPhoto = (photos: { small: string, large: string }) => ({type: 'profile/SET-PHOTO', photos} as const)
 
 
 //thunks
@@ -85,6 +90,17 @@ export const updateStatus = (status: string): AppThunk => async (dispatch) => {
     }
 }
 
+export const savePhoto = (file: File): AppThunk => async (dispatch) => {
+    try {
+        const response = await profileAPI.updatePhoto(file)
+        if (response.data.resultCode === ResultCodesEnum['Succes']) {
+            dispatch(setPhoto(response.data.data))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 
 //types
 export type ProfileStateType = {
@@ -99,8 +115,9 @@ export type PostType = {
     likes: number,
 }
 
-export type ProfileActionsType = AddPostACType | SetProfileType | SetStatusType | DeletePostACType
+export type ProfileActionsType = AddPostACType | SetProfileType | SetStatusType | DeletePostACType | setPhotoType
 type AddPostACType = ReturnType<typeof addPost>
 type DeletePostACType = ReturnType<typeof deletePost>
 type SetProfileType = ReturnType<typeof setProfile>
 type SetStatusType = ReturnType<typeof setStatus>
+type setPhotoType = ReturnType<typeof setPhoto>

@@ -7,3 +7,6 @@
 .description {
     padding: 10px;
 }
+.profilePhoto {
+    max-width: 200px;
+}
