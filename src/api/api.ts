@@ -54,11 +54,17 @@ export const authAPI = {
     me() {
         return instance.get<GetAuthResponseType>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post<CommonResponseType>('auth/login', {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null) {
+        return instance.post<CommonResponseType>('auth/login', {email, password, rememberMe, captcha})
     },
     logout() {
         return instance.delete<CommonResponseType>('auth/login')
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<{ url: string }>(`security/get-captcha-url`);
     }
 }
 
@@ -107,5 +113,6 @@ export type ProfileType = {
 
 export enum ResultCodesEnum {
     Success = 0,
-    Error = 1
+    Error = 1,
+    Captcha = 10
 }

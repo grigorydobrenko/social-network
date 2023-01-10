@@ -12,7 +12,8 @@ const Login = (props: commonType) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm login={props.login} isSubmit={props.isSubmit} errorMessage={props.errorMessage}/>
+            <LoginForm captchaUrl={props.captchaUrl} login={props.login} isSubmit={props.isSubmit}
+                       errorMessage={props.errorMessage}/>
         </div>
     );
 };
@@ -21,7 +22,8 @@ const mapStateToProps = (state: AppStateType): mapStateToProps => {
     return {
         isSubmit: state.auth.isSubmit,
         errorMessage: state.auth.errorMessage,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 
@@ -30,13 +32,14 @@ export default connect(mapStateToProps, {login})(Login);
 export type commonType = mapDispatchToProps & mapStateToProps
 
 type mapDispatchToProps = {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, captchaUrl: string | null) => void
 }
 
 type mapStateToProps = {
     isSubmit: boolean
     errorMessage: string
     isAuth?: boolean
+    captchaUrl: string | null
 }
 
 

@@ -5,11 +5,18 @@ import React from "react";
 import {commonType} from "../../Login/Login";
 
 export const LoginForm = (props: commonType) => {
-    const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>()
+    const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>({
+        defaultValues: {
+            login: '',
+            password: '',
+            rememberMe: false,
+            captchaUrl: null
+        }
+    })
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
-        const {login, password, rememberMe} = data
-        props.login(login, password, rememberMe)
+        const {login, password, rememberMe, captchaUrl} = data
+        props.login(login, password, rememberMe, captchaUrl)
         reset()
     }
 
@@ -33,16 +40,20 @@ export const LoginForm = (props: commonType) => {
                 {errors?.password && <div className={errorsStyles.errorMessageColor}>{errors.password.message}</div>}
             </div>
             <div><input type="checkbox" {...register('rememberMe')}/>remember me</div>
+            {props.captchaUrl && <div><img src={props.captchaUrl}/></div>}
+            {props.captchaUrl && <div><input type="text" {...register('captchaUrl')}/></div>}
             <div>
                 <button>Login</button>
             </div>
             {props.isSubmit && <div className={errorsStyles.errorMessageColor}>{props.errorMessage}</div>}
+
         </form>
     );
 }
 
 export type FormData = {
-    login: string;
-    password: string;
+    login: string
+    password: string
     rememberMe: boolean
+    captchaUrl: string | null
 }

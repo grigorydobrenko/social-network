@@ -1,5 +1,5 @@
 import {AppThunk} from "./redux-store";
-import {authAPI, ResultCodesEnum} from "../api/api";
+import {authAPI, ResultCodesEnum, securityAPI} from "../api/api";
 
 const initialState: AuthStateType = {
     id: null,
@@ -7,12 +7,14 @@ const initialState: AuthStateType = {
     login: null,
     isAuth: false,
     isSubmit: false,
-    errorMessage: ''
+    errorMessage: '',
+    captchaUrl: null
 }
 
 export const authReducer = (state: AuthStateType = initialState, action: AuthActionsType): AuthStateType => {
     switch (action.type) {
         case 'auth/SET-AUTH':
+        case 'auth/GET_CAPTCHA_URL_SUCCESS':
             return {...state, ...action.payload}
 
         case 'auth/SET-IS-SUBMIT':
@@ -38,6 +40,13 @@ export const setStopSubmit = (isSubmit: boolean, errorMessage: string) => ({
     }
 } as const)
 
+export const getCaptchaUrlSuccess = (captchaUrl: string) => ({
+    type: 'auth/GET_CAPTCHA_URL_SUCCESS',
+    payload: {
+        captchaUrl
+    }
+} as const)
+
 //thunks
 export const getAuthUserData = (): AppThunk => async (dispatch) => {
     try {
@@ -52,13 +61,16 @@ export const getAuthUserData = (): AppThunk => async (dispatch) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean = false): AppThunk => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean = false, captchaUrl: string | null): AppThunk => async (dispatch) => {
     try {
-        const response = await authAPI.login(email, password, rememberMe)
+        const response = await authAPI.login(email, password, rememberMe, captchaUrl)
         if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(getAuthUserData())
             dispatch(setStopSubmit(false, ''))
         } else {
+            if (response.data.resultCode === ResultCodesEnum.Captcha) {
+                dispatch(getCaptcha())
+            }
             let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
             dispatch(setStopSubmit(true, message))
         }
@@ -77,7 +89,15 @@ export const logout = (): AppThunk => async (dispatch) => {
     } catch (e) {
         console.log(e)
     }
+}
 
+export const getCaptcha = (): AppThunk => async (dispatch) => {
+    try {
+        const response = await securityAPI.getCaptchaUrl()
+        dispatch(getCaptchaUrlSuccess(response.data.url))
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 //types
@@ -88,9 +108,11 @@ export type AuthStateType = {
     isAuth: boolean,
     isSubmit: boolean
     errorMessage: string
+    captchaUrl: string | null
 }
 
-export type AuthActionsType = SetAuthUserDataType | SetStopSubmitType
+export type AuthActionsType = SetAuthUserDataType | SetStopSubmitType | GetCaptchaUrlSuccessType
 
 type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
 type SetStopSubmitType = ReturnType<typeof setStopSubmit>
+type GetCaptchaUrlSuccessType = ReturnType<typeof getCaptchaUrlSuccess>

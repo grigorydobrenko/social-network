@@ -9,7 +9,8 @@ beforeEach(() => {
         login: null,
         isAuth: false,
         isSubmit: false,
-        errorMessage: ''
+        errorMessage: '',
+        captchaUrl: null
     }
 })
 
