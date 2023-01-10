@@ -19,10 +19,13 @@ beforeEach(() => {
             }
         ],
         profile: null,
-        status: ''
+        status: '',
+        profileEditStatus: '',
+        isEdit: false
     }
     profile = {
         userId: 1,
+        aboutMe: 'front-end developer',
         lookingForAJob: true,
         lookingForAJobDescription: 'front-end',
         fullName: 'Grigory',

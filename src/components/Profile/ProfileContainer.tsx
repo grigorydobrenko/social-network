@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, savePhoto, updateStatus} from "../../redux/profile-reducer";
+import {getProfile, getStatus, savePhoto, saveProfile, setIsEdit, updateStatus} from "../../redux/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -41,18 +41,25 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
                         profile={this.props.profile}
                         status={this.props.status}
                         savePhoto={this.props.savePhoto}
-                        updateStatus={this.props.updateStatus}/>
+                        updateStatus={this.props.updateStatus}
+                        profileEditStatus={this.props.profileEditStatus}
+                        saveProfile={this.props.saveProfile}
+                        isEdit={this.props.isEdit}
+                        setIsEdit={this.props.setIsEdit}
+        />
     }
 }
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    profileId: state.auth.id
+    profileId: state.auth.id,
+    profileEditStatus: state.profilePage.profileEditStatus,
+    isEdit: state.profilePage.isEdit
 })
 
 export const ProfileContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile,setIsEdit}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
 
@@ -65,12 +72,16 @@ type mapDispatchToPropsType = {
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
+    saveProfile: (profile: any) => void
+    setIsEdit: (isEdit: boolean) => void
 }
 
 type mapStateToPropsType = {
     profile: ProfileType | null
     status: string
     profileId: number | null
+    profileEditStatus: string | null
+    isEdit: boolean
 }
 
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType

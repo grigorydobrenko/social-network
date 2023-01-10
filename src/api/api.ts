@@ -25,7 +25,7 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getUserProfile(userId: string) {
+    getUserProfile(userId?: number) {
         return instance.get<ProfileType>(`profile/` + userId).then(response => response.data)
     },
     getStatus(userId: string) {
@@ -39,11 +39,14 @@ export const profileAPI = {
     updatePhoto(file: File) {
         const formData = new FormData()
         formData.append('image', file)
-        return instance.put<CommonResponseType<{small:string, large: string}>>(`profile/photo`, formData,{
+        return instance.put<CommonResponseType<{ small: string, large: string }>>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    saveProfile(profile: ProfileType) {
+        return instance.put<CommonResponseType>(`profile`, profile)
     }
 }
 
@@ -78,8 +81,9 @@ type GetUsersResponseType = {
     error: string
 }
 
-export type _ProfileType = {
+export type ProfileType = {
     userId: number
+    aboutMe?: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
@@ -99,9 +103,9 @@ export type _ProfileType = {
     }
 }
 
-export type ProfileType = Partial<_ProfileType>
+// export type ProfileType = Partial<_ProfileType>
 
 export enum ResultCodesEnum {
-    Succes = 0,
+    Success = 0,
     Error = 1
 }

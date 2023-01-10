@@ -84,7 +84,7 @@ export const follow = (id: number): AppThunk => async (dispatch) => {
     try {
         dispatch(toggleFollowingInProgress(id, true))
         const data = await usersAPI.follow(id)
-        if (data.resultCode === ResultCodesEnum.Succes) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(followSucces(id))
         }
     } catch (e) {
@@ -98,7 +98,7 @@ export const unFollow = (id: number): AppThunk => async (dispatch) => {
     try {
         dispatch(toggleFollowingInProgress(id, true))
         const data = await usersAPI.unFollow(id)
-        if (data.resultCode === ResultCodesEnum.Succes) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(unfollowSucces(id))
             dispatch(toggleFollowingInProgress(id, false))
         }

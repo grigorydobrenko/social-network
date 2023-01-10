@@ -43,7 +43,7 @@ export const getAuthUserData = (): AppThunk => async (dispatch) => {
     try {
         const response = await authAPI.me()
 
-        if (response.data.resultCode === ResultCodesEnum.Succes) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             let {id, email, login} = response.data.data
             dispatch(setAuthUserData(id, email, login, true))
         }
@@ -55,7 +55,7 @@ export const getAuthUserData = (): AppThunk => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean = false): AppThunk => async (dispatch) => {
     try {
         const response = await authAPI.login(email, password, rememberMe)
-        if (response.data.resultCode === ResultCodesEnum.Succes) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(getAuthUserData())
             dispatch(setStopSubmit(false, ''))
         } else {
@@ -71,7 +71,7 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
 export const logout = (): AppThunk => async (dispatch) => {
     try {
         const response = await authAPI.logout()
-        if (response.data.resultCode === ResultCodesEnum.Succes) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(setAuthUserData(0, '', '', false))
         }
     } catch (e) {

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from "../../Common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
@@ -7,9 +7,8 @@ import userPhoto from "../../../assets/images/user.png";
 import {ProfileType} from "../../../api/api";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 
-const ProfileInfo: React.FC<ProfilePropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
-    const [isEdit, setIsEdit] = useState(false)
-
+const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
+    const {isEdit, setIsEdit, profile, status, updateStatus, isOwner, savePhoto, profileEditStatus, saveProfile} = props
 
     if (!profile) {
         return <Preloader/>
@@ -27,7 +26,10 @@ const ProfileInfo: React.FC<ProfilePropsType> = ({profile, status, updateStatus,
             <div className={s.description}>
                 <img src={profile.photos?.large || userPhoto} alt={'photo'} className={s.profilePhoto}/>
                 {isOwner && <input type="file" onChange={onUploadHandler} accept={'image/*'}/>}
-                {isEdit ? <ProfileDataForm/> : <ProfileData profile={profile} isOwner={isOwner} setIsEdit={setIsEdit}/>}
+                {isEdit ?
+                    <ProfileDataForm saveProfile={saveProfile} profileEditStatus={profileEditStatus} profile={profile}
+                                     isOwner={isOwner} setIsEdit={setIsEdit}/> :
+                    <ProfileData profile={profile} isOwner={isOwner} setIsEdit={setIsEdit}/>}
             </div>
             <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         </>
@@ -39,7 +41,7 @@ type ContactProps = {
     contactValue: string
 }
 
-type ProfileDataProps = {
+export type ProfileDataProps = {
     profile: ProfileType
     isOwner: boolean
     setIsEdit: (boolean: boolean) => void
@@ -53,14 +55,14 @@ const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
         {profile.lookingForAJob &&
             <div><b>My professional skills</b>:{profile.lookingForAJobDescription}</div>}
         {/*<div><b>About me</b>:{profile.aboutMe}</div>*/}
-        <div><b>contacts</b>: {Object.keys(profile.contacts ? profile.contacts : []).map((key, i, arr) => {
+        <div><b>contacts</b>: {Object.keys(profile.contacts).map((key, i, arr) => {
             return <Contact key={key} contactTitle={key} contactValue={arr[key]}/>
         })}</div>
     </div>
 }
 
 
-const Contact = ({contactTitle, contactValue}: ContactProps) => {
+export const Contact = ({contactTitle, contactValue}: ContactProps) => {
     return (
         <div className={s.contact}>
             <b>{contactTitle}</b>: {contactValue}
