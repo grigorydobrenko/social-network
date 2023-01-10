@@ -10,18 +10,15 @@ export const ProfileDataForm = ({profile, isOwner,  profileEditStatus, saveProfi
     const onSubmit = async (data: any) => {
         console.log(data)
         saveProfile(data)
-
     };
 
     return <div>
         <form onSubmit={handleSubmit(onSubmit)}>
             {profileEditStatus && <div>{profileEditStatus}</div>}
             {isOwner && <button
-                // onClick={() => setIsEdit(true)}
                 type="submit">Save</button>}
-
             <div><b>Full name</b>:<input {...register("fullName")} placeholder="fullName"/></div>
-            <div><b>Looking for a job</b>:<input type={"checkbox"} {...register("fullName")} placeholder="lookingForAJob"/></div>
+            <div><b>Looking for a job</b>:<input type={"checkbox"} {...register("lookingForAJob")} placeholder="lookingForAJob"/></div>
             <div><b>About me</b>:<input {...register("aboutMe")} placeholder="aboutMe"/></div>
             <div><b>lookingForAJobDescription</b>:<input {...register("lookingForAJobDescription")} placeholder="lookingForAJobDescription"/></div>
             <div><b>github</b>:<input {...register("contacts.github")} placeholder="github"/></div>

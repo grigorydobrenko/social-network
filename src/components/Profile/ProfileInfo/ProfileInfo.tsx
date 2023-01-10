@@ -51,12 +51,11 @@ const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
     return <div>
         {isOwner && <button onClick={() => setIsEdit(true)}>Edit</button>}
         <div><b>Full name</b>:{profile.fullName}</div>
+        <div><b>About me</b>:{profile.aboutMe}</div>
         <div><b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}</div>
-        {profile.lookingForAJob &&
-            <div><b>My professional skills</b>:{profile.lookingForAJobDescription}</div>}
-        {/*<div><b>About me</b>:{profile.aboutMe}</div>*/}
-        <div><b>contacts</b>: {Object.keys(profile.contacts).map((key, i, arr) => {
-            return <Contact key={key} contactTitle={key} contactValue={arr[key]}/>
+        <div><b>Looking for a job description</b>: {profile.lookingForAJobDescription}</div>
+        <div><b>contacts</b>: {Object.keys(profile.contacts).map((key) => {
+            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
         })}</div>
     </div>
 }
