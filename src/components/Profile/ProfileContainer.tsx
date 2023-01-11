@@ -58,7 +58,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     isEdit: state.profilePage.isEdit
 })
 
-export const ProfileContainer = compose<React.ComponentType>(
+const ProfileContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile,setIsEdit}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
@@ -87,3 +87,5 @@ type mapStateToPropsType = {
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
+
+export default ProfileContainer

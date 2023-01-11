@@ -40,7 +40,7 @@ export const LoginForm = (props: commonType) => {
                 {errors?.password && <div className={errorsStyles.errorMessageColor}>{errors.password.message}</div>}
             </div>
             <div><input type="checkbox" {...register('rememberMe')}/>remember me</div>
-            {props.captchaUrl && <div><img src={props.captchaUrl}/></div>}
+            {props.captchaUrl && <div>< img src={props.captchaUrl}/></div>}
             {props.captchaUrl && <div><input type="text" {...register('captchaUrl')}/></div>}
             <div>
                 <button>Login</button>
