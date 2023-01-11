@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UserType} from "../redux/users-reducer";
+import {UserType} from "../features/Users/users-reducer";
 
 const PATH = `https://social-network.samuraijs.com/api/1.0/`
 const API_KEY = "f084858c-82a6-4229-bddd-b62d132d9a71"

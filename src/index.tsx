@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
-import store from './redux/redux-store'
+import store from './app/redux-store'
 import ReactDOM from "react-dom";
-import {AppContainer} from "./App";
+import {AppContainer} from "./app/App";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 

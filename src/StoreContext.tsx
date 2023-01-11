@@ -1,10 +1,10 @@
 import React from 'react'
 import {CombinedState, Store} from "redux";
-import {AllActionsTypes} from "./redux/redux-store";
-import {DialogStateType} from "./redux/dialogs-reducer";
-import {SidebarStateType} from "./redux/sidebar-reducer";
-import {ProfileStateType} from "./redux/profile-reducer";
-import store from "./redux/redux-store";
+import {AllActionsTypes} from "./app/redux-store";
+import {DialogStateType} from "./features/Dialogs/dialogs-reducer";
+import {SidebarStateType} from "./features/NavBar/sidebar-reducer";
+import {ProfileStateType} from "./features/Profile/profile-reducer";
+import store from "./app/redux-store";
 
 
 export const StoreContext = React.createContext({} as Store<CombinedState<{ profilePage: ProfileStateType; dialogPage: DialogStateType; sidebar: SidebarStateType; }>, AllActionsTypes>)
