@@ -1,6 +1,6 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import React from "react";
-import errorsStyles from "../../../common/components/FormsControls/FormControls.module.css";
+import errorsStyles from "../../../common/components/FormControls/FormControls.module.css";
 import {maxLengthCreator, required} from "../../../common/utils/validators/validators";
 
 export type IMessageFormInput = {

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {login} from "./auth-reducer";
 import {AppStateType} from "../../app/redux-store";
 import {Redirect} from "react-router-dom";
-import {LoginForm} from "../../common/components/FormsControls/LoginForm";
+import {LoginForm} from "../../common/components/FormControls/LoginForm";
 
 const Login = (props: commonType) => {
     if (props.isAuth) {

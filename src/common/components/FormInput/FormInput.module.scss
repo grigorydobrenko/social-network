@@ -1,0 +1,42 @@
+.formFieldStyles {
+  display: block;
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  text-align: center;
+  outline: none;
+  &:focus {
+    box-shadow: 0px 0px 3px 1px cornflowerblue;
+    outline: none;
+  }
+}
+
+.formInput {
+  @extend .formFieldStyles;
+  height: 27px;
+}
+
+.formCheckBox {
+  margin: 5px 40px;
+  width: 14px;
+  height: 14px;
+  position: relative;
+  accent-color: lightsteelblue;
+  cursor: pointer;
+  vertical-align: center;
+
+  &:after {
+    position: absolute;
+    font-size: 16px;
+    left: 20px;
+    width: 150px;
+    content: 'I`m looking for a job';
+  }
+}

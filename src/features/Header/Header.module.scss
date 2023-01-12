@@ -1,0 +1,40 @@
+.header {
+  background-color: #1d2f38;
+  height: 55px;
+  //display: flex;
+  //justify-content: space-between;
+
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1140px;
+    //gap: 300px;
+    margin: 0 auto;
+  }
+  margin-bottom: 25px;
+}
+
+.header__img img {
+  max-width: 50px;
+  padding: 20px;
+}
+
+.nav {
+  margin-left: auto;
+  display: flex;
+  background-color: blue;
+}
+
+.nav li {
+  list-style-type: none;
+}
+
+
+.item {
+  color: white;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: gold;
+}

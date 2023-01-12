@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost, ProfileStateType} from "../profile-reducer";
+import {addPost, deletePost, ProfileStateType} from "../profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../app/redux-store";
@@ -12,6 +12,7 @@ type mapStateToPropsType = {
 
 type mapDispatchToProps = {
     addPost: (post: IPostFormInput) => void
+    deletePost: (postId: string) => void
 }
 
 export  type MyPostsCommonType = mapDispatchToProps & mapStateToPropsType
@@ -22,5 +23,5 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, {addPost})(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, {addPost, deletePost})(MyPosts)
 

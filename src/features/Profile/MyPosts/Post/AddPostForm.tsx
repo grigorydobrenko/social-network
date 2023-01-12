@@ -1,18 +1,11 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import React from "react";
-import errorsStyles from '../../../../common/components/FormsControls/FormControls.module.css'
+import errorsStyles from '../../../../common/components/FormControls/FormControls.module.css'
 import {maxLengthCreator, required} from "../../../../common/utils/validators/validators";
-
-export type IPostFormInput = {
-    post: string
-}
-
-type AddPostFormType = {
-    addPost: (post: IPostFormInput) => void
-}
+import styles from './Post.module.scss'
+import textAreaStyles from '../../../../common/components/FormTextarea/FormTextarea.module.scss'
 
 const maxLen = maxLengthCreator(30)
-
 
 export const AddPostForm = (props: AddPostFormType) => {
     const {
@@ -27,7 +20,7 @@ export const AddPostForm = (props: AddPostFormType) => {
 
     };
     const className = errors?.post ? errorsStyles.errorBorder : ''
-    return <form onSubmit={handleSubmit(onSubmit)}>
+    return <form onSubmit={handleSubmit(onSubmit)} className={styles.postForm}>
         <textarea {...register("post", {
             validate: {
                 required,
@@ -36,12 +29,20 @@ export const AddPostForm = (props: AddPostFormType) => {
 
         })}
                   placeholder={'Add new post'}
-                  className={`${errorsStyles.outlineNone} ${className}`}></textarea>
+                  className={`${errorsStyles.outlineNone} ${className} ${textAreaStyles.styleTextarea}`}></textarea>
         {/*{touchedFields.post === true && !dirtyFields.post && <div className={errorsStyles.errorMessageColor}>Field is required</div>}*/}
         {errors?.post && <div className={errorsStyles.errorMessageColor}>{errors.post.message}</div>}
         <div>
             <button>add post</button>
         </div>
     </form>
+}
+
+export type IPostFormInput = {
+    post: string
+}
+
+type AddPostFormType = {
+    addPost: (post: IPostFormInput) => void
 }
 

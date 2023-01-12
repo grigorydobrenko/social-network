@@ -1,11 +1,12 @@
 import React, {ChangeEvent} from 'react';
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.scss'
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {ProfilePropsType} from "../Profile";
 import userPhoto from "../../../assets/images/user.png";
 import {ProfileType} from "../../../api/api";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 import Preloader from "../../../common/components/Preloader/Preloader";
+import styles from "./ProfileInfo.module.scss"
 
 const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
     const {isEdit, setIsEdit, profile, status, updateStatus, isOwner, savePhoto, profileEditStatus, saveProfile} = props
@@ -22,17 +23,17 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
     }
 
     return (
-        <>
-            <div className={s.description}>
-                <img src={profile.photos?.large || userPhoto} alt={'photo'} className={s.profilePhoto}/>
+        <div className={s.profileInfoContainer}>
+            <div className={s.mainProfileBox}><img src={profile.photos?.large || userPhoto} alt={'photo'}
+                                                   className={s.profilePhoto}/>
                 {isOwner && <input type="file" onChange={onUploadHandler} accept={'image/*'}/>}
-                {isEdit ?
-                    <ProfileDataForm saveProfile={saveProfile} profileEditStatus={profileEditStatus} profile={profile}
-                                     isOwner={isOwner} setIsEdit={setIsEdit}/> :
-                    <ProfileData profile={profile} isOwner={isOwner} setIsEdit={setIsEdit}/>}
-            </div>
-            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-        </>
+                <h2>{profile.fullName}</h2>
+                <ProfileStatusWithHooks isOwner={isOwner} status={status} updateStatus={updateStatus}/></div>
+            <div className={s.restProfileInformation}>{isEdit ?
+                <ProfileDataForm saveProfile={saveProfile} profileEditStatus={profileEditStatus} profile={profile}
+                                 isOwner={isOwner} setIsEdit={setIsEdit}/> :
+                <ProfileData profile={profile} isOwner={isOwner} setIsEdit={setIsEdit}/>}</div>
+        </div>
     )
 }
 
@@ -48,14 +49,18 @@ export type ProfileDataProps = {
 }
 
 const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
-    return <div>
-        {isOwner && <button onClick={() => setIsEdit(true)}>Edit</button>}
-        <div><b>Full name</b>:{profile.fullName}</div>
-        <div><b>About me</b>:{profile.aboutMe}</div>
+    return <div className={styles.profileDataContainer}>
+        {isOwner && <div className={styles.settingButton}>
+            <button onClick={() => setIsEdit(true)}>Edit</button>
+        </div>}
+        <div className={styles.aboutMe}><h3>About me:</h3><span>{profile.aboutMe ? profile.aboutMe : '...'}</span></div>
         <div><b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}</div>
-        <div><b>Looking for a job description</b>: {profile.lookingForAJobDescription}</div>
-        <div><b>contacts</b>: {Object.keys(profile.contacts).map((key) => {
-            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+        <div><b>Looking for a job description</b>: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription: '...'}</div>
+        <div>{Object.keys(profile.contacts).map((contact) => {
+            const contactsValue = profile.contacts[contact]
+            if (contactsValue) {
+                return <Contact key={contact} contactTitle={contact} contactValue={profile.contacts[contact]}/>
+            }
         })}</div>
     </div>
 }

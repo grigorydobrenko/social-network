@@ -1,8 +1,7 @@
 import React from 'react';
-import './App.css';
-import NavBar from "../features/NavBar/NavBar";
+import './App.module.scss';
 import {Redirect, Route, withRouter} from "react-router-dom";
-import {Music, News, Settings} from "../features/Draft/Pages";
+import {Music, News} from "../features/Draft/Pages";
 import {UsersContainer} from "../features/Users/UsersContainer";
 import HeaderContainer from "../features/Header/HeaderContainer";
 import Login from "../features/Login/Login";
@@ -12,6 +11,7 @@ import {AppStateType} from "./redux-store";
 import {initializeApp} from "./app-reducer";
 import Preloader from "../common/components/Preloader/Preloader";
 import {withSuspense} from "../common/hoc/withSuspense";
+import styles from './App.module.scss'
 
 const DialogsContainer = React.lazy(() => import('../features/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('../features/Profile/ProfileContainer'))
@@ -40,10 +40,9 @@ class App extends React.Component<commonPropsType> {
             return <Preloader/>
         }
         return (
-            <div className="App-wrapper">
+            <div>
                 <HeaderContainer/>
-                <NavBar/>
-                <div className='app-wrapper-content'>
+                <div className={styles.appContainer}>
                     <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                     <Route path='/profile/:userId?' render={() => <SuspendedProfile/>}/>
@@ -51,7 +50,6 @@ class App extends React.Component<commonPropsType> {
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
                 </div>
             </div>
         );

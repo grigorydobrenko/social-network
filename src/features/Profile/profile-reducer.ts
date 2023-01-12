@@ -7,12 +7,16 @@ const profilePage: ProfileStateType = {
     posts: [
         {
             id: v1(),
-            message: 'Hi, its me',
+            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus doloribus ipsa ipsum mollitia\n' +
+                '                    optio porro quibusdam recusandae sequi tenetur. A aut eligendi explicabo, fuga nulla quaerat quia\n' +
+                '                    quisquam ',
             likes: 4,
         },
         {
             id: v1(),
-            message: 'Hello',
+            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus doloribus ipsa ipsum mollitia\n' +
+                '                    optio porro quibusdam recusandae sequi tenetur. A aut eligendi explicabo, fuga nulla quaerat quia\n' +
+                '                    quisquam ',
             likes: 15,
         }
     ],
@@ -30,7 +34,7 @@ export const profileReducer = (state: ProfileStateType = profilePage, action: Pr
                 message: action.post.post,
                 likes: 0
             }
-            return {...state, posts: [...state.posts, newPost]}
+            return {...state, posts: [newPost, ...state.posts]}
         }
 
         case 'profile/DELETE-POST':
@@ -67,7 +71,10 @@ export const setStatus = (status: string) => ({type: 'profile/SET-STATUS', statu
 
 export const setPhoto = (photos: { small: string, large: string }) => ({type: 'profile/SET-PHOTO', photos} as const)
 
-export const setProfileEditStatus = (status: string | null) => ({type: 'profile/SET-PROFILE-EDIT-STATUS', status} as const)
+export const setProfileEditStatus = (status: string | null) => ({
+    type: 'profile/SET-PROFILE-EDIT-STATUS',
+    status
+} as const)
 
 export const setIsEdit = (isEdit: boolean) => ({type: 'profile/SET-IS-EDIT', isEdit} as const)
 
@@ -140,12 +147,22 @@ export type ProfileStateType = {
 }
 
 export type PostType = {
-    id?: string,
+    id: string,
     message: string,
     likes: number,
+    image?: string,
+    name?: string
+
 }
 
-export type ProfileActionsType = AddPostACType | SetProfileType | SetStatusType | DeletePostACType | setPhotoType | setProfileEditStatusType | setIsEditType
+export type ProfileActionsType =
+    AddPostACType
+    | SetProfileType
+    | SetStatusType
+    | DeletePostACType
+    | setPhotoType
+    | setProfileEditStatusType
+    | setIsEditType
 type AddPostACType = ReturnType<typeof addPost>
 type DeletePostACType = ReturnType<typeof deletePost>
 type SetProfileType = ReturnType<typeof setProfile>

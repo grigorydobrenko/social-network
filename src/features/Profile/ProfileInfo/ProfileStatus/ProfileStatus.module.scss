@@ -1,0 +1,9 @@
+@import "../../../../common/components/FormInput/FormInput.module";
+
+.disabled {
+  pointer-events: none;
+}
+
+.statusInput {
+  @extend .formFieldStyles;
+}

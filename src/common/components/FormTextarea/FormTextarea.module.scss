@@ -1,0 +1,6 @@
+@import "../FormInput/FormInput.module";
+
+.styleTextarea {
+  @extend .formFieldStyles;
+  resize: none;
+}

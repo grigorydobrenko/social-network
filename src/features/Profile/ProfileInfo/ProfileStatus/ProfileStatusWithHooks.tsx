@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import styles from './ProfileStatus.module.scss'
 
-
-export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, updateStatus}) => {
+export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status,isOwner, updateStatus}) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [ProfileStatus, setStatus] = useState(status)
@@ -26,18 +26,19 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, upd
     }, [status])
 
     return (
-        <div>
+        <>
             {!isEdit ?
-                <div onDoubleClick={toggleMode}><span>{ProfileStatus || 'no status'}</span></div> :
+                <div onDoubleClick={toggleMode} className={!isOwner ? styles.disabled: ''}><span>{ProfileStatus || 'no status'}</span></div> :
                 <input onBlur={toggleMode} onChange={onStatusChange} autoFocus
-                       value={ProfileStatus}/>}
-        </div>
+                       value={ProfileStatus} className={styles.statusInput}/>}
+        </>
     )
 }
 
 type ProfileStatusType = {
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
 }
 
 

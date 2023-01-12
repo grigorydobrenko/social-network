@@ -1,0 +1,72 @@
+@import "../../../common/styles/mixins";
+@import "../../../common/styles/variables";
+
+.content__img {
+
+    width: 100%
+}
+
+.profileInfoContainer {
+    grid-area: profile-description;
+    @include flexColumn();
+    .mainProfileBox {
+        @include flexColumn();
+        justify-content: space-between;
+        align-items: center;
+        background-color: $blocksBackground;
+        margin-bottom: 16px;
+        padding: 24px 16px;
+        .profilePhoto {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+    }
+    .settingButton {
+
+        //border-bottom: 2px solid #eaebec;
+        text-align: center;
+    }
+    .restProfileInformation {
+        background-color: $blocksBackground;
+        .profileDataContainer {
+            & > div:not(div:last-child) {
+                padding: 16px;
+                border-bottom: 1.5px solid #eaebec;
+            }
+
+            .aboutMe {
+                @include flexColumn();
+                align-items: center;
+            }
+            .contact {
+                padding: 16px;
+                border-bottom: 2px solid #eaebec;
+            }
+        }
+
+    }
+    .editProfileInformation {
+        & > div:not(:last-child) {
+            padding: 16px;
+            border-bottom: 2px solid #eaebec;
+        }
+        & > div:not(div:first-child) {
+            @include flexColumn();
+            text-align: center;
+        }
+        .contactForm {
+            padding: 16px;
+
+            border-bottom: 2px solid #eaebec;
+        }
+    }
+}
+
+
+
+
+
+
+
