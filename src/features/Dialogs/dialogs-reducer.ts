@@ -22,6 +22,24 @@ const dialogs: DialogStateType = {
         {
             name: 'Den',
             id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
+        },  {
+            name: 'Den',
+            id: v1(),
         },
     ],
     messages: [

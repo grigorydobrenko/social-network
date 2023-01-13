@@ -1,6 +1,18 @@
 @import "../FormInput/FormInput.module";
+@import "../../styles/layouts";
+
+.formTextareaStyles {
+  @extend .inputTextareaBasicLayout;
+
+  text-align: left;
+  &:focus {
+    box-shadow: 0px 0px 3px 1px cornflowerblue;
+    outline: none;
+  }
+}
+
 
 .styleTextarea {
-  @extend .formFieldStyles;
+  @extend .formTextareaStyles;
   resize: none;
 }

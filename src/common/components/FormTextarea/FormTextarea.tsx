@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './FormTextarea.module.scss'
 
 // @ts-ignore
-export function FormTextarea({register, name, label, id, rows, ...inputProps}) {
+export function FormTextarea({register, name, label, id, rows, validationSchema, ...inputProps}) {
+
 
     return <>
         <textarea
@@ -11,7 +12,7 @@ export function FormTextarea({register, name, label, id, rows, ...inputProps}) {
             name={name}
             placeholder={label}
             rows={rows}
-            {...register(name)}
+            {...register(name, validationSchema)}
         />
         {/*{errors.password && <div>{errors.password.message}</div>}*/}
     </>

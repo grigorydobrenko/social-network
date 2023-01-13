@@ -1,23 +1,31 @@
 import React from 'react';
-import s from './Dialogs.module.css'
+import styles from './Dialogs.module.scss'
+import stylesMessage from './Message/Message.module.scss'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {CommonDialogsType} from "./DialogsContainer";
 import {AddMessageForm} from "./Message/AddMessageForm";
+import userPhoto from "../../assets/images/user.png";
 
 const Dialogs: React.FC<CommonDialogsType> = (props) => {
     const {dialogPage, addMessage} = props
     let DialogItems = dialogPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-    let Messages = dialogPage.messages.map(message => <Message key={message.id} message={message.message}/>)
+    let Messages = dialogPage.messages.slice(1).map(message => <Message key={message.id} message={message.message}/>)
 
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className={styles.dialogsContainer}>
+            <div className={styles.dialogsItems}>
                 {DialogItems}
             </div>
-            <div className={s.messages}>
-                {Messages}
+            <div className={styles.messagesContainer}>
+                <div className={styles.messages}>
+                    <div className={stylesMessage.message}>
+                        <img src={userPhoto} alt="userPhoto" className={stylesMessage.userPhoto}/>
+                        <span className={stylesMessage.friendMessageText}>hello</span>
+                    </div>
+                    {Messages}
+                </div>
                 <AddMessageForm addMessage={addMessage}/>
             </div>
         </div>

@@ -34,20 +34,12 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
                 <h3>About me</h3>
                 <FormTextarea id="aboutMe"
                               name="fullName"
-                              label="Full name"
-                              rows={4}
+                              label="Write about yourself..."
+                              rows={3}
+                              validationSchema={{}}
                               register={register}/>
-                {/*    <FormInput id="aboutMe"*/}
-                {/*                type="input"*/}
-                {/*                name="aboutMe"*/}
-                {/*                label="About me"*/}
-                {/*                register={register}*/}
-                {/*                isNested={false}*/}
-                {/*/>*/}
             </div>
             <div>
-                {/*<b>Looking for a job</b><input type={"checkbox"} {...register("lookingForAJob")}*/}
-                {/*                                placeholder="lookingForAJob"/>*/}
                 <FormInput id="lookingForAJob"
                            type="checkbox"
                            name="lookingForAJob"
@@ -61,8 +53,9 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
                 <h3>Looking for a job description</h3>
                 <FormTextarea id="lookingForAJobDescription"
                                name="lookingForAJobDescription"
-                               label="Looking for a job description"
-                               rows={4}
+                               label="Write about a job which you're looking for..."
+                               rows={3}
+                              validationSchema={{}}
                                register={register}
             /></div>
             <div>
@@ -76,9 +69,7 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
                                    isNested={true}
                                    register={register}
                         />
-                        {/*<b>{contact}</b>:*/}
-                        {/*<input {...register(`contacts.${contact as keyof typeof profile.contacts & string}`)}*/}
-                        {/*                        placeholder={contact}/>*/}
+
                     </div>
                 })}</div>
 

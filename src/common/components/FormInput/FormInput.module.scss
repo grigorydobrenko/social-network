@@ -1,25 +1,13 @@
-.formFieldStyles {
-  display: block;
-  width: 100%;
+@import "../../styles/layouts";
 
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #666;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: 3px;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  text-align: center;
-  outline: none;
-  &:focus {
-    box-shadow: 0px 0px 3px 1px cornflowerblue;
-    outline: none;
-  }
+.formInputStyles {
+  @extend .inputTextareaBasicLayout;
 }
 
+
 .formInput {
-  @extend .formFieldStyles;
+  @extend .formInputStyles;
+  text-align: center;
   height: 27px;
 }
 

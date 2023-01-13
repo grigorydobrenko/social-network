@@ -1,16 +1,8 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import React from "react";
-import errorsStyles from "../../../common/components/FormControls/FormControls.module.css";
-import {maxLengthCreator, required} from "../../../common/utils/validators/validators";
+import styles from './Message.module.scss'
+import {FormTextarea} from "../../../common/components/FormTextarea/FormTextarea";
 
-export type IMessageFormInput = {
-    message: string
-}
-
-type AddMessageFormType = {
-    addMessage: (message: IMessageFormInput) => void
-}
-const maxLen = maxLengthCreator(50)
 
 export const AddMessageForm = (props: AddMessageFormType) => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm<IMessageFormInput>();
@@ -18,18 +10,30 @@ export const AddMessageForm = (props: AddMessageFormType) => {
         props.addMessage(data)
         reset()
     };
-    const className = errors?.message ? errorsStyles.errorBorder : ''
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
-        <textarea {...register("message", {
-            validate: {
-                required,
-                maxLen
-            }
-        })} placeholder={'Enter your message'} className={`${errorsStyles.outlineNone} ${className}`}></textarea>
-        {errors?.message && <div className={errorsStyles.errorMessageColor}>{errors.message.message}</div>}
+    return <form onSubmit={handleSubmit(onSubmit)} className={styles.addMessageForm}>
+
+        <div className={styles.messageTextarea}>
+            <FormTextarea id="message"
+                          name="message"
+                          label="Write a message..."
+                          rows={3}
+                          register={register}
+                          validationSchema={{
+                              required: true
+                          }}
+            />
+        </div>
         <div>
             <button>add post</button>
         </div>
     </form>
+}
+
+export type IMessageFormInput = {
+    message: string
+}
+
+type AddMessageFormType = {
+    addMessage: (message: IMessageFormInput) => void
 }
