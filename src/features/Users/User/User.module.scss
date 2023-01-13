@@ -1,0 +1,29 @@
+@import "../../../common/styles/variables";
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  margin-bottom: 20px;
+
+  border: $mainBorder;
+  background-color: $blocksBackground;
+  .userMainBox {
+    display: flex;
+    padding: 16px;
+    gap: 16px;
+    border-bottom: $mainBorder;
+    .userName {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  .userButtons {
+    padding: 16px;
+    border-bottom: $mainBorder;
+  }
+  .viewProfile {
+    padding: 16px;
+  }
+}

@@ -16,10 +16,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : <div style={{
-                backgroundColor: 'white',
-                height: '67px'
-            }}></div>}
+            {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users}
                    pageSize={this.props.pageSize}
                    totalUsersCounter={this.props.totalUsersCounter}

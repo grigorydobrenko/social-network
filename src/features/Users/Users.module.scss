@@ -1,0 +1,23 @@
+
+
+.userPhoto {
+    width: 60px;
+    height: 60px;
+}
+
+.userPage {
+    .pagination {
+        text-align: center;
+        margin: 40px;
+
+    }
+    .usersContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+
+
+
