@@ -10,6 +10,7 @@ import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 
 export class ProfileAPIComponent extends React.Component<PropsType> {
 
+
     refreshProfile() {
         let userId = this.props.match.params.userId
         if (!userId) {

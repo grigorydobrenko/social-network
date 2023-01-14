@@ -3,9 +3,9 @@ import {ResultCodesEnum, usersAPI} from "../../api/api";
 
 const usersPage: UsersStateType = {
     users: [],
-    pageSize: 15,
-    totalUsersCounter: 200,
-    currentPage: 2,
+    pageSize: 25,
+    totalUsersCounter: 0,
+    currentPage: 1,
     isFetching: true,
     followingInProgress: []
 }
@@ -73,6 +73,7 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
         dispatch(toggleIsFetching(true))
         const data = await usersAPI.getUsers(currentPage, pageSize)
         dispatch(setUsers(data.items))
+        dispatch(setTotalUsers(data.totalCount))
     } catch (e) {
         console.log(e)
     } finally {

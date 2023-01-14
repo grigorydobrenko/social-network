@@ -1,0 +1,40 @@
+.buttonCommon {
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  text-align: center;
+  &:hover {
+    box-shadow: 0px 0px 3px 1px cornflowerblue;
+  }
+}
+
+.connect {
+  @extend .buttonCommon;
+  width: 46%;
+  background: linear-gradient(256deg,#00c9e4 0%,#007bff 100%);
+  color: #ffffff;
+}
+
+.follow {
+  @extend .buttonCommon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 46%;
+  background-color: #ffffff;
+}
+
+.viewProfile {
+  @extend .buttonCommon;
+  border: none;
+  background-color: #ffffff;
+  font-weight: 700;
+  color: #007bff;
+  &:hover {
+    box-shadow: none;
+    color: cornflowerblue;
+  }
+}
+

@@ -10,6 +10,8 @@ class MyPosts extends React.Component<MyPostsCommonType> {
         return nextProps !== this.props || nextState !== this.state
     }
 
+
+
     render() {
         const {profilePage, addPost, deletePost} = this.props
         const postElements = profilePage.posts.map(post => <Post key={post.id} message={post.message}

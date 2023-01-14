@@ -4,11 +4,13 @@ import s from "../Users.module.scss";
 import userPhoto from "../../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
 import styles from "./User.module.scss"
+import {Connect, Follow, UnFollow, ViewProfile} from "../../../common/components/Buttons/Buttons";
 
-export const User: React.FC<Props> = ({user, followingInProgress, follow, unFollow,}) => {
+export const User: React.FC<UserProps> = ({user, followingInProgress, follow, unFollow}) => {
+
     return (
         <div key={user.id} className={styles.userContainer}>
-            <div className={styles.userMainBox} >
+            <div className={styles.userMainBox}>
                 <div>
                     <NavLink to={'profile/' + user.id}>
                         <img alt='photo'
@@ -22,23 +24,20 @@ export const User: React.FC<Props> = ({user, followingInProgress, follow, unFoll
                 </div>
             </div>
             <div className={styles.userButtons}>
-                {user.followed ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                        unFollow(user.id)
-                    }}>Unfollow</button>
-                    : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                        follow(user.id)
-                    }}>Follow</button>}
-                <button>Message</button>
-
-
+                <Connect/>
+                {user.followed ?
+                    <UnFollow followingInProgress={followingInProgress} user={user} unFollow={unFollow}/>
+                    :
+                    <Follow followingInProgress={followingInProgress} user={user} follow={follow}/>
+                }
             </div>
             <div className={styles.viewProfile}>
-                <NavLink to={'profile/' + user.id}><button>View profile</button></NavLink>
+                <ViewProfile userId={user.id}/>
             </div>
         </div>)
 }
 
-export type Props = {
+export type UserProps = {
     followingInProgress: Array<number>
     follow: (userId: number) => void
     unFollow: (userId: number) => void

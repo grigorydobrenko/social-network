@@ -19,7 +19,8 @@ export  type MyPostsCommonType = mapDispatchToProps & mapStateToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+
     }
 }
 
