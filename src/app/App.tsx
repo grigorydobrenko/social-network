@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.module.scss';
 import {Redirect, Route, withRouter} from "react-router-dom";
-import {Music, News} from "../features/Draft/Pages";
+import {News} from "../features/Draft/Pages";
 import {UsersContainer} from "../features/Users/UsersContainer";
 import HeaderContainer from "../features/Header/HeaderContainer";
 import Login from "../features/Login/Login";
@@ -49,7 +49,7 @@ class App extends React.Component<commonPropsType> {
                     <Route path='/dialogs' render={() => <SuspendedDialogs/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
+
                 </div>
             </div>
         );

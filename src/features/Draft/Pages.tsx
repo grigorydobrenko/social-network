@@ -8,19 +8,3 @@ export const News = () => {
     );
 };
 
-export const Music = () => {
-    return (
-        <div>
-            Music
-        </div>
-    );
-};
-
-export const Settings = () => {
-    return (
-        <div>
-            Settings
-        </div>
-    );
-};
-
