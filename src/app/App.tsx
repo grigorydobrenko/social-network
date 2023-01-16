@@ -22,6 +22,8 @@ const SuspendedProfile = withSuspense(ProfileContainer)
 
 class App extends React.Component<commonPropsType> {
 
+
+
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
         alert("Some error occurred")
     }
@@ -41,7 +43,7 @@ class App extends React.Component<commonPropsType> {
         }
         return (
             <div>
-                <HeaderContainer/>
+                { window.location.pathname !== '/login' && <HeaderContainer/>}
                 <div className={styles.appContainer}>
                     <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
                     <Route path='/login' render={() => <Login/>}/>

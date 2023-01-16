@@ -1,0 +1,27 @@
+
+
+.addPostForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  background-color: #f8f9fa ;
+  min-height: 120px;
+  border-top: 3px solid grey;
+  .messageTextarea {
+    width: 60%;
+  }
+  .sendPost {
+    padding: 8px 24px;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    border-radius: 4px;
+    background-color: #1d2f38;
+    transition: all 0.3s ease-out;
+    &:hover {
+      box-shadow: 0px 0px 1px 1px cornflowerblue;
+      outline: none;
+    }
+  }
+}

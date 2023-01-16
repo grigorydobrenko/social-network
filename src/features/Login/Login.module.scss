@@ -1,0 +1,27 @@
+@import "../../common/styles/variables";
+
+.loginContainer {
+  display: flex;
+  margin: 300px auto;
+  max-width: 600px;
+  //padding: 50px;
+  background-color: white;
+  border-radius: 10px;
+  //background-color: white;
+  .descriptionBox {
+    border-right: 2px solid #eaebec;
+    padding: 20px;
+    .description {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .loginForm {
+    width: 60%;
+    padding: 20px;
+    .loginFormTitle {
+      margin-bottom: 20px;
+    }
+  }
+
+}

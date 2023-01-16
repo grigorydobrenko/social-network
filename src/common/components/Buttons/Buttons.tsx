@@ -36,6 +36,12 @@ export const ViewProfile = ({userId}: ViewProfileProps) => {
     )
 }
 
+export const SendMessage = () => {
+    return (
+        <button className={styles.sendMessage}>Send</button>
+    )
+}
+
 type FollowProps = Omit<UserProps, 'unFollow'>
 type UnFollowProps = Omit<UserProps, 'follow'>
 type ViewProfileProps = {userId: number}

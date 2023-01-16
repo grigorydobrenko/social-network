@@ -8,8 +8,10 @@ import {Section} from "../NavBar/Section";
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={styles.profileContainer}>
-            <ProfileInfo setIsEdit={props.setIsEdit} isEdit={props.isEdit} saveProfile={props.saveProfile} profileEditStatus={props.profileEditStatus} savePhoto={props.savePhoto} isOwner={props.isOwner}
-                         profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo setIsEdit={props.setIsEdit} isEdit={props.isEdit} saveProfile={props.saveProfile}
+                         profileEditStatus={props.profileEditStatus} savePhoto={props.savePhoto} isOwner={props.isOwner}
+                         profile={props.profile} status={props.status} updateStatus={props.updateStatus}
+            />
             <MyPostsContainer/>
             <Section/>
         </div>
@@ -24,4 +26,5 @@ export type ProfilePropsType = Omit<ProfileStateType, 'posts'>
     & { setIsEdit: (isEdit: boolean) => void }
     & { profileEditStatus: string | null }
     & { isEdit: boolean }
+
 

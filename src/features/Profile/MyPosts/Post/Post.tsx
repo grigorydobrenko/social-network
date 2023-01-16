@@ -1,7 +1,8 @@
 import React from 'react';
-import s from './Post.module.scss'
+import styles from './Post.module.scss'
 import {PostType} from "../../profile-reducer";
 import userPhoto from "../../../../assets/images/user.png";
+import {SvgSelector} from "../../../../common/components/svgSelector/SvgSelector";
 
 
 const Post: React.FC<MyPostPropsType> = (props) => {
@@ -12,14 +13,18 @@ const Post: React.FC<MyPostPropsType> = (props) => {
 
     return (
         <>
-            <div className={s.item}>
-                <div className={s.nameBox}>
+            <div className={styles.item}>
+                <div className={styles.nameBox}>
                     <img src={props.image || userPhoto} alt="ava"/>
                     <h3>{props.name}</h3>
                 </div>
-                <div className={s.postMessage}>{props.message}</div>
-                <div className={s.postFooter}><span>likes {props.likes}</span>
-                    <button onClick={() => postDeleteHandler(props.id)}>delete Post</button>
+                <div className={styles.postMessage}>{props.message}</div>
+                <div className={styles.postFooter}>
+                    <div className={styles.likes}>
+                        <SvgSelector svgname={'likes'}/>
+                        <span>{props.likes}</span>
+                    </div>
+                    <button className={styles.delete} onClick={() => postDeleteHandler(props.id)}><SvgSelector svgname={'delete'}/></button>
                 </div>
             </div>
         </>

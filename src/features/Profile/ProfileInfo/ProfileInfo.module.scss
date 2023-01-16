@@ -2,63 +2,123 @@
 @import "../../../common/styles/variables";
 
 .content__img {
-
-    width: 100%
+  width: 100%
 }
 
 .profileInfoContainer {
-    grid-area: profile-description;
+  grid-area: profile-description;
+  @include flexColumn();
+
+  .mainProfileBox {
     @include flexColumn();
-    .mainProfileBox {
-        @include flexColumn();
-        justify-content: space-between;
-        align-items: center;
-        background-color: $blocksBackground;
-        margin-bottom: 16px;
-        padding: 24px 16px;
-        .profilePhoto {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin-top: 8px;
-        }
+    justify-content: space-between;
+    align-items: center;
+    background-color: $blocksBackground;
+    margin-bottom: 16px;
+    padding: 24px 16px;
+
+    .profilePhoto {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin-top: 8px;
     }
+
+    .inputtypeFile {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .uploadImage {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      margin-top: 10px;
+    }
+  }
+
+  .settingButtons {
+    text-align: center;
+    margin-bottom: 10px;
+
     .settingButton {
-        text-align: center;
-    }
-    .restProfileInformation {
-        background-color: $blocksBackground;
-        .profileDataContainer {
-            & > div:not(div:last-child) {
-                padding: 16px;
-                border-bottom: 1.5px solid #eaebec;
-            }
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      color: #007bff;
+      font-weight: 600;
 
-            .aboutMe {
-                @include flexColumn();
-                align-items: center;
-            }
-            .contact {
-                padding: 16px;
-                border-bottom: 2px solid #eaebec;
-            }
-        }
+      &:hover {
+        color: darkblue;
+      }
+    }
+  }
 
+  .restProfileInformation {
+    background-color: $blocksBackground;
+
+    .profileDataContainer {
+      & > div:not(div:last-child) {
+        padding: 16px;
+        border-bottom: 1.5px solid #eaebec;
+      }
+
+      .aboutMe {
+        @include flexColumn();
+        align-items: center;
+      }
+
+      .contact {
+        padding: 16px;
+        border-bottom: 2px solid #eaebec;
+      }
     }
-    .editProfileInformation {
-        & > div:not(:last-child) {
-            padding: 16px;
-            border-bottom: 2px solid #eaebec;
-        }
-        & > div:not(div:first-child) {
-            @include flexColumn();
-            text-align: center;
-        }
-        .contactForm {
-            padding: 16px;
-            border-bottom: 2px solid #eaebec;
-        }
+
+  }
+
+  .editProfileInformation {
+    & > div:not(:last-child) {
+      padding: 16px;
+      border-bottom: 2px solid #eaebec;
     }
+
+    & > div:not(div:first-child) {
+      @include flexColumn();
+      text-align: center;
+    }
+
+    .contactForm {
+      padding: 16px;
+      border-bottom: 2px solid #eaebec;
+    }
+  }
+}
+
+.saveButtons {
+  text-align: center;
+  margin-bottom: 10px;
+
+  .saveButton {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    color: #007bff;
+    font-weight: 600;
+
+    &:hover {
+      color: darkblue;
+    }
+  }
 }
 
 

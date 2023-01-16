@@ -12,12 +12,12 @@ export const MenuItem = ({link, svgName, active,setActive}: MenuItemProps) => {
     }
 
     return (
-        <div className={className} onClick={onClickHandler}>
-            <NavLink to={link} className={styles.item} activeClassName={styles.activeLink}>
+        // <div className={className} onClick={onClickHandler}>
+            <NavLink to={link} className={`${styles.item} ${className}`} onClick={onClickHandler} activeClassName={styles.activeLink}>
                 <SvgSelector svgname={svgName}/>
                 <span>{svgName[0].toUpperCase() + svgName.slice(1)}</span>
             </NavLink>
-        </div>
+        // </div>
     );
 };
 

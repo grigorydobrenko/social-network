@@ -15,6 +15,14 @@ export type SvgName =
     | 'users'
     | 'dialogs'
     | 'news'
+    | 'login'
+    | 'password'
+    | 'captcha'
+    | 'likes'
+    | 'delete'
+    | 'settings'
+    | 'edit'
+    | 'photo'
 
 export const SvgSelector = (props: Props) => {
     switch (props.svgname) {
@@ -192,6 +200,105 @@ export const SvgSelector = (props: Props) => {
                 <path
                     d="M384 416V72a40 40 0 0 0-40-40H72a40 40 0 0 0-40 40v352a56 56 0 0 0 56 56h342.85a1.14 1.14 0 0 0 1.15-1.15 1.14 1.14 0 0 0-.85-1.1A64.11 64.11 0 0 1 384 416ZM96 128a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v64a16 16 0 0 1-16 16h-64a16 16 0 0 1-16-16Zm208 272H112.45c-8.61 0-16-6.62-16.43-15.23A16 16 0 0 1 112 368h191.55c8.61 0 16 6.62 16.43 15.23A16 16 0 0 1 304 400Zm0-64H112.45c-8.61 0-16-6.62-16.43-15.23A16 16 0 0 1 112 304h191.55c8.61 0 16 6.62 16.43 15.23A16 16 0 0 1 304 336Zm0-64H112.45c-8.61 0-16-6.62-16.43-15.23A16 16 0 0 1 112 240h191.55c8.61 0 16 6.62 16.43 15.23A16 16 0 0 1 304 272Zm0-64h-63.55c-8.61 0-16-6.62-16.43-15.23A16 16 0 0 1 240 176h63.55c8.61 0 16 6.62 16.43 15.23A16 16 0 0 1 304 208Zm0-64h-63.55c-8.61 0-16-6.62-16.43-15.23A16 16 0 0 1 240 112h63.55c8.61 0 16 6.62 16.43 15.23A16 16 0 0 1 304 144Z"/>
             </svg>
+        case 'login':
+            return <svg
+                width={18}
+                height={16}
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+            >
+                <path
+                    d="M12 11a5 5 0 1 0-5-5 5.006 5.006 0 0 0 5 5Zm0-8a3 3 0 1 1-3 3 3 3 0 0 1 3-3ZM3 22v-4a5.006 5.006 0 0 1 5-5h8a5.006 5.006 0 0 1 5 5v4a1 1 0 0 1-2 0v-4a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v4a1 1 0 0 1-2 0Z"/>
+            </svg>
+        case 'password':
+            return <svg
+                width={18}
+                height={15}
+                viewBox="0 0 128 128"
+                xmlSpace="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+            >
+                <path
+                    d="M64 1C47.5 1 34 14.5 34 31v26H15v70h99V57H94V31C94 14.5 80.5 1 64 1zM42 31c0-12.1 9.9-22 22-22s22 9.9 22 22v26H42V31zm64 34v54H23V65h83z"/>
+                <path d="M60 81h8v22h-8z"/>
+            </svg>
+        case 'captcha':
+            return <svg
+                width={18}
+                height={18}
+                viewBox="0 0 48 48"
+                xmlSpace="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+            >
+                <path
+                    d="M32.615 10.883V8.615A8.614 8.614 0 0 0 24 0a8.615 8.615 0 0 0-8.615 8.615v2.268H12.33V28h23.34V10.883h-3.055zm-6.183 11.832h-4.734l1.175-2.963a2.522 2.522 0 0 1-1.406-2.257 2.534 2.534 0 1 1 5.067 0c0 .98-.561 1.82-1.375 2.243l1.273 2.977zm-7.42-11.832V8.615a4.988 4.988 0 0 1 9.976 0v2.268h-9.976zM0 32v16h48V32H0zm44 12H4v-8h40v8z"
+                    fill="#241F20"
+                />
+                <path fill="#241F20" d="M11 38.5h6v3h-6zM21 38.5h6v3h-6zM31 38.5h6v3h-6z"/>
+            </svg>
+        case 'likes':
+            return <svg
+                fill="#1d2f38"
+                baseProfile="tiny"
+                xmlns="http://www.w3.org/2000/svg"
+                width={18}
+                height={18}
+                viewBox="-0.5 0.5 42 42"
+                xmlSpace="preserve"
+                {...props}
+            >
+                <path
+                    d="M20.938 10.725C14.51.796 1.5 6.205 1.5 17.021c0 8.122 17.836 20.827 19.438 22.479C22.551 37.848 39.5 25.143 39.5 17.021c0-10.734-12.122-16.225-18.562-6.296z"/>
+            </svg>
+        case 'delete':
+            return <svg
+                width={20}
+                height={20}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+            >
+                <path
+                    d="M6 7v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M6 7H5m1 0h2m10 0h1m-1 0h-2m-6 4v5m4-5v5M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M8 7h8"
+                    stroke="red"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+            </svg>
+        case 'edit':
+            return <svg
+                width={20}
+                height={20}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                {...props}
+            >
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="m18.94 3.12 2.122 2.122a3 3 0 0 1 0 4.243l-1.803 1.803-6.364-6.364 1.803-1.803a3 3 0 0 1 4.242 0Zm-7.106 2.865-8.127 8.127a3 3 0 0 0-.861 1.797l-.394 3.617a2 2 0 0 0 2.204 2.205l3.618-.394a3 3 0 0 0 1.796-.86l8.128-8.128-6.364-6.364Z"
+                    fill="#000"
+                />
+            </svg>
+        case 'photo':
+            return <svg
+                width={40}
+                height={40}
+                viewBox="-1 0 19 19"
+                xmlns="http://www.w3.org/2000/svg"
+                className="cf-icon-svg"
+                {...props}
+            >
+                <path
+                    d="M16.5 9.5a8 8 0 1 1-8-8 8 8 0 0 1 8 8zm-2.874-2.287a.803.803 0 0 0-.8-.8h-2.054v-.251a.802.802 0 0 0-.8-.8h-2.93a.802.802 0 0 0-.8.8v.25H4.186a.802.802 0 0 0-.8.8v5.166a.802.802 0 0 0 .8.8h8.639a.803.803 0 0 0 .8-.8zm-2.692 2.582a2.427 2.427 0 1 1-2.428-2.427 2.428 2.428 0 0 1 2.428 2.427zm-4.055 0a1.627 1.627 0 1 0 1.627-1.627A1.63 1.63 0 0 0 6.88 9.795zm2.75-3.931a.4.4 0 1 0 .4.4.4.4 0 0 0-.4-.4z"/>
+            </svg>
+
         default:
             return <svg></svg>
     }

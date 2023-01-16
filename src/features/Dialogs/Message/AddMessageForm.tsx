@@ -25,7 +25,7 @@ export const AddMessageForm = (props: AddMessageFormType) => {
             />
         </div>
         <div>
-            <button>add post</button>
+            <button className={styles.sendMessage}>Send</button>
         </div>
     </form>
 }

@@ -1,8 +1,9 @@
 import {SubmitHandler, useForm} from "react-hook-form";
-import errorsStyles from "./FormControls.module.css";
+import styles from "./FormControls.module.scss";
 import React from "react";
 import {required} from "../../utils/validators/validators";
 import {commonType} from "../../../features/Login/Login";
+import {InputLoginForm} from "../../../features/Login/LoginFormInput";
 
 export const LoginForm = (props: commonType) => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>({
@@ -17,7 +18,6 @@ export const LoginForm = (props: commonType) => {
     const onSubmit: SubmitHandler<FormData> = (data) => {
         const {login, password, rememberMe, captchaUrl} = data
         props.login(login, password, rememberMe, captchaUrl)
-        reset()
     }
 
     const validateObj = {
@@ -26,26 +26,42 @@ export const LoginForm = (props: commonType) => {
         }
     }
 
-    const loginClassName = errors?.login ? errorsStyles.errorBorder : ''
-    const passwordClassName = errors?.password ? errorsStyles.errorBorder : ''
+    const loginClassName = errors?.login ? styles.errorBorder : ''
+    const passwordClassName = errors?.password ? styles.errorBorder : ''
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div><input type="text" {...register('login', validateObj)}
-                        className={`${errorsStyles.outlineNone} ${loginClassName}`}/>
-                {errors?.login && <div className={errorsStyles.errorMessageColor}>{errors.login.message}</div>}
-            </div>
-            <div><input type="password" {...register('password', validateObj)}
-                        className={`${errorsStyles.outlineNone} ${passwordClassName}`}/>
-                {errors?.password && <div className={errorsStyles.errorMessageColor}>{errors.password.message}</div>}
-            </div>
-            <div><input type="checkbox" {...register('rememberMe')}/>remember me</div>
-            {props.captchaUrl && <div>< img src={props.captchaUrl}/></div>}
-            {props.captchaUrl && <div><input type="text" {...register('captchaUrl')}/></div>}
             <div>
-                <button>Login</button>
+                {/*<input type="text" {...register('login', validateObj)}*/}
+                {/*        className={`${errorsStyles.outlineNone} ${loginClassName}`}/>*/}
+                <InputLoginForm name={'login'} type={'input'} label={'Email'} register={register} svg={'login'}
+                                validationSchema={validateObj} error={errors?.login}/>
+                {errors?.login && <div className={styles.errorMessageColor}>{errors.login.message}</div>}
             </div>
-            {props.isSubmit && <div className={errorsStyles.errorMessageColor}>{props.errorMessage}</div>}
+            <div>
+                <InputLoginForm name={'password'} type={'password'} label={'Password'} register={register}
+                                svg={'password'} validationSchema={validateObj} error={errors?.password}/>
+                {/*<input type="password" {...register('password', validateObj)}*/}
+                {/*        className={`${errorsStyles.outlineNone} ${passwordClassName}`}/>*/}
+                {errors?.password && <div className={styles.errorMessageColor}>{errors.password.message}</div>}
+            </div>
+            <div className={styles.rememberMe}>
+                <input type="checkbox" {...register('rememberMe')}/>
+                <span>remember me</span>
+            </div>
+            {props.isSubmit && <div className={styles.errorMessageColor}>{props.errorMessage}</div>}
+
+            {props.captchaUrl && <div>< img src={props.captchaUrl} className={styles.captcha}/></div>}
+            {props.captchaUrl && <div>
+                {/*<input type="text" {...register('captchaUrl')}/>*/}
+                <InputLoginForm name={'captchaUrl'} type={'text'} label={'captchaUrl'} register={register}
+                                svg={'captcha'} validationSchema={validateObj} error={errors?.captchaUrl}/>
+                {errors?.captchaUrl && <div className={styles.errorMessageColor}>{errors.captchaUrl.message}</div>}
+            </div>}
+            <div>
+                <button className={styles.loginButton}>Login</button>
+            </div>
+
 
         </form>
     );

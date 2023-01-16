@@ -72,11 +72,22 @@
   gap: 50px;
   background-color: #f8f9fa ;
   min-height: 15%;
-  //position: relative;
-  //width: 100%;
-  //overscroll-behavior: contain;
   .messageTextarea {
     width: 70%;
   }
 }
 
+.sendMessage {
+  padding: 8px 24px;
+  color: white;
+  font-weight: 600;
+  outline: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: rgba(37, 99, 235, 1);
+  transition: all 0.3s ease-out;
+  &:hover {
+    box-shadow: 0px 0px 1px 1px cornflowerblue;
+    outline: none;
+  }
+}

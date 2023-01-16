@@ -60,7 +60,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
 })
 
 const ProfileContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile,setIsEdit}),
+    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile, setIsEdit}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
 

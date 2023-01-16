@@ -18,8 +18,8 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
     return <div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.editProfileInformation}>
             {profileEditStatus && <div>{profileEditStatus}</div>}
-            {isOwner && <div className={styles.settingButton}>
-                <button
+            {isOwner && <div className={styles.saveButtons}>
+                <button className={styles.saveButton}
                     type="submit">Save
                 </button>
             </div>}

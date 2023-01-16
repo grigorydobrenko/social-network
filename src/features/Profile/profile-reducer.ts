@@ -109,12 +109,14 @@ export const updateStatus = (status: string): AppThunk => async (dispatch) => {
     }
 }
 
-export const savePhoto = (file: File): AppThunk => async (dispatch) => {
+export const savePhoto = (file: File): AppThunk => async (dispatch, getState) => {
+    const userId = getState().auth.id
     try {
         const response = await profileAPI.updatePhoto(file)
         if (response.data.resultCode === ResultCodesEnum['Success']) {
-            dispatch(setPhoto(response.data.data))
+                dispatch(getProfile(userId!))
         }
+
     } catch (e) {
         console.log(e)
     }

@@ -26,17 +26,22 @@
 .nav {
   margin-left: auto;
   display: flex;
+  gap: 5px;
   align-items: center;
 
-  & > div:hover {
+  & > a {
+    transition: all 0.2s ease-out;
+  }
+
+  & > a:hover {
     border-bottom: 2px solid gold;
   }
 
-  & > div:not(:nth-child(3)) {
+  & > a:not(:nth-child(3)) {
     padding: 17px 10px 15px 10px;
   }
 
-  & > div:nth-child(3) {
+  & > a:nth-child(3) {
     padding: 12px 10px 9px 10px;
   }
 }
@@ -50,6 +55,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  padding: 16px;
   color: white;
   text-decoration: none;
 
