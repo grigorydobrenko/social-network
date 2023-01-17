@@ -1,5 +1,6 @@
 import {AppThunk} from "../../app/redux-store";
 import {ResultCodesEnum, usersAPI} from "../../api/api";
+import {setAppStatus} from "../../app/app-reducer";
 
 const usersPage: UsersStateType = {
     users: [],
@@ -69,7 +70,9 @@ export const toggleFollowingInProgress = (userId: number, isFetching: boolean) =
 
 //thunks
 export const getUsers = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
+
     try {
+        dispatch(setAppStatus('loading'))
         dispatch(toggleIsFetching(true))
         const data = await usersAPI.getUsers(currentPage, pageSize)
         dispatch(setUsers(data.items))
@@ -77,12 +80,14 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
     } catch (e) {
         console.log(e)
     } finally {
+        dispatch(setAppStatus('idle'))
         dispatch(toggleIsFetching(false))
     }
 }
 
 export const follow = (id: number): AppThunk => async (dispatch) => {
     try {
+        dispatch(setAppStatus('loading'))
         dispatch(toggleFollowingInProgress(id, true))
         const data = await usersAPI.follow(id)
         if (data.resultCode === ResultCodesEnum.Success) {
@@ -91,12 +96,14 @@ export const follow = (id: number): AppThunk => async (dispatch) => {
     } catch (e) {
         console.log(e)
     } finally {
+        dispatch(setAppStatus('idle'))
         dispatch(toggleFollowingInProgress(id, false))
     }
 }
 
 export const unFollow = (id: number): AppThunk => async (dispatch) => {
     try {
+        dispatch(setAppStatus('loading'))
         dispatch(toggleFollowingInProgress(id, true))
         const data = await usersAPI.unFollow(id)
         if (data.resultCode === ResultCodesEnum.Success) {
@@ -106,6 +113,7 @@ export const unFollow = (id: number): AppThunk => async (dispatch) => {
     } catch (e) {
         console.log(e)
     } finally {
+        dispatch(setAppStatus('idle'))
         dispatch(toggleFollowingInProgress(id, false))
     }
 }

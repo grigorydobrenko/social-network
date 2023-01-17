@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.module.scss';
-import {Redirect, Route, withRouter} from "react-router-dom";
-import {News} from "../features/Draft/Pages";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
+import {News} from "../features/News/News";
 import {UsersContainer} from "../features/Users/UsersContainer";
 import HeaderContainer from "../features/Header/HeaderContainer";
 import Login from "../features/Login/Login";
@@ -12,6 +12,7 @@ import {initializeApp} from "./app-reducer";
 import Preloader from "../common/components/Preloader/Preloader";
 import {withSuspense} from "../common/hoc/withSuspense";
 import styles from './App.module.scss'
+import NotFound from "../common/components/NotFound/NotFound";
 
 const DialogsContainer = React.lazy(() => import('../features/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('../features/Profile/ProfileContainer'))
@@ -21,7 +22,6 @@ const SuspendedProfile = withSuspense(ProfileContainer)
 
 
 class App extends React.Component<commonPropsType> {
-
 
 
     catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
@@ -37,21 +37,28 @@ class App extends React.Component<commonPropsType> {
         window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
     }
 
+
     render() {
         if (!this.props.isInitialized) {
             return <Preloader/>
         }
+
+        const pathName = window.location.pathname !== '/login' && window.location.pathname !== '/404'
+
         return (
             <div>
-                { window.location.pathname !== '/login' && <HeaderContainer/>}
+                {pathName && <HeaderContainer/>}
                 <div className={styles.appContainer}>
-                    <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
-                    <Route path='/profile/:userId?' render={() => <SuspendedProfile/>}/>
-                    <Route path='/dialogs' render={() => <SuspendedDialogs/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/news' component={News}/>
-
+                    <Switch>
+                        <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                        <Route path='/profile/:userId?' render={() => <SuspendedProfile/>}/>
+                        <Route path='/dialogs' render={() => <SuspendedDialogs/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/404' render={() => <NotFound/>}/>
+                        <Route path='*' render={() => <Redirect to={'/404'}/>}/>
+                    </Switch>
                 </div>
             </div>
         );

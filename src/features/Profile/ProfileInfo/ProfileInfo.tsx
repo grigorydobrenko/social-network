@@ -10,15 +10,6 @@ import {SvgSelector} from "../../../common/components/svgSelector/SvgSelector";
 
 const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
     const {isEdit, setIsEdit, profile, status, updateStatus, isOwner, savePhoto, profileEditStatus, saveProfile} = props
-    console.log(profile?.photos.large)
-
-
-    // const onUploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.target.files && e.target.files.length) {
-    //         console.log(e.target.files[0])
-    //         savePhoto(e.target.files[0])
-    //     }
-    // }
 
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -41,11 +32,11 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
         <div className={styles.profileInfoContainer}>
             <div className={styles.mainProfileBox}>
                 <img src={profile?.photos?.large ? profile.photos.large : userPhoto} alt={'photo'}
-                                                   className={styles.profilePhoto}/>
+                     className={styles.profilePhoto}/>
 
-                {/*{isOwner && <input type="file" onChange={onUploadHandler} accept={'image/*'} className={styles.inputTypeFile}/>}*/}
                 {isOwner && <div>
-                    <button onClick={selectFileHandler} className={styles.uploadImage}><SvgSelector svgname={'photo'}/></button>
+                    <button onClick={selectFileHandler} className={styles.uploadImage}><SvgSelector svgname={'photo'}/>
+                    </button>
                     <input
                         style={{display: 'none'}}
                         ref={inputRef}
@@ -54,8 +45,9 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
                     />
                 </div>}
 
-                <h2>{profile.fullName}</h2>
-                <ProfileStatusWithHooks isOwner={isOwner} status={status} updateStatus={updateStatus}/></div>
+                <h2>{profile?.fullName}</h2>
+                <ProfileStatusWithHooks isOwner={isOwner} status={status} updateStatus={updateStatus}/>
+            </div>
             <div className={styles.restProfileInformation}>{isEdit ?
                 <ProfileDataForm saveProfile={saveProfile} profileEditStatus={profileEditStatus} profile={profile}
                                  isOwner={isOwner} setIsEdit={setIsEdit}/> :
@@ -82,7 +74,8 @@ const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
         </div>}
         <div className={styles.aboutMe}><h3>About me:</h3><span>{profile.aboutMe ? profile.aboutMe : '...'}</span></div>
         <div><b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}</div>
-        <div><b>Looking for a job description</b>: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription: '...'}</div>
+        <div><b>Looking for a job
+            description</b>: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '...'}</div>
         <div>{Object.keys(profile.contacts).map((contact) => {
             const contactsValue = profile.contacts[contact]
             if (contactsValue) {

@@ -3,7 +3,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileStateType} from "./profile-reducer";
 import styles from './Profile.module.scss'
-import {Section} from "../NavBar/Section";
+import {Section} from "./ProfileNews/Section";
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (

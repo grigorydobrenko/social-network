@@ -1,6 +1,7 @@
-
+@import "../../../../common/styles/layouts";
 
 .addPostForm {
+  @extend .blocksBorder;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +9,7 @@
   background-color: #f8f9fa ;
   min-height: 120px;
   border-top: 3px solid grey;
+  margin-bottom: 20px;
   .messageTextarea {
     width: 60%;
   }
@@ -16,6 +18,7 @@
     color: white;
     font-weight: 600;
     outline: none;
+    border: none;
     border-radius: 4px;
     background-color: #1d2f38;
     transition: all 0.3s ease-out;

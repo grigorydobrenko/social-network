@@ -1,6 +1,8 @@
 @import "../../../common/styles/variables";
+@import "../../../common/styles/layouts";
 
 .userContainer {
+  @extend .blocksBorder;
   display: flex;
   flex-direction: column;
   width: 260px;

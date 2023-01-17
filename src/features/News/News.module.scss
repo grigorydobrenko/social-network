@@ -1,0 +1,12 @@
+@import "../../common/styles/layouts";
+
+.newsContainer {
+  @extend .blocksBorder;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 80vh;
+  background-color: white;
+}

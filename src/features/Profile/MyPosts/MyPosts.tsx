@@ -13,7 +13,10 @@ class MyPosts extends React.Component<MyPostsCommonType> {
 
 
     render() {
-        const {profilePage, addPost, deletePost} = this.props
+        const {profilePage, auth, addPost, deletePost} = this.props
+
+        const isOwner = profilePage?.profile?.userId === auth.id
+
         const postElements = profilePage.posts.map(post => <Post key={post.id} message={post.message}
                                                                  image={profilePage.profile?.photos.small}
                                                                  name={profilePage.profile?.fullName}
@@ -25,7 +28,7 @@ class MyPosts extends React.Component<MyPostsCommonType> {
         return (
             <>
                 <div className={s.postsBlock}>
-                    <AddPostForm addPost={addPost}/>
+                    {isOwner && <AddPostForm addPost={addPost}/>}
                     <div className={s.posts}>
                         {postElements}
                     </div>

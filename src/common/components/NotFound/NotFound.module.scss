@@ -1,0 +1,33 @@
+@import "../Buttons/Buttons.module";
+
+.notFoundContainer {
+  margin: 300px auto;
+  max-height: 500px;
+  .descriptionBox {
+
+
+    .title {
+      font-size: 48px;
+      font-weight: 300;
+      color: #007bff;
+      .bold {
+        font-weight: 700;
+      }
+    }
+    .description {
+      font-size: 18px;
+      color: #888da8;
+      margin-bottom: 50px;
+    }
+    .goBack {
+      @extend .connect;
+
+    }
+  }
+  .svg {
+    margin-top: -500px;
+    margin-right: -400px;
+    transform: scale(0.3)
+  }
+
+}

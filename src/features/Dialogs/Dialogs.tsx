@@ -12,7 +12,6 @@ const Dialogs: React.FC<CommonDialogsType> = (props) => {
     let DialogItems = dialogPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     let Messages = dialogPage.messages.slice(1).map(message => <Message key={message.id} message={message.message}/>)
 
-
     return (
         <div className={styles.dialogsContainer}>
             <div className={styles.dialogsItems}>
@@ -22,7 +21,7 @@ const Dialogs: React.FC<CommonDialogsType> = (props) => {
                 <div className={styles.messages}>
                     <div className={stylesMessage.message}>
                         <img src={userPhoto} alt="userPhoto" className={stylesMessage.userPhoto}/>
-                        <span className={stylesMessage.friendMessageText}>hello</span>
+                        <span className={stylesMessage.friendMessageText}>{dialogPage.messages[0].message}</span>
                     </div>
                     {Messages}
                 </div>

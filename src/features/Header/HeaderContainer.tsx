@@ -4,6 +4,7 @@ import {logout} from "../Login/auth-reducer";
 import {AppStateType} from "../../app/redux-store";
 import {Header} from "./Header";
 import {compose} from "redux";
+import {AppStatus} from "../../app/app-reducer";
 
 
 class HeaderContainer extends React.Component<propsType> {
@@ -16,6 +17,7 @@ class HeaderContainer extends React.Component<propsType> {
 export type mapStateToProps = {
     login: string | null,
     isAuth: boolean
+    appStatus: AppStatus
 }
 
 type mapDispatchToProps = {
@@ -27,7 +29,8 @@ export type propsType = mapStateToProps & mapDispatchToProps
 const mapStateToProps = (state: AppStateType): mapStateToProps => {
     return {
         login: state.auth.login,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        appStatus: state.app.appStatus
     }
 }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
-import Preloader from "../../common/components/Preloader/Preloader";
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
@@ -16,7 +15,6 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users}
                    pageSize={this.props.pageSize}
                    totalUsersCounter={this.props.totalUsersCounter}

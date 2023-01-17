@@ -1,5 +1,6 @@
 @import "../../common/styles/variables";
 @import "../../common/styles/mixins";
+@import "../../common/styles/layouts";
 
 
 .dialogsContainer {
@@ -7,6 +8,7 @@
     grid-template-columns: 3fr 7fr;
     background-color: $blocksBackground;
     height: 80vh;
+    @extend .blocksBorder;
 
     .dialogsItems {
         padding: 10px;

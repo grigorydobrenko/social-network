@@ -1,5 +1,6 @@
 @import "../../../common/styles/mixins";
 @import "../../../common/styles/variables";
+@import "../../../common/styles/layouts";
 
 .content__img {
   width: 100%
@@ -11,6 +12,7 @@
 
   .mainProfileBox {
     @include flexColumn();
+    @extend .blocksBorder;
     justify-content: space-between;
     align-items: center;
     background-color: $blocksBackground;
@@ -63,7 +65,7 @@
 
   .restProfileInformation {
     background-color: $blocksBackground;
-
+    @extend .blocksBorder;
     .profileDataContainer {
       & > div:not(div:last-child) {
         padding: 16px;

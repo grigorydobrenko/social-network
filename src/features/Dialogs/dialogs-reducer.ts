@@ -4,56 +4,53 @@ import {v1} from "uuid";
 const dialogs: DialogStateType = {
     dialogs: [
         {
-            name: 'Lesha',
+            name: 'Ashley Briggs',
             id: v1(),
         },
         {
-            name: 'Dima',
+            name: 'Carl Jenkins',
             id: v1(),
         },
         {
-            name: 'Max',
+            name: 'Bob Smith',
             id: v1(),
         },
         {
-            name: 'Kate',
+            name: 'Stacie Hall',
             id: v1(),
         },
         {
-            name: 'Den',
+            name: 'Bertha Martin',
+            id: v1(),
+        },
+        {
+            name: 'Oliver Grey',
+            id: v1(),
+        },
+        {
+            name: 'Ben White',
             id: v1(),
         },  {
-            name: 'Den',
+            name: 'Ian Holloway',
             id: v1(),
-        },  {
-            name: 'Den',
-            id: v1(),
-        },  {
-            name: 'Den',
-            id: v1(),
-        },  {
-            name: 'Den',
-            id: v1(),
-        },  {
-            name: 'Den',
-            id: v1(),
-        },  {
-            name: 'Den',
+        },
+        {
+            name: 'Brian O\'Neill',
             id: v1(),
         },
     ],
     messages: [
         {
             id: v1(),
-            message: 'Hi'
-        },
-        {
-            id: v1(),
-            message: 'Its me'
+            message: 'Hello friend, can we appoint a meeting?'
         },
         {
             id: v1(),
             message: 'Hello'
+        },
+        {
+            id: v1(),
+            message: 'Sure. Which time are you free this week?.'
         },
     ]
 }

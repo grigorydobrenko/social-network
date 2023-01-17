@@ -4,7 +4,8 @@ let state: AppReducerStateType
 
 beforeEach(() => {
     state = {
-        isInitialized: false
+        isInitialized: false,
+        appStatus: 'idle'
     }
 })
 
