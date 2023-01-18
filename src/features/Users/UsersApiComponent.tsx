@@ -6,6 +6,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.setPage('users')
     }
 
     onPageChanged = (p: number) => {

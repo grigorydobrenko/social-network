@@ -10,8 +10,6 @@ class MyPosts extends React.Component<MyPostsCommonType> {
         return nextProps !== this.props || nextState !== this.state
     }
 
-
-
     render() {
         const {profilePage, auth, addPost, deletePost} = this.props
 

@@ -56,17 +56,6 @@ const ProfileInfo: React.FC<Omit<ProfilePropsType, 'setPage'>> = (props) => {
     )
 }
 
-type ContactProps = {
-    contactTitle: string
-    contactValue: string
-}
-
-export type ProfileDataProps = {
-    profile: ProfileType
-    isOwner: boolean
-    setIsEdit: (boolean: boolean) => void
-}
-
 const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
     return <div className={styles.profileDataContainer}>
         {isOwner && <div className={styles.settingButtons}>
@@ -91,7 +80,18 @@ export const Contact = ({contactTitle, contactValue}: ContactProps) => {
         <div className={styles.contact}>
             <b>{contactTitle}</b>: {contactValue}
         </div>
-    );
-};
+    )
+}
 
-export default ProfileInfo;
+export default ProfileInfo
+
+type ContactProps = {
+    contactTitle: string
+    contactValue: string
+}
+
+export type ProfileDataProps = {
+    profile: ProfileType
+    isOwner: boolean
+    setIsEdit: (boolean: boolean) => void
+}

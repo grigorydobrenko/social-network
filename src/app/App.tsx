@@ -8,7 +8,7 @@ import Login from "../features/Login/Login";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {AppStateType} from "./redux-store";
-import {initializeApp} from "./app-reducer";
+import {AppPage, initializeApp, setPage} from "./app-reducer";
 import Preloader from "../common/components/Preloader/Preloader";
 import {withSuspense} from "../common/hoc/withSuspense";
 import styles from './App.module.scss'
@@ -43,7 +43,8 @@ class App extends React.Component<commonPropsType> {
             return <Preloader/>
         }
 
-        const pathName = window.location.pathname !== '/login' && window.location.pathname !== '/404'
+
+        const pathName = window.location.hash.slice(1) !== '/login' && window.location.hash.slice(1) !== '/404'
 
         return (
             <div>
@@ -55,7 +56,7 @@ class App extends React.Component<commonPropsType> {
                         <Route path='/profile/:userId?' render={() => <SuspendedProfile/>}/>
                         <Route path='/dialogs' render={() => <SuspendedDialogs/>}/>
                         <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/news' render={() => <News setPage={this.props.setPage}/>}/>
                         <Route path='/404' render={() => <NotFound/>}/>
                         <Route path='*' render={() => <Redirect to={'/404'}/>}/>
                     </Switch>
@@ -67,11 +68,12 @@ class App extends React.Component<commonPropsType> {
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({isInitialized: state.app.isInitialized})
 
-export const AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp}))(App)
+export const AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, {initializeApp, setPage}))(App)
 
 type commonPropsType = mapDispatchToPropsType & mapStateToPropsType
 type mapDispatchToPropsType = {
     initializeApp: () => void
+    setPage: (page: AppPage) => void
 }
 type mapStateToPropsType = {
     isInitialized: boolean

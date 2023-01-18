@@ -18,7 +18,6 @@ export function FormInput({register, name, type, label, id, isNested, ...inputPr
             placeholder={label}
             {...register(name)}
         />
-        {/*{errors.password && <div>{errors.password.message}</div>}*/}
     </>
 }
 

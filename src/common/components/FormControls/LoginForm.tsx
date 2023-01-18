@@ -3,10 +3,10 @@ import styles from "./FormControls.module.scss";
 import React from "react";
 import {required} from "../../utils/validators/validators";
 import {commonType} from "../../../features/Login/Login";
-import {InputLoginForm} from "../../../features/Login/LoginFormInput";
+import {InputLoginForm} from "./LoginFormInput/LoginFormInput";
 
 export const LoginForm = (props: commonType) => {
-    const {register, handleSubmit, reset, formState: {errors}} = useForm<FormData>({
+    const {register, handleSubmit, formState: {errors}} = useForm<FormData>({
         defaultValues: {
             login: '',
             password: '',
@@ -26,14 +26,9 @@ export const LoginForm = (props: commonType) => {
         }
     }
 
-    const loginClassName = errors?.login ? styles.errorBorder : ''
-    const passwordClassName = errors?.password ? styles.errorBorder : ''
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                {/*<input type="text" {...register('login', validateObj)}*/}
-                {/*        className={`${errorsStyles.outlineNone} ${loginClassName}`}/>*/}
                 <InputLoginForm name={'login'} type={'input'} label={'Email'} register={register} svg={'login'}
                                 validationSchema={validateObj} error={errors?.login}/>
                 {errors?.login && <div className={styles.errorMessageColor}>{errors.login.message}</div>}
@@ -41,8 +36,6 @@ export const LoginForm = (props: commonType) => {
             <div>
                 <InputLoginForm name={'password'} type={'password'} label={'Password'} register={register}
                                 svg={'password'} validationSchema={validateObj} error={errors?.password}/>
-                {/*<input type="password" {...register('password', validateObj)}*/}
-                {/*        className={`${errorsStyles.outlineNone} ${passwordClassName}`}/>*/}
                 {errors?.password && <div className={styles.errorMessageColor}>{errors.password.message}</div>}
             </div>
             <div className={styles.rememberMe}>
@@ -51,20 +44,21 @@ export const LoginForm = (props: commonType) => {
             </div>
             {props.isSubmit && <div className={styles.errorMessageColor}>{props.errorMessage}</div>}
 
-            {props.captchaUrl && <div>< img src={props.captchaUrl} className={styles.captcha}/></div>}
             {props.captchaUrl && <div>
-                {/*<input type="text" {...register('captchaUrl')}/>*/}
+                <img src={props.captchaUrl} className={styles.captcha}/>
+            </div>}
+
+            {props.captchaUrl && <div>
                 <InputLoginForm name={'captchaUrl'} type={'text'} label={'captchaUrl'} register={register}
                                 svg={'captcha'} validationSchema={validateObj} error={errors?.captchaUrl}/>
                 {errors?.captchaUrl && <div className={styles.errorMessageColor}>{errors.captchaUrl.message}</div>}
             </div>}
+
             <div>
                 <button className={styles.loginButton}>Login</button>
             </div>
-
-
         </form>
-    );
+    )
 }
 
 export type FormData = {

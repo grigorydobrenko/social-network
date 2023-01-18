@@ -360,6 +360,8 @@ export const SvgSelector = (props: Props) => {
             </svg>
         case 'notFound' :
             return <svg
+                width='360'
+                height='360'
                 className="w-100"
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
