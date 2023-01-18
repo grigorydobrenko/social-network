@@ -7,6 +7,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {ProfileType} from "../../api/api";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
+import {AppPage, setPage} from "../../app/app-reducer";
 
 export class ProfileAPIComponent extends React.Component<PropsType> {
 
@@ -47,6 +48,7 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
                         saveProfile={this.props.saveProfile}
                         isEdit={this.props.isEdit}
                         setIsEdit={this.props.setIsEdit}
+                        setPage={this.props.setPage}
         />
     }
 }
@@ -56,11 +58,12 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     status: state.profilePage.status,
     profileId: state.auth.id,
     profileEditStatus: state.profilePage.profileEditStatus,
-    isEdit: state.profilePage.isEdit
+    isEdit: state.profilePage.isEdit,
+    selectedPage: state.app.selectedPage
 })
 
 const ProfileContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile, setIsEdit}),
+    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile, setIsEdit, setPage}),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
 
@@ -75,6 +78,7 @@ type mapDispatchToPropsType = {
     savePhoto: (file: File) => void
     saveProfile: (profile: any) => void
     setIsEdit: (isEdit: boolean) => void
+    setPage: (page: AppPage) => void
 }
 
 type mapStateToPropsType = {
@@ -83,6 +87,7 @@ type mapStateToPropsType = {
     profileId: number | null
     profileEditStatus: string | null
     isEdit: boolean
+    selectedPage: AppPage
 }
 
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType

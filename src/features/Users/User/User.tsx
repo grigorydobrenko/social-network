@@ -5,14 +5,19 @@ import userPhoto from "../../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
 import styles from "./User.module.scss"
 import {Connect, Follow, UnFollow, ViewProfile} from "../../../common/components/Buttons/Buttons";
+import {AppPage} from "../../../app/app-reducer";
 
-export const User: React.FC<UserProps> = ({user, followingInProgress, follow, unFollow}) => {
+export const User: React.FC<UserProps> = ({user, followingInProgress, follow, unFollow, setPage}) => {
+
+    const onClickHandler = (page: AppPage) => {
+        setPage(page)
+    }
 
     return (
         <div key={user.id} className={styles.userContainer}>
             <div className={styles.userMainBox}>
                 <div>
-                    <NavLink to={'profile/' + user.id}>
+                    <NavLink to={'profile/' + user.id} onClick={() => onClickHandler('profile')}>
                         <img alt='photo'
                              src={user.photos.small != null ? user.photos.small : userPhoto}
                              className={s.userPhoto}/>
@@ -24,7 +29,7 @@ export const User: React.FC<UserProps> = ({user, followingInProgress, follow, un
                 </div>
             </div>
             <div className={styles.userButtons}>
-                <Connect/>
+                <Connect onClick={onClickHandler}/>
                 {user.followed ?
                     <UnFollow followingInProgress={followingInProgress} user={user} unFollow={unFollow}/>
                     :
@@ -32,7 +37,7 @@ export const User: React.FC<UserProps> = ({user, followingInProgress, follow, un
                 }
             </div>
             <div className={styles.viewProfile}>
-                <ViewProfile userId={user.id}/>
+                <ViewProfile userId={user.id} onClick={onClickHandler}/>
             </div>
         </div>)
 }
@@ -42,4 +47,5 @@ export type UserProps = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     user: UserType
+    setPage: (page: AppPage) => void
 }

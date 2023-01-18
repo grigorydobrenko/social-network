@@ -12,7 +12,7 @@ export const Header = (props: HeaderPropsType) => {
                     <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="logo"/>
                 </div>
                 <div className={styles.nav}>
-                    <Menu/>
+                    <Menu selectedPage={props.props.selectedPage} setPage={props.props.setPage}/>
                 </div>
                 <div className={styles.profile}>
                     {props.props.isAuth &&

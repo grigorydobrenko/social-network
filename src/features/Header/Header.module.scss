@@ -4,7 +4,9 @@
   background-color: #1d2f38;
   height: 55px;
   margin-bottom: 25px;
-
+  @media (max-width: 576px) {
+    height: 110px;
+  }
   .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -13,12 +15,19 @@
     height: 55px;
     box-sizing: content-box;
     margin: 0 auto;
-
+    @media (max-width: 576px) {
+      display: flex;
+      flex-direction: column;
+    }
     .profile {
       padding: 15px;
       color: white;
       border-right: 2px solid #33434b;
-
+      @media (max-width: 576px) {
+        position: absolute;
+       top: 0;
+        right: 0;
+      }
       .logoutBtn {
         background: none;
         color: inherit;
@@ -36,6 +45,7 @@
         .login {
           //padding-bottom: 5px;
         }
+
       }
     }
   }
@@ -50,7 +60,10 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-
+    @media (max-width: 576px) {
+      position: absolute;
+      top: 110px;
+    }
 
     &:before {
       content: "";
@@ -96,6 +109,9 @@
   align-items: center;
   border-right: 2px solid #33434b;
   padding-right: 20px;
+  @media (max-width: 576px) {
+    border-right: none;
+  }
   & > a {
     transition: all 0.2s ease-out;
   }
@@ -125,7 +141,11 @@
   padding: 16px;
   color: white;
   text-decoration: none;
-
+  .linkName {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
 }
 
 

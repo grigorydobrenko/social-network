@@ -8,7 +8,7 @@ import Preloader from "../../../common/components/Preloader/Preloader";
 import styles from "./ProfileInfo.module.scss"
 import {SvgSelector} from "../../../common/components/svgSelector/SvgSelector";
 
-const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
+const ProfileInfo: React.FC<Omit<ProfilePropsType, 'setPage'>> = (props) => {
     const {isEdit, setIsEdit, profile, status, updateStatus, isOwner, savePhoto, profileEditStatus, saveProfile} = props
 
     const inputRef = useRef<HTMLInputElement>(null)

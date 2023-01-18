@@ -17,6 +17,7 @@ import {
     getPageSize, getTotalUsers, getUsersSelector
 } from "../../common/selectors/users-selectors";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
+import {AppPage, setPage} from "../../app/app-reducer";
 
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
@@ -35,7 +36,8 @@ export const UsersContainer = compose<React.ComponentType>(connect(mapStateToPro
     unFollow,
     setCurrentPage,
     toggleFollowingInProgress,
-    getUsers
+    getUsers,
+    setPage
 }), withAuthRedirect)(UsersAPIComponent)
 
 type mapDispatchToPropsType = {
@@ -44,6 +46,7 @@ type mapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => void
     getUsers: (currentPage: number, pageSize: number) => void
+    setPage: (page: AppPage) => void
 }
 
 

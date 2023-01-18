@@ -86,9 +86,13 @@
   }
 
   .editProfileInformation {
-    & > div:not(:last-child) {
+    @extend .blocksBorder;
+    & > div:not(:first-child, :last-child) {
       padding: 16px;
-      border-bottom: 2px solid #eaebec;
+      border-top: 2px solid #eaebec;
+    }
+    & > div:first-child {
+      padding: 16px;
     }
 
     & > div:not(div:first-child) {
@@ -100,12 +104,19 @@
       padding: 16px;
       border-bottom: 2px solid #eaebec;
     }
+    .profileEditStatus {
+      color: #ff0000;
+      border: 1px solid #ff0000;
+      border-radius: 5px;
+      position: relative;
+      z-index: 1;
+    }
   }
 }
 
 .saveButtons {
   text-align: center;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
 
   .saveButton {
     background: none;

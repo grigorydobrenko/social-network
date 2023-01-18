@@ -4,6 +4,7 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileStateType} from "./profile-reducer";
 import styles from './Profile.module.scss'
 import {Section} from "./ProfileNews/Section";
+import {AppPage} from "../../app/app-reducer";
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
@@ -13,7 +14,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                          profile={props.profile} status={props.status} updateStatus={props.updateStatus}
             />
             <MyPostsContainer/>
-            <Section/>
+            <Section setPage={props.setPage}/>
         </div>
     );
 };
@@ -26,5 +27,6 @@ export type ProfilePropsType = Omit<ProfileStateType, 'posts'>
     & { setIsEdit: (isEdit: boolean) => void }
     & { profileEditStatus: string | null }
     & { isEdit: boolean }
+    & { setPage: (page: AppPage) => void}
 
 

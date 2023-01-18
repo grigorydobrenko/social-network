@@ -5,7 +5,8 @@ let state: AppReducerStateType
 beforeEach(() => {
     state = {
         isInitialized: false,
-        appStatus: 'idle'
+        appStatus: 'idle',
+        selectedPage: 'profile'
     }
 })
 

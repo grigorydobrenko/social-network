@@ -23,6 +23,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                    unFollow={this.props.unFollow}
                    onPageChanged={this.onPageChanged}
                    followingInProgress={this.props.followingInProgress}
+                   setPage={this.props.setPage}
             />
         </>
 

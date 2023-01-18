@@ -3,10 +3,11 @@ import {NavLink} from "react-router-dom";
 import styles from "./Buttons.module.scss"
 import {SvgSelector} from "../svgSelector/SvgSelector";
 import {UserProps} from "../../../features/Users/User/User";
+import {AppPage} from "../../../app/app-reducer";
 
-export const Connect = () => {
+export const Connect = ({onClick}: ConnectProps) => {
     return (
-        <NavLink to={'/dialogs'} className={styles.connect}>
+        <NavLink to={'/dialogs'} className={styles.connect} onClick={() => onClick('dialogs')}>
             Connect
         </NavLink>
     );
@@ -16,7 +17,7 @@ export const Follow = ({followingInProgress, user, follow}: FollowProps) => {
     return (
         <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
             follow(user.id)
-        }}  className={styles.follow}><SvgSelector svgname={'follow'}/>Follow</button>
+        }} className={styles.follow}><SvgSelector svgname={'follow'}/>Follow</button>
     )
 }
 
@@ -24,24 +25,20 @@ export const UnFollow = ({followingInProgress, user, unFollow}: UnFollowProps) =
     return (
         <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
             unFollow(user.id)
-        }}  className={styles.follow}><SvgSelector svgname={'unFollow'}/>Unfollow</button>
+        }} className={styles.follow}><SvgSelector svgname={'unFollow'}/>Unfollow</button>
     )
 }
 
-export const ViewProfile = ({userId}: ViewProfileProps) => {
+export const ViewProfile = ({userId, onClick}: ViewProfileProps) => {
     return (
-        <NavLink to={'profile/' + userId}>
+        <NavLink to={'profile/' + userId} onClick={() => onClick('profile')}>
             <button className={styles.viewProfile}>View profile</button>
         </NavLink>
     )
 }
 
-export const SendMessage = () => {
-    return (
-        <button className={styles.sendMessage}>Send</button>
-    )
-}
 
-type FollowProps = Omit<UserProps, 'unFollow'>
-type UnFollowProps = Omit<UserProps, 'follow'>
-type ViewProfileProps = {userId: number}
+type FollowProps = Omit<UserProps, 'unFollow' | 'setPage'>
+type UnFollowProps = Omit<UserProps, 'follow' | 'setPage'>
+type ViewProfileProps = { userId: number, onClick: (page: AppPage) => void }
+type ConnectProps = { onClick: (page: AppPage) => void }
