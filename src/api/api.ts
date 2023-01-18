@@ -1,14 +1,14 @@
 import axios from "axios";
 import {UserType} from "../features/Users/users-reducer";
 
-const PATH = `https://social-network.samuraijs.com/api/1.0/`
-const API_KEY = "f084858c-82a6-4229-bddd-b62d132d9a71"
+const PATH = 'https://social-network.samuraijs.com/api/1.0/'
+const API_KEY = 'ad5cebb5-7ed9-41bb-9323-1d2949c784c9'
 
 const instance = axios.create({
     baseURL: PATH,
     withCredentials: true,
     headers: {
-        "API-KEY": API_KEY
+        'API-KEY': API_KEY
     }
 })
 
