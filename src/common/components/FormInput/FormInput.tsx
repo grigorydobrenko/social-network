@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FormInput.module.scss'
 
 // @ts-ignore
-export function FormInput({register, name, type, label, id, isNested, ...inputProps}) {
+export function FormInput({register, name, type, label, id, isNested}) {
     if (isNested) {
         name = `contacts.${name}`
     }

@@ -5,15 +5,25 @@ import {Paginator} from "../../common/components/Paginator/Paginator";
 import styles from './Users.module.scss'
 import {AppPage} from "../../app/app-reducer";
 
-export const Users: React.FC<UsersType> = ({totalUsersCounter, pageSize, currentPage, onPageChanged, users, ...props}) => {
+export const Users: React.FC<UsersType> = ({
+                                               totalUsersCounter,
+                                               pageSize,
+                                               currentPage,
+                                               onPageChanged,
+                                               users,
+                                               ...props
+                                           }) => {
     return (
         <div className={styles.userPage}>
             <div className={styles.pagination}>
                 <Paginator pageSize={pageSize} totalUsersCounter={totalUsersCounter} currentPage={currentPage}
-                          onPageChanged={onPageChanged}/>
+                           onPageChanged={onPageChanged}/>
             </div>
-            <div className={styles.usersContainer}>{users.map(u => <User user={u} followingInProgress={props.followingInProgress} follow={props.follow}
-                                     unFollow={props.unFollow} key={u.id} setPage={props.setPage}/>)}</div>
+            <div className={styles.usersContainer}>{users.map(u => <User user={u}
+                                                                         followingInProgress={props.followingInProgress}
+                                                                         follow={props.follow}
+                                                                         unFollow={props.unFollow} key={u.id}
+                                                                         setPage={props.setPage}/>)}</div>
         </div>
     );
 }

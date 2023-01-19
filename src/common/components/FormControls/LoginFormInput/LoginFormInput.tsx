@@ -3,7 +3,7 @@ import styles from './LoginFormInput.module.scss'
 import {SvgSelector} from "../../svgSelector/SvgSelector";
 
 // @ts-ignore
-export function InputLoginForm({register, name, type, label, validationSchema, svg, error, ...inputProps}) {
+export function InputLoginForm({register, name, type, label, validationSchema, svg, error}) {
 
     const classInput = error ? styles.inputErrorField : styles.inputField
 

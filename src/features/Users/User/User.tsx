@@ -4,13 +4,14 @@ import s from "../Users.module.scss";
 import userPhoto from "../../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
 import styles from "./User.module.scss"
-import {Connect, Follow, UnFollow, ViewProfile} from "../../../common/components/Buttons/Buttons";
+import {ViewProfile} from "../../../common/components/Buttons/Buttons";
 import {AppPage} from "../../../app/app-reducer";
+import {InteractUser} from "../../Profile/ProfileInfo/InteractUser/InteractUser";
 
 export const User: React.FC<UserProps> = ({user, followingInProgress, follow, unFollow, setPage}) => {
 
     const onClickHandler = (page: AppPage) => {
-        setPage(page)
+        setPage && setPage(page)
     }
 
     return (
@@ -28,16 +29,13 @@ export const User: React.FC<UserProps> = ({user, followingInProgress, follow, un
                     <div>{user.status}</div>
                 </div>
             </div>
-            <div className={styles.userButtons}>
-                <Connect onClick={onClickHandler}/>
-                {user.followed ?
-                    <UnFollow followingInProgress={followingInProgress} user={user} unFollow={unFollow}/>
-                    :
-                    <Follow followingInProgress={followingInProgress} user={user} follow={follow}/>
-                }
+            <div className={styles.interactProfile}>
+                <InteractUser user={user} followingInProgress={followingInProgress} follow={follow}
+                              unFollow={unFollow} setPage={setPage}/>
             </div>
+
             <div className={styles.viewProfile}>
-                <ViewProfile userId={user.id} onClick={onClickHandler}/>
+                <ViewProfile userId={user?.id} onClick={onClickHandler}/>
             </div>
         </div>)
 }
@@ -47,5 +45,8 @@ export type UserProps = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     user: UserType
-    setPage: (page: AppPage) => void
+    setPage?: (page: AppPage) => void
 }
+
+
+

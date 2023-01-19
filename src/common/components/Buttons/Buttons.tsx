@@ -29,6 +29,7 @@ export const UnFollow = ({followingInProgress, user, unFollow}: UnFollowProps) =
     )
 }
 
+
 export const ViewProfile = ({userId, onClick}: ViewProfileProps) => {
     return (
         <NavLink to={'profile/' + userId} onClick={() => onClick('profile')}>

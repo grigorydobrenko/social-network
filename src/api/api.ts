@@ -109,8 +109,6 @@ export type ProfileType = {
     }
 }
 
-// export type ProfileType = Partial<_ProfileType>
-
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1,

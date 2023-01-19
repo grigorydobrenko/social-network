@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './ProfileStatus.module.scss'
 import {SvgSelector} from "../../../../common/components/svgSelector/SvgSelector";
 
-export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status,isOwner, updateStatus}) => {
+export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, isOwner, updateStatus}) => {
 
     const [isEdit, setIsEdit] = useState(false)
     const [ProfileStatus, setStatus] = useState(status)
@@ -26,10 +26,15 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status,isOw
         setStatus(status)
     }, [status])
 
+    const isEditFalseStyle = !isOwner ? styles.disabled : styles.status
+
     return (
         <>
             {!isEdit ?
-                <div onDoubleClick={toggleMode} className={!isOwner ? styles.disabled: styles.status}><span>{ProfileStatus || 'no status'}</span>  <SvgSelector svgname={'edit'}/></div> :
+                <div onDoubleClick={toggleMode} className={isEditFalseStyle}>
+                    <span>{ProfileStatus || 'no status'}</span>
+                    {isOwner && <SvgSelector svgname={'edit'}/>}
+                </div> :
                 <input onBlur={toggleMode} onChange={onStatusChange} autoFocus
                        value={ProfileStatus} className={styles.statusInput}/>
             }

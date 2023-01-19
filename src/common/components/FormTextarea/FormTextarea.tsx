@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FormTextarea.module.scss'
 
 // @ts-ignore
-export function FormTextarea({register, name, label, id, rows, validationSchema, ...inputProps}) {
+export function FormTextarea({register, name, label, id, rows, validationSchema}) {
 
     return <>
         <textarea

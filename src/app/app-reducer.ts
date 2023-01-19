@@ -15,7 +15,6 @@ export const appReducer = (state: AppReducerStateType = initialState, action: Ap
             return {...state, appStatus: action.status}
         case 'app/SET-PAGE':
             return {...state, selectedPage: action.page}
-
         default:
             return state
     }

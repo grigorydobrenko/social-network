@@ -1,7 +1,7 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import styles from "./FormControls.module.scss";
 import React from "react";
-import {required} from "../../utils/validators/validators";
+import {required} from "../../utils/validators";
 import {commonType} from "../../../features/Login/Login";
 import {InputLoginForm} from "./LoginFormInput/LoginFormInput";
 
@@ -45,7 +45,7 @@ export const LoginForm = (props: commonType) => {
             {props.isSubmit && <div className={styles.errorMessageColor}>{props.errorMessage}</div>}
 
             {props.captchaUrl && <div>
-                <img src={props.captchaUrl} className={styles.captcha}/>
+                <img src={props.captchaUrl} className={styles.captcha} alt={'captcha'}/>
             </div>}
 
             {props.captchaUrl && <div>

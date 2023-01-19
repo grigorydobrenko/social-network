@@ -1,12 +1,10 @@
 import React from 'react';
-import styles from './Section.module.scss'
+import styles from './NewsSection.module.scss'
 import {SvgSelector} from "../../../common/components/svgSelector/SvgSelector";
 import {AppPage} from "../../../app/app-reducer";
 import {NavLink} from "react-router-dom";
 
-
-export const Section: React.FC<Props> = ({setPage}) => {
-
+export const NewsSection: React.FC<Props> = ({setPage}) => {
 
     const onClickHandler = () => {
         setPage('news')

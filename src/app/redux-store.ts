@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
 declare global {
     interface Window {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+        __store__: unknown
     }
 }
 
@@ -34,7 +35,6 @@ export type AllActionsTypes =
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AllActionsTypes>
 
-// @ts-ignore
 window.__store__ = store
 
 export default store

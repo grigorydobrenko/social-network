@@ -8,28 +8,29 @@ import {FormTextarea} from "../../../../common/components/FormTextarea/FormTexta
 export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfile}: ProfileDataFormProps) => {
     const {register, handleSubmit} = useForm({
         defaultValues: {...profile}
-    });
+    })
 
     const onSubmit = async (data: any) => {
-        console.log(data)
         saveProfile(data)
-    };
+    }
 
     return <div>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.editProfileInformation}>
             {profileEditStatus && <div className={styles.profileEditStatus}>{profileEditStatus}</div>}
             {isOwner && <div className={styles.saveButtons}>
                 <button className={styles.saveButton}
-                    type="submit">Save
+                        type="submit">Save
                 </button>
             </div>}
-            <div><FormInput id="fullName"
-                            type="input"
-                            name="fullName"
-                            label="Full name"
-                            register={register}
-                            isNested={false}
-            /></div>
+            <div>
+                <FormInput id="fullName"
+                           type="input"
+                           name="fullName"
+                           label="Full name"
+                           register={register}
+                           isNested={false}
+                />
+            </div>
             <div>
                 <h3>About me</h3>
                 <FormTextarea id="aboutMe"
@@ -52,12 +53,13 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
             <div>
                 <h3>Looking for a job description</h3>
                 <FormTextarea id="lookingForAJobDescription"
-                               name="lookingForAJobDescription"
-                               label="Write about a job which you're looking for..."
-                               rows={3}
+                              name="lookingForAJobDescription"
+                              label="Write about a job which you're looking for..."
+                              rows={3}
                               validationSchema={{}}
-                               register={register}
-            /></div>
+                              register={register}
+                />
+            </div>
             <div>
                 {Object.keys(profile.contacts).map(contact => {
 
@@ -72,8 +74,6 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
 
                     </div>
                 })}</div>
-
-
         </form>
     </div>
 }

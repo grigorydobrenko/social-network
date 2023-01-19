@@ -1,10 +1,11 @@
 import React from 'react';
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {ProfileStateType} from "./profile-reducer";
 import styles from './Profile.module.scss'
-import {Section} from "./ProfileNews/Section";
+import {NewsSection} from "./NewsSection/NewsSection";
 import {AppPage} from "../../app/app-reducer";
+import {UserType} from "../Users/users-reducer";
+import {ProfileType} from "../../api/api";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
@@ -12,21 +13,32 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
             <ProfileInfo setIsEdit={props.setIsEdit} isEdit={props.isEdit} saveProfile={props.saveProfile}
                          profileEditStatus={props.profileEditStatus} savePhoto={props.savePhoto} isOwner={props.isOwner}
                          profile={props.profile} status={props.status} updateStatus={props.updateStatus}
+                         followingInProgress={props.followingInProgress}
+                         follow={props.follow} unFollow={props.unFollow} users={props.users} userId={props.userId}
             />
             <MyPostsContainer/>
-            <Section setPage={props.setPage}/>
+            <NewsSection setPage={props.setPage}/>
         </div>
-    );
-};
+    )
+}
 
-export type ProfilePropsType = Omit<ProfileStateType, 'posts'>
-    & { updateStatus: (status: string) => void }
-    & { isOwner: boolean }
-    & { savePhoto: (file: File) => void }
-    & { saveProfile: (profile: any) => void }
-    & { setIsEdit: (isEdit: boolean) => void }
-    & { profileEditStatus: string | null }
-    & { isEdit: boolean }
-    & { setPage: (page: AppPage) => void}
+export type ProfilePropsType = {
+    profile: ProfileType | null
+    status: string
+    profileEditStatus: string | null
+    isEdit: boolean
+    updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: File) => void
+    saveProfile: (profile: any) => void
+    setIsEdit: (isEdit: boolean) => void
+    setPage: (page: AppPage) => void
+    followingInProgress: number[]
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+    users: UserType[]
+    userId: string
+}
+
 
 

@@ -7,8 +7,7 @@ export const AddPostForm = (props: AddPostFormType) => {
     const {
         register,
         handleSubmit,
-        reset,
-        formState: {errors}
+        reset
     } = useForm<IPostFormInput>();
     const onSubmit: SubmitHandler<IPostFormInput> = data => {
         props.addPost(data)

@@ -6,6 +6,14 @@ import {AppStateType} from "../../../app/redux-store";
 import {IPostFormInput} from "./Post/AddPostForm";
 import {AuthStateType} from "../../Login/auth-reducer";
 
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        profilePage: state.profilePage,
+        auth: state.auth
+    }
+}
+
+export const MyPostsContainer = connect(mapStateToProps, {addPost, deletePost})(MyPosts)
 
 type mapStateToPropsType = {
     profilePage: ProfileStateType
@@ -18,13 +26,4 @@ type mapDispatchToProps = {
 }
 
 export  type MyPostsCommonType = mapDispatchToProps & mapStateToPropsType
-
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-    return {
-        profilePage: state.profilePage,
-        auth: state.auth
-    }
-}
-
-export const MyPostsContainer = connect(mapStateToProps, {addPost, deletePost})(MyPosts)
 

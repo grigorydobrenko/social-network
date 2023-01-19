@@ -8,15 +8,14 @@ import {compose} from "redux";
 import {ProfileType} from "../../api/api";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 import {AppPage, setPage} from "../../app/app-reducer";
+import {follow, unFollow, UserType} from "../Users/users-reducer";
 
 export class ProfileAPIComponent extends React.Component<PropsType> {
-
 
     refreshProfile() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            // @ts-ignore
-            userId = this.props.profileId
+            userId = this.props.profileId!.toString()
             if (!userId) {
                 this.props.history.push('login')
             }
@@ -32,13 +31,14 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
     }
 
     componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if (this.props.match.params.userId != prevProps.match.params.userId){
+        if (this.props.match.params.userId != prevProps.match.params.userId) {
             this.refreshProfile()
         }
     }
 
     render() {
         return <Profile isOwner={!this.props.match.params.userId}
+                        userId={this.props.match.params.userId}
                         {...this.props}
                         profile={this.props.profile}
                         status={this.props.status}
@@ -49,6 +49,10 @@ export class ProfileAPIComponent extends React.Component<PropsType> {
                         isEdit={this.props.isEdit}
                         setIsEdit={this.props.setIsEdit}
                         setPage={this.props.setPage}
+                        followingInProgress={this.props.followingInProgress}
+                        follow={this.props.follow}
+                        unFollow={this.props.unFollow}
+                        users={this.props.users}
         />
     }
 }
@@ -59,11 +63,23 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profileId: state.auth.id,
     profileEditStatus: state.profilePage.profileEditStatus,
     isEdit: state.profilePage.isEdit,
-    selectedPage: state.app.selectedPage
+    selectedPage: state.app.selectedPage,
+    followingInProgress: state.usersPage.followingInProgress,
+    users: state.usersPage.users
 })
 
 const ProfileContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfile, getStatus, updateStatus, savePhoto, saveProfile, setIsEdit, setPage}),
+    connect(mapStateToProps, {
+        getProfile,
+        getStatus,
+        updateStatus,
+        savePhoto,
+        saveProfile,
+        setIsEdit,
+        setPage,
+        follow,
+        unFollow
+    }),
     withRouter, withAuthRedirect)(ProfileAPIComponent)
 
 
@@ -79,6 +95,8 @@ type mapDispatchToPropsType = {
     saveProfile: (profile: any) => void
     setIsEdit: (isEdit: boolean) => void
     setPage: (page: AppPage) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
 }
 
 type mapStateToPropsType = {
@@ -88,6 +106,8 @@ type mapStateToPropsType = {
     profileEditStatus: string | null
     isEdit: boolean
     selectedPage: AppPage
+    followingInProgress: number[]
+    users: UserType[]
 }
 
 type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType
