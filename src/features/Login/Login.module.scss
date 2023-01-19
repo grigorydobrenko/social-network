@@ -4,16 +4,36 @@
   display: flex;
   margin: 300px auto;
   max-width: 600px;
-  //padding: 50px;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
-  //background-color: white;
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    border-right: none;
+  }
   .descriptionBox {
     border-right: 2px solid #eaebec;
     padding: 20px;
+    @media (max-width: 576px) {
+      border-right: none;
+      border-bottom: 2px solid #eaebec;
+    }
     .description {
       display: flex;
+      justify-content: center;
       flex-direction: column;
+      margin-top: 20px;
+      padding-left: 20px;
+      color: #666;
+      .apiLink {
+        color: #000
+      }
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
   }
   .loginForm {
@@ -24,4 +44,10 @@
     }
   }
 
+}
+
+.logo {
+  max-width: 50px;
+  max-height: 100%;
+  padding: 10px;
 }

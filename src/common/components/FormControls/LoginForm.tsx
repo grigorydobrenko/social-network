@@ -40,7 +40,7 @@ export const LoginForm = (props: commonType) => {
             </div>
             <div className={styles.rememberMe}>
                 <input type="checkbox" {...register('rememberMe')}/>
-                <span>remember me</span>
+                <span>Remember me</span>
             </div>
             {props.isSubmit && <div className={styles.errorMessageColor}>{props.errorMessage}</div>}
 

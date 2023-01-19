@@ -5,6 +5,7 @@ import {AppStateType} from "../../app/redux-store";
 import {Redirect} from "react-router-dom";
 import {LoginForm} from "../../common/components/FormControls/LoginForm";
 import styles from './Login.module.scss'
+import logo from "../../assets/images/logo.png";
 
 const Login = (props: commonType) => {
     if (props.isAuth) {
@@ -13,13 +14,18 @@ const Login = (props: commonType) => {
     return (
         <div className={styles.loginContainer}>
             <div className={styles.descriptionBox}>
-                <h2>Welcome Back</h2>
-                <p className={styles.description}><span>To log in get registered <a
-                    href="https://social-network.samuraijs.com/signUp">here</a></span>
+                <div className={styles.title}>
+                    <img src={logo} alt="logo" className={styles.logo}/>
+                    <h2 > Welcome Back</h2>
+                </div>
+                <div className={styles.description}>
+                    <span>To log in get registered <a
+                    href="https://social-network.samuraijs.com/signUp" className={styles.apiLink} target={'_blank'}>here</a>
+                    </span>
                     <span>or use common test account credentials:</span>
                     <span>Email: <b>free@samuraijs.com</b></span>
                     <span> Password: <b>free</b></span>
-                </p>
+                </div>
             </div>
             <div className={styles.loginForm}>
                 <h3 className={styles.loginFormTitle}>Sign in</h3>
