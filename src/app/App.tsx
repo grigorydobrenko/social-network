@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.module.scss';
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import {News} from "../features/News/News";
+import {NewsContainer} from "../features/News/News";
 import {UsersContainer} from "../features/Users/UsersContainer";
 import HeaderContainer from "../features/Header/HeaderContainer";
 import Login from "../features/Login/Login";
@@ -56,7 +56,7 @@ class App extends React.Component<commonPropsType> {
                         <Route path='/profile/:userId?' render={() => <SuspendedProfile/>}/>
                         <Route path='/dialogs' render={() => <SuspendedDialogs/>}/>
                         <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/news' render={() => <News setPage={this.props.setPage}/>}/>
+                        <Route path='/news' render={() => <NewsContainer/>}/>
                         <Route path='/404' render={() => <NotFound/>}/>
                         <Route path='*' render={() => <Redirect to={'/404'}/>}/>
                     </Switch>

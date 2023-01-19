@@ -105,7 +105,7 @@ export type AuthStateType = {
     id: null | number
     email: null | string
     login: null | string
-    isAuth: boolean,
+    isAuth: boolean
     isSubmit: boolean
     errorMessage: string
     captchaUrl: string | null

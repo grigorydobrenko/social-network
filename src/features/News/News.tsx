@@ -1,7 +1,10 @@
 import React, {useEffect} from 'react';
 import styles from './News.module.scss'
 import {SvgSelector} from "../../common/components/svgSelector/SvgSelector";
-import {AppPage} from "../../app/app-reducer";
+import {AppPage, setPage} from "../../app/app-reducer";
+import {connect} from "react-redux";
+import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
+import {AppStateType} from "../../app/redux-store";
 
 export const News = ({setPage}: Props) => {
 
@@ -18,6 +21,19 @@ export const News = ({setPage}: Props) => {
     )
 }
 
-type Props = {
-    setPage: (page: AppPage) => void
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
+    isAuth: state.auth.isAuth
+})
+
+export const NewsContainer = connect((mapStateToProps), {setPage})(withAuthRedirect(News))
+
+type Props = mapStateToPropsType & mapDispatchToPropsType
+
+type mapStateToPropsType = {
+    isAuth: boolean
 }
+
+export type mapDispatchToPropsType = {
+    setPage: (setPage: AppPage) => void
+}
+
