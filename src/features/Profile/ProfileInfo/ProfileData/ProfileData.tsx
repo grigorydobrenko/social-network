@@ -5,8 +5,7 @@ import {Contact} from "../Contact/Contact";
 
 export const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => {
 
-    const lookingForAJobField = profile.lookingForAJob ? 'yes' : 'no'
-    const aboutMeField = profile.lookingForAJob ? 'yes' : 'no'
+    const aboutMeField = profile.aboutMe
     const lookingForAJobDescriptionField = profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '...'
 
     const contacts = Object.keys(profile.contacts).map((contact) => {
@@ -22,9 +21,6 @@ export const ProfileData = ({profile, isOwner, setIsEdit}: ProfileDataProps) => 
         </div>}
         <div className={styles.aboutMe}>
             <h3>About me:</h3><span>{aboutMeField}</span>
-        </div>
-        <div>
-            <b>Looking for a job</b>: {lookingForAJobField}
         </div>
         <div><b>Looking for a job
             description</b>: {lookingForAJobDescriptionField}

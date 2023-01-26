@@ -75,7 +75,7 @@ export const ProfileInfo: React.FC<Omit<ProfilePropsType, 'setPage'>> = (props) 
                     />
                 </div>}
 
-                <h2>{profile?.fullName}</h2>
+                <h2 className={styles.fullName}>{profile?.fullName}</h2>
                 <ProfileStatusWithHooks isOwner={isOwner} status={status} updateStatus={updateStatus}/>
                 {!isOwner &&
                     <div className={styles.interactProfile}>

@@ -34,7 +34,7 @@ export const ProfileDataForm = ({profile, isOwner, profileEditStatus, saveProfil
             <div>
                 <h3>About me</h3>
                 <FormTextarea id="aboutMe"
-                              name="fullName"
+                              name="aboutMe"
                               label="Write about yourself..."
                               rows={3}
                               validationSchema={{}}

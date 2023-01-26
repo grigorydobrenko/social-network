@@ -41,6 +41,11 @@
       outline: inherit;
       margin-top: 10px;
     }
+    .fullName {
+      max-width: 100%;
+      overflow: auto;
+    }
+
   }
 
   .settingButtons {
