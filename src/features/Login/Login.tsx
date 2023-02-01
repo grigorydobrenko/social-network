@@ -5,7 +5,7 @@ import {AppStateType} from "../../app/redux-store";
 import {Redirect} from "react-router-dom";
 import {LoginForm} from "../../common/components/FormControls/LoginForm";
 import styles from './Login.module.scss'
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.svg";
 
 const Login = (props: commonType) => {
     if (props.isAuth) {
